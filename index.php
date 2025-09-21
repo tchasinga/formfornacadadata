@@ -206,9 +206,6 @@
                                 "status": "ACTIVE"
                             }
                         ],
-                        "events": [
-                            
-                        ]
                         "orgUnit": "ORwhnDymBpM",
                         "trackedEntityType": "ad6uk49xve7" // trackdatacollector entity
                     }
