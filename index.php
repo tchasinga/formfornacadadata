@@ -1,115 +1,43 @@
-<?php
-// DHIS2 Configuration
-$dhis2Config = [
-    'baseUrl' => 'https://monitoring.jocsoft.net/dhis/',
-    'username' => 'jack',
-    'password' => 'Jocsoft@2027!!',
-    'trackedEntityType' => 'RjKhXS9Dmp3', // mytracking01
-    'orgUnit' => 'ORwhnDymBpM',
-    'attributeId' => 'aF3JppzS7kO' // testing-names
-];
-
-// Function to make API calls to DHIS2
-function callDhis2Api($url, $data = null, $method = 'POST') {
-    global $dhis2Config;
-    
-    $ch = curl_init();
-    $fullUrl = $dhis2Config['baseUrl'] . 'api/' . $url;
-    
-    curl_setopt($ch, CURLOPT_URL, $fullUrl);
-    curl_setopt($ch, CURLOPT_USERPWD, $dhis2Config['username'] . ":" . $dhis2Config['password']);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    
-    if ($method === 'POST') {
-        curl_setopt($ch, CURLOPT_POST, true);
-        if ($data) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen(json_encode($data))
-            ]);
-        }
-    }
-    
-    $response = curl_exec($ch);
-    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-    
-    return [
-        'code' => $httpCode,
-        'response' => json_decode($response, true),
-        'raw' => $response
-    ];
-}
-
-// Handle form submission
-$message = '';
-$messageType = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['testing_names'])) {
-    $testingNames = trim($_POST['testing_names']);
-    
-    if (!empty($testingNames)) {
-        // Prepare the data for DHIS2 API
-        $teiData = [
-            'trackedEntityType' => $dhis2Config['trackedEntityType'],
-            'orgUnit' => $dhis2Config['orgUnit'],
-            'attributes' => [
-                [
-                    'attribute' => $dhis2Config['attributeId'],
-                    'value' => $testingNames
-                ]
-            ]
-        ];
-        
-        // Make API call to create tracked entity instance
-        $result = callDhis2Api('trackedEntityInstances', $teiData);
-        
-        if ($result['code'] === 201) {
-            $message = "Successfully created tracked entity instance!";
-            $messageType = "success";
-        } else {
-            $message = "Error creating tracked entity instance. HTTP Code: " . $result['code'];
-            if (isset($result['response']['message'])) {
-                $message .= " - " . $result['response']['message'];
-            }
-            $messageType = "error";
-        }
-    } else {
-        $message = "Please enter a value for testing names.";
-        $messageType = "error";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DHIS2 - Create Tracked Entity Instance</title>
+    <title>DHIS2 Tracked Entity Enrollment</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
+            background-color: #f5f7f9;
+            color: #333;
+            line-height: 1.6;
             padding: 20px;
-            background-color: #f5f5f5;
         }
         
         .container {
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         h1 {
-            color: #2c3e50;
+            text-align: center;
+            color: #2c6593;
+            margin-bottom: 20px;
+        }
+        
+        .description {
             text-align: center;
             margin-bottom: 30px;
+            color: #666;
         }
         
         .form-group {
@@ -118,40 +46,48 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['testing_names'])) {
         
         label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #34495e;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c6593;
         }
         
-        input[type="text"] {
+        input[type="text"],
+        input[type="date"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ddd;
-            border-radius: 4px;
+            border-radius: 5px;
             font-size: 16px;
-            box-sizing: border-box;
+            transition: border 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="date"]:focus {
+            border-color: #2c6593;
+            outline: none;
         }
         
         button {
-            background-color: #3498db;
+            background-color: #2c6593;
             color: white;
-            padding: 12px 24px;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
+            padding: 12px 20px;
             font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
             width: 100%;
+            transition: background-color 0.3s;
         }
         
         button:hover {
-            background-color: #2980b9;
+            background-color: #1c4a73;
         }
         
-        .message {
+        .response {
+            margin-top: 30px;
             padding: 15px;
-            margin: 20px 0;
-            border-radius: 4px;
-            text-align: center;
+            border-radius: 5px;
+            display: none;
         }
         
         .success {
@@ -166,39 +102,157 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['testing_names'])) {
             border: 1px solid #f5c6cb;
         }
         
-        .info {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2c6593;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .info-box {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Create Tracked Entity Instance</h1>
+        <h1>DHIS2 Tracked Entity Enrollment</h1>
+        <p class="description">Submit data to the collectingthosedata program</p>
         
-        <?php if (!empty($message)): ?>
-            <div class="message <?php echo $messageType; ?>">
-                <?php echo htmlspecialchars($message); ?>
-            </div>
-        <?php endif; ?>
+        <div class="info-box">
+            <strong>API Information:</strong><br>
+            Program: collectingthosedata (PgKF7mXlZe0)<br>
+            Tracked Entity: trackdatacollector (ad6uk49xve7)<br>
+            Org Unit: ORwhnDymBpM
+        </div>
         
-        <form method="POST" action="">
+        <form id="enrollmentForm">
             <div class="form-group">
-                <label for="testing_names">Testing Names:</label>
-                <input type="text" id="testing_names" name="testing_names" 
-                       placeholder="Enter testing names" required
-                       value="<?php echo isset($_POST['testing_names']) ? htmlspecialchars($_POST['testing_names']) : ''; ?>">
+                <label for="fullName">Full Name *</label>
+                <input type="text" id="fullName" name="fullName" required placeholder="Enter full name">
             </div>
             
-            <button type="submit">Submit to DHIS2</button>
+            <div class="form-group">
+                <label for="enrollmentDate">Enrollment Date *</label>
+                <input type="date" id="enrollmentDate" name="enrollmentDate" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="occurredDate">Occurred Date *</label>
+                <input type="date" id="occurredDate" name="occurredDate" required>
+            </div>
+            
+            <button type="submit">Submit Enrollment</button>
         </form>
         
-        <div class="message info">
-            <strong>Program:</strong> dataexamplecollection (FkmngCuxM1Z)<br>
-            <strong>Tracked Entity:</strong> mytracking01 (RjKhXS9Dmp3)<br>
-            <strong>Organization Unit:</strong> ORwhnDymBpM
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Submitting data to DHIS2...</p>
         </div>
+        
+        <div class="response" id="response"></div>
     </div>
+
+    <script>
+        document.getElementById('enrollmentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('response').style.display = 'none';
+            
+            // Get form values
+            const fullName = document.getElementById('fullName').value;
+            const enrollmentDate = document.getElementById('enrollmentDate').value;
+            const occurredDate = document.getElementById('occurredDate').value;
+            
+            // Current date for enrolledAt and scheduledAt
+            const now = new Date().toISOString();
+            
+            // Prepare the payload for DHIS2 API
+            const payload = {
+                "trackedEntities": [
+                    {
+                        "enrollments": [
+                            {
+                                "attributes": [
+                                    {
+                                        "attribute": "v7FLq8y7EMu", // Full Name attribute
+                                        "value": fullName
+                                    }
+                                ],
+                                "enrolledAt": enrollmentDate + "T00:00:00.000",
+                                "occurredAt": occurredDate + "T00:00:00.000",
+                                "orgUnit": "ORwhnDymBpM",
+                                "program": "PgKF7mXlZe0", // collectingthosedata program
+                                "status": "ACTIVE"
+                            }
+                        ],
+                        "orgUnit": "ORwhnDymBpM",
+                        "trackedEntityType": "ad6uk49xve7" // trackdatacollector entity
+                    }
+                ]
+            };
+            
+            // PHP proxy endpoint to handle the API request
+            fetch('submit_enrollment.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+                
+                const responseDiv = document.getElementById('response');
+                responseDiv.style.display = 'block';
+                
+                if (data.status === 'success') {
+                    responseDiv.className = 'response success';
+                    responseDiv.innerHTML = `<strong>Success!</strong> Enrollment created successfully. Response: ${data.message}`;
+                    
+                    // Reset form
+                    document.getElementById('enrollmentForm').reset();
+                } else {
+                    responseDiv.className = 'response error';
+                    responseDiv.innerHTML = `<strong>Error!</strong> ${data.message}`;
+                }
+            })
+            .catch(error => {
+                document.getElementById('loading').style.display = 'none';
+                
+                const responseDiv = document.getElementById('response');
+                responseDiv.style.display = 'block';
+                responseDiv.className = 'response error';
+                responseDiv.innerHTML = `<strong>Error!</strong> ${error.message}`;
+            });
+        });
+        
+        // Set default dates to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('enrollmentDate').value = today;
+        document.getElementById('occurredDate').value = today;
+    </script>
 </body>
 </html>
