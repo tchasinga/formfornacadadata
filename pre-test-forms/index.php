@@ -275,11 +275,91 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Personality flaws.">Personality flaws.</option>
 				<option value="Inheritance">Inheritance</option>
 				<option value="Mental problems">Mental problems</option>
+                <option value="Interaction between personal characteristics and environmental influences.">Interaction between personal characteristics and environmental influences.</option>
 				</select>
                
-            </div>
-			
-			
+                <!-- second questions -->
+                 <label for="q2">The most widely used illicit substance in the world is</label>
+                 <select name="world_is" class="form-group" >
+                    <option value="Cannabis">Cannabis</option>
+                    <option value="Tobacco">Tobacco</option>
+                    <option value="Opioids">Opioids</option>
+                    <option value="Alcohol">Alcohol</option>
+                 </select>
+
+                 <!-- third questions -->
+                 <label for="q3">What is a Substance Use Prevention Policy?</label>
+                 <select name="prevention_policy" class="form-group" >
+                    <option value="A written document which specifies the need for substance prevention at work places">A written document which specifies the need for substance prevention at work places</option>
+                    <option value="A written policy on how substance use violations should be dealt with at workplaces.">A written policy on how substance use violations should be dealt with at workplaces.</option>
+                    <option value="A written description of the workplace’s position on the use of alcohol, illicit drugs and prescription drugs">A written description of the workplace’s position on the use of alcohol, illicit drugs and prescription drugs</option>
+                    <option value="A written guideline for employers to ensure that no substance abuse takes place at the workplaces">A written guideline for employers to ensure that no substance abuse takes place at the workplaces</option>
+                 </select>
+
+                 <!-- foutrh questions -->
+                 <label for="q4">The strategies for workplace alcohol and drug use prevention and management policy should</label>
+                 <select name="policy_should" class="form-group" >
+                    <option value="Address employees only in groups of their various degrees of substance use">Address employees only in groups of their various degrees of substance use</option>
+                    <option value="Intervention is basically for the users only.">Intervention is basically for the users only.</option>
+                    <option value="Be inclusive and address the entire prevention continuum.">Be inclusive and address the entire prevention continuum.</option>
+                    <option value="Be interactive.">Be interactive.</option>
+                 </select>
+
+                 <!-- fifth questions -->
+                 <label for="q5">When disseminating the policy of a workplace, what component of the policy is
+                 important to explain to the workforce?</label>
+                 <select name="explain_to_the_workforce" class="form-group" >
+                    <option value="The general health and safety of all workers as well as the different components of the policy including the consequences for violating the policy.">The general health and safety of all workers as well as the different components of the policy including the consequences for violating the policy.</option>
+                    <option value="How the company will benefit from the non-use of drugs and substances">How the company will benefit from the non-use of drugs and substances</option>
+                    <option value="The importance of using EAP services">The importance of using EAP services</option>
+                    <option value="Disciplinary measures to be taken against those who are intoxicated">Disciplinary measures to be taken against those who are intoxicated</option>
+                 </select>
+
+                 <!-- sixth questions -->
+                 <label for="q6">The working population spends a significant amount of their time in their workplaces. So the workplace-based prevention interventions is important in</label>
+                 <select name="important_in" class="form-group" >
+                    <option value="Providing evidence for a positive return-on-investment.">Providing evidence for a positive return-on-investment.</option>
+                    <option value="Providing training and education to the workers.">Providing training and education to the workers.</option>
+                    <option value="Providing social status, subsistence, and stability to the workers.">Providing social status, subsistence, and stability to the workers.</option>
+                    <option value="Providing the workers with new experiences, norms and behaviours">Providing the workers with new experiences, norms and behaviours</option>
+                 </select>
+
+                 <!-- seventh questions -->
+                 <label for="q7">The most commonly used licit substance in the Kenya is</label>
+                 <select name="the_kenya_is" class="form-group" >
+                    <option value="Alcohol">Alcohol</option>
+                    <option value="Tobacco">Tobacco</option>
+                    <option value="Miraa">Miraa</option>
+                    <option value="Cannabis">Cannabis</option>
+                 </select>
+
+                 <!-- eighth questions -->
+                 <label for="q8">What is Employee Assistance Program?</label>
+                 <select name="assistance_program" class="form-group" >
+                    <option value="A program for identifying people with substance use problems">A program for identifying people with substance use problems</option>
+                    <option value="A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems">A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems</option>
+                    <option value="A program that demonstrates employer support for employees health and safety especially in addiction related issues">A program that demonstrates employer support for employees health and safety especially in addiction related issues</option>
+                    <option value="Program that helps employees cope with workplace stressors such as addiction">Program that helps employees cope with workplace stressors such as addiction</option>
+                 </select>
+
+                 <!-- ninth questions -->
+                 <label for="q9">Why is Employee Assistance Program often underutilized by employees?</label>
+                 <select name="underutilized_by_employees" class="form-group" >
+                    <option value="The services are not easy to access">The services are not easy to access</option>
+                    <option value="It is costly">It is costly</option>
+                    <option value="Employees often do not know it exists">Employees often do not know it exists</option>
+                    <option value="Disciplinary actions are linked to not using EAP services">Disciplinary actions are linked to not using EAP services</option>
+                 </select>
+
+                 <!-- tenth questions -->
+                 <label for="q10">It is important to address substance use as a health and safety issue because</label>
+                 <select name="safety_issue_because" class="form-group" >
+                    <option value="Many substances are illegal and there could be legal issues related to use">Many substances are illegal and there could be legal issues related to use</option>
+                    <option value="The organizations have social responsibility and duty to care for all its employees/workers">The organizations have social responsibility and duty to care for all its employees/workers</option>
+                    <option value="Substance use prevention is for all staff">Substance use prevention is for all staff</option>
+                    <option value="To help reduce use and de-stigmatize substance use prevention">To help reduce use and de-stigmatize substance use prevention</option>
+                 </select>
+            </div>	
 
             <button type="submit">Submit to DHIS2</button>
         </form>
