@@ -309,6 +309,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="Providing social status, subsistence, and stability to the workers.">Providing social status, subsistence, and stability to the workers.</option>
                     <option value="Providing the workers with new experiences, norms and behaviours">Providing the workers with new experiences, norms and behaviours</option>
                  </select>
+
+                 <!-- seventh questions -->
+                 <label for="q7">The most commonly used licit substance in the Kenya is</label>
+                 <select name="the_kenya_is" class="form-group" >
+                    <option value="Alcohol">Alcohol</option>
+                    <option value="Tobacco">Tobacco</option>
+                    <option value="Miraa">Miraa</option>
+                    <option value="Cannabis">Cannabis</option>
+                 </select>
             </div>	
 
             <button type="submit">Submit to DHIS2</button>
