@@ -10,7 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error_message = "Email is required";
     } else {
         $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-        $result_of =$_POST['result_of'];
+        $result_of = isset($_POST['result_of']) ? $_POST['result_of'] : '';
+        $world_is = isset($_POST['world_is']) ? $_POST['world_is'] : '';
+        $prevention_policy = isset($_POST['prevention_policy']) ? $_POST['prevention_policy'] : '';
+        $policy_should = isset($_POST['policy_should']) ? $_POST['policy_should'] : '';
+        $explain_to_the_workforce = isset($_POST['explain_to_the_workforce']) ? $_POST['explain_to_the_workforce'] : '';
+        $important_in = isset($_POST['important_in']) ? $_POST['important_in'] : '';
+        $the_kenya_is = isset($_POST['the_kenya_is']) ? $_POST['the_kenya_is'] : '';
+        $assistance_program = isset($_POST['assistance_program']) ? $_POST['assistance_program'] : '';
+        $underutilized_by_employees = isset($_POST['underutilized_by_employees']) ? $_POST['underutilized_by_employees'] : '';
+        $safety_issue_because = isset($_POST['safety_issue_because']) ? $_POST['safety_issue_because'] : '';
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
         } else {
@@ -41,7 +51,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											[
                                                 "dataElement" => "XNJMXYLHuHS",
 												"value" => $email
-                                             ]
+                                            ],
+                                            [
+                                                "dataElement" => "GfkJ46rlDC9",
+                                                "value" => $result_of
+                                            ],
+                                            [
+                                                "dataElement" => "nn3RF8kNu9T",
+                                                "value" => $world_is
+                                            ],
+                                            [
+                                                "dataElement" => "sXIQhe0qgNo",
+                                                "value" => $prevention_policy
+                                            ],
+                                            [
+                                                "dataElement" => "uGteI7r8d5o",
+                                                "value" => $policy_should
+                                            ],
+                                            [
+                                                "dataElement" => "ArBvYaC2cGf",
+                                                "value" => $explain_to_the_workforce
+                                            ],
+                                            [
+                                                "dataElement" => "xDfUrtO9If6",
+                                                "value" => $important_in
+                                            ],
+                                            [
+                                                "dataElement" => "equMnE3bDIK",
+                                                "value" => $the_kenya_is
+                                            ],
+                                            [
+                                                "dataElement" => "yADpWccrRAU",
+                                                "value" => $assistance_program
+                                            ],
+                                            [
+                                                "dataElement" => "MCleXBjIWEM",
+                                                "value" => $underutilized_by_employees
+                                            ],
+                                            [
+                                                "dataElement" => "AcYJVH3G2ey",
+                                                "value" => $safety_issue_because
+                                            ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
