@@ -21,6 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $the_kenya_is = isset($_POST['the_kenya_is']) ? $_POST['the_kenya_is'] : '';
         $assistance_program = isset($_POST['assistance_program']) ? $_POST['assistance_program'] : '';
         $underutilized_by_employees = isset($_POST['underutilized_by_employees']) ? $_POST['underutilized_by_employees'] : '';
+        $safety_issue_because = isset($_POST['safety_issue_because']) ? $_POST['safety_issue_because'] : '';
+        
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
@@ -29,13 +31,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username = "jack";
             $password = "Jocsoft@2027!!";
 
-            // Corrected DHIS2 payload structure
+            // Corrected DHIS2 payload structure XNJMXYLHuHS
             $data = [
                 "trackedEntities" => [
                     [
                         "attributes" => [
                             [
-                                "attribute" => "v7FLq8y7EMu", // Full Name attribute
+                                "attribute" => "dWzFql09XrP", // Full Name attribute
                                 "value" => $email
                             ]
                         ],
@@ -84,7 +86,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "MCleXBjIWEM",
                                                 "value" => $underutilized_by_employees
+                                            ],
+                                            [
+                                                "dataElement" => "AcYJVH3G2ey",
+                                                "value" => $safety_issue_because
+                                            ],
+                                            [
+                                                "dataElement" => "XNJMXYLHuHS",
+                                                "value" => $email
                                             ]
+
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
@@ -333,6 +344,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems">A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems</option>
                     <option value="A program that demonstrates employer support for employees health and safety especially in addiction related issues">A program that demonstrates employer support for employees health and safety especially in addiction related issues</option>
                     <option value="Program that helps employees cope with workplace stressors such as addiction">Program that helps employees cope with workplace stressors such as addiction</option>
+                 </select>
+
+                 <!-- ninth questions -->
+                 <label for="q9">Why is Employee Assistance Program often underutilized by employees?</label>
+                 <select name="underutilized_by_employees" class="form-group" >
+                    <option value="The services are not easy to access">The services are not easy to access</option>
+                    <option value="It is costly">It is costly</option>
+                    <option value="Employees often do not know it exists">Employees often do not know it exists</option>
+                    <option value="Disciplinary actions are linked to not using EAP services">Disciplinary actions are linked to not using EAP services</option>
+                 </select>
+
+                 <!-- tenth questions -->
+                 <label for="q10">It is important to address substance use as a health and safety issue because</label>
+                 <select name="safety_issue_because" class="form-group" >
+                    <option value="Many substances are illegal and there could be legal issues related to use">Many substances are illegal and there could be legal issues related to use</option>
+                    <option value="The organizations have social responsibility and duty to care for all its employees/workers">The organizations have social responsibility and duty to care for all its employees/workers</option>
+                    <option value="Substance use prevention is for all staff">Substance use prevention is for all staff</option>
+                    <option value="To help reduce use and de-stigmatize substance use prevention">To help reduce use and de-stigmatize substance use prevention</option>
                  </select>
             </div>	
 
