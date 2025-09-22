@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 "orgUnit" => "ORwhnDymBpM",
                                 "program" => "xgnmW6SqEzS",
                                 "status" => "ACTIVE",
-                                "events" => [  // Events should be inside enrollment  RD3Hln24v6C
+                                "events" => [  // Events should be inside enrollment  wDh5O6ZYeqt
                                     [
                                         "dataValues" => [
                                             [
@@ -88,6 +88,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                              [
                                                 "dataElement" => "J9LYBphItW1",
                                                 "value" => $safety_issue_because
+                                             ],
+                                             [
+                                                "dataElement" => "wDh5O6ZYeqt",
+                                                "value" => $email
                                              ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
