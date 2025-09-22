@@ -18,6 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $policy_should = isset($_POST['policy_should']) ? $_POST['policy_should'] : '';
         $explain_to_the_workforce = isset($_POST['explain_to_the_workforce']) ? $_POST['explain_to_the_workforce'] : '';
         $important_in = isset($_POST['important_in']) ? $_POST['important_in'] : '';
+        $the_kenya_is = isset($_POST['the_kenya_is']) ? $_POST['the_kenya_is'] : '';
+        
 
 
 
@@ -71,6 +73,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "xDfUrtO9If6",
                                                 "value" => $important_in
+                                            ],
+                                            [
+                                                "dataElement" => "equMnE3bDIK",
+                                                "value" => $the_kenya_is
                                             ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
