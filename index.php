@@ -20,9 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $important_in = isset($_POST['important_in']) ? $_POST['important_in'] : '';
         $the_kenya_is = isset($_POST['the_kenya_is']) ? $_POST['the_kenya_is'] : '';
         $assistance_program = isset($_POST['assistance_program']) ? $_POST['assistance_program'] : '';
-        
-
-
+        $underutilized_by_employees = isset($_POST['underutilized_by_employees']) ? $_POST['underutilized_by_employees'] : '';
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
@@ -82,6 +80,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "yADpWccrRAU",
                                                 "value" => $assistance_program
+                                            ],
+                                            [
+                                                "dataElement" => "MCleXBjIWEM",
+                                                "value" => $underutilized_by_employees
                                             ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -322,6 +324,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="Tobacco">Tobacco</option>
                     <option value="Miraa">Miraa</option>
                     <option value="Cannabis">Cannabis</option>
+                 </select>
+
+                 <!-- eighth questions -->
+                 <label for="q8">What is Employee Assistance Program?</label>
+                 <select name="assistance_program" class="form-group" >
+                    <option value="A program for identifying people with substance use problems">A program for identifying people with substance use problems</option>
+                    <option value="A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems">A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems</option>
+                    <option value="A program that demonstrates employer support for employees health and safety especially in addiction related issues">A program that demonstrates employer support for employees health and safety especially in addiction related issues</option>
+                    <option value="Program that helps employees cope with workplace stressors such as addiction">Program that helps employees cope with workplace stressors such as addiction</option>
                  </select>
             </div>	
 
