@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     [
                         "attributes" => [
                             [
-                                "attribute" => "dWzFql09XrP", // Full Name attribute
+                                "attribute" => "dWzFql09XrP", // Full Name attribute  dWzFql09XrP
                                 "value" => $email
                             ]
                         ],
