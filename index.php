@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $explain_to_the_workforce = isset($_POST['explain_to_the_workforce']) ? $_POST['explain_to_the_workforce'] : '';
         $important_in = isset($_POST['important_in']) ? $_POST['important_in'] : '';
         $the_kenya_is = isset($_POST['the_kenya_is']) ? $_POST['the_kenya_is'] : '';
+        $assistance_program = isset($_POST['assistance_program']) ? $_POST['assistance_program'] : '';
         
 
 
@@ -77,6 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "equMnE3bDIK",
                                                 "value" => $the_kenya_is
+                                            ],
+                                            [
+                                                "dataElement" => "yADpWccrRAU",
+                                                "value" => $assistance_program
                                             ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
