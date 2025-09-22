@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #333;
         }
         .container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
             padding: 25px;
@@ -293,6 +293,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="How the company will benefit from the non-use of drugs and substances">How the company will benefit from the non-use of drugs and substances</option>
                     <option value="The importance of using EAP services">The importance of using EAP services</option>
                     <option value="Disciplinary measures to be taken against those who are intoxicated">Disciplinary measures to be taken against those who are intoxicated</option>
+                 </select>
+
+                 <!-- sixth questions -->
+                 <label for="q6">The working population spends a significant amount of their time in their workplaces. So the workplace-based prevention interventions is important in</label>
+                 <select name="important_in" class="form-group" >
+                    <option value="Providing evidence for a positive return-on-investment.">Providing evidence for a positive return-on-investment.</option>
+                    <option value="Providing training and education to the workers.">Providing training and education to the workers.</option>
+                    <option value="Providing social status, subsistence, and stability to the workers.">Providing social status, subsistence, and stability to the workers.</option>
+                    <option value="Providing the workers with new experiences, norms and behaviours">Providing the workers with new experiences, norms and behaviours</option>
                  </select>
             </div>	
 
