@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         <label>Training date booked</label>
         <input type="date" name="tbf_booked_date" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_booked_date'] ?? ''); ?>">
 
-        <label>PIN / Institution number</label>
+        <label>KRA Pin Number</label>
         <input type="text" name="tbf_pin_number_institution" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_pin_number_institution'] ?? ''); ?>">
 
         <label>Payment Status</label>
