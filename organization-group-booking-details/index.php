@@ -11,82 +11,111 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address_of_contact_person = $_POST['email_address_of_contact_person'];
     $organization = $_POST['organization'];
     $number_of_participants = $_POST['number_of_participants'];
-    
-   
+
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
+    $fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
     $username = "admin";
     $password = "Jocsoft@2025!";
 
-    // Corrected DHIS2 payload structure
-    $data = [
-        "trackedEntities" => [
+    $fileResourceId = null;
+
+    // ✅ Step 1: If file is uploaded, send it to DHIS2 fileResources
+    if (isset($_FILES['participant_details_list']) && $_FILES['participant_details_list']['error'] === UPLOAD_ERR_OK) {
+        $tmpFilePath = $_FILES['participant_details_list']['tmp_name'];
+        $originalName = $_FILES['participant_details_list']['name'];
+
+        $ch = curl_init($fileUrl);
+        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+            "file" => new CURLFile($tmpFilePath, mime_content_type($tmpFilePath), $originalName)
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $fileResponse = curl_exec($ch);
+        curl_close($ch);
+
+        $fileData = json_decode($fileResponse, true);
+        if (isset($fileData['response']['fileResource']['id'])) {
+            $fileResourceId = $fileData['response']['fileResource']['id'];
+        } else {
+            $error_message = "File upload failed: " . htmlspecialchars($fileResponse);
+        }
+    }
+
+    // ✅ Step 2: Build DHIS2 payload
+    if (!$error_message) {
+        $dataValues = [
             [
-                "attributes" => [
-                    [
-                        "attribute" => "ubboTrUjHgI", // Full Name attribute
-                        "value" => $name_of_contact_person
-                    ]
-                ],
-                "enrollments" => [
-                    [
-                        "enrolledAt" => date("Y-m-d"),
-                        "occurredAt" => date("Y-m-d"),
-                        "orgUnit" => "ORwhnDymBpM",
-                        "program" => "qe6YyhZxdig",
-                        "status" => "ACTIVE",
-                        "events" => [
-                            [
-                                "dataValues" => [
-                                    [
-                                        "dataElement" => "j4HzS4rPYj6",
-                                        "value" => $name_of_contact_person
+                "dataElement" => "j4HzS4rPYj6",
+                "value" => $name_of_contact_person
+            ],
+            [
+                "dataElement" => "VdsNUj9NJvL",
+                "value" => $mobile_number
+            ],
+            [
+                "dataElement" => "SMyZqFsr9rQ",
+                "value" => $email_address_of_contact_person
+            ],
+            [
+                "dataElement" => "aTgEEzrsXRY",
+                "value" => $organization
+            ],
+            [
+                "dataElement" => "OD1J33PcpOx",
+                "value" => $number_of_participants
+            ]
+        ];
+
+        // ✅ Attach file reference if uploaded
+        if ($fileResourceId) {
+            $dataValues[] = [
+                "dataElement" => "CQuirKMNHgw", // File-type dataElement UID
+                "value" => $fileResourceId
+            ];
+        }
+
+        $data = [
+            "trackedEntities" => [
+                [
+                    "attributes" => [
+                        [
+                            "attribute" => "ubboTrUjHgI", // Full Name attribute
+                            "value" => $name_of_contact_person
+                        ]
+                    ],
+                    "enrollments" => [
+                        [
+                            "enrolledAt" => date("Y-m-d"),
+                            "occurredAt" => date("Y-m-d"),
+                            "orgUnit" => "ORwhnDymBpM",
+                            "program" => "qe6YyhZxdig",
+                            "status" => "ACTIVE",
+                            "events" => [
+                                [
+                                    "dataValues" => $dataValues,
+                                    "enrollmentStatus" => "ACTIVE",
+                                    "notes" => [
+                                        ["value" => "Needs review"]
                                     ],
-                                    [
-                                        "dataElement" => "VdsNUj9NJvL",
-                                        "value" => $mobile_number
-                                    ],
-                                    [
-                                        "dataElement" => "SMyZqFsr9rQ",
-                                        "value" => $email_address_of_contact_person
-                                    ],
-                                    [
-                                        "dataElement" => "aTgEEzrsXRY",
-                                        "value" => $organization
-                                    ],
-                                    [
-                                        "dataElement" => "OD1J33PcpOx",
-                                        "value" => $number_of_participants
-                                    ],
-                                  
-                                ],
-                                "enrollmentStatus" => "ACTIVE",
-                                "notes" => [
-                                    [
-                                        "value" => "Needs review"
-                                    ]
-                                ],
-                                "occurredAt" => date("Y-m-d"),
-                                "orgUnit" => "ORwhnDymBpM",
-                                "program" => "qe6YyhZxdig",
-                                "programStage" => "BK0u9qeQHLZ",
-                                "status" => "ACTIVE"
+                                    "occurredAt" => date("Y-m-d"),
+                                    "orgUnit" => "ORwhnDymBpM",
+                                    "program" => "qe6YyhZxdig",
+                                    "programStage" => "BK0u9qeQHLZ",
+                                    "status" => "ACTIVE"
+                                ]
                             ]
                         ]
-                    ]
-                ],
-                "orgUnit" => "ORwhnDymBpM",
-                "trackedEntityType" => "h63vN1RMO4P"
+                    ],
+                    "orgUnit" => "ORwhnDymBpM",
+                    "trackedEntityType" => "h63vN1RMO4P"
+                ]
             ]
-        ]
-    ];
+        ];
 
-    // Encode to JSON
-    $jsonData = json_encode($data);
-    
-    if ($jsonData === false) {
-        $error_message = "JSON encoding failed: " . json_last_error_msg();
-    } else {
-        // Send request
+        // ✅ Step 3: Send payload
+        $jsonData = json_encode($data);
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
@@ -118,6 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -247,7 +277,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        <h1 class>Upload Participant Details Excel file List (Name, telephone, and email)</h1>
                        <p>Name, telephone, and email addresses of participants (Mandatory to complete booking process) </p>
 
-
+                       <label>Upload Payment Invoice</label>
+          <input type="file" name="participant_details_list" accept=".pdf,.jpg,.png,.jpeg,.xlsx,.xls,.xlsm,.xlsb,.xltx /*" />
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>

@@ -172,8 +172,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         </select>
 
         <div id="invoiceField" style="display:none;">
-          <label>Upload Payment Invoice</label>
-          <input type="file" name="tbf_payment_invoice" accept=".pdf,.jpg,.png,.jpeg" />
+          <label>Upload Participant details list (Name, telephone, and email)</label>
+          <input type="file" name="tbf_payment_invoice" accept=".pdf,.jpg,.png,.jpeg,.xlsx,.xls,.xlsm,.xlsb,.xltx /*" />
         </div>
       </div>
 
