@@ -231,7 +231,7 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     <input type="file" id="payment_invoice" name="payment_invoice" accept=".pdf,.jpg,.png,.jpeg" />
                 </div>
             </div>
-            <button type="submit">Submit to DHIS2</button>
+            <button type="submit">Submit Application</button>
         </form>
 
         <?php if ($success_message): ?>
