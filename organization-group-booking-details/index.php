@@ -9,7 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name_of_contact_person = $_POST['name_of_contact_person'];
     $mobile_number = $_POST['mobile_number'];
     $email_address_of_contact_person = $_POST['email_address_of_contact_person'];
-    $organization = $_POST['organization']
+    $organization = $_POST['organization'];
     
    
 
@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     [
                                         "dataElement" => "aTgEEzrsXRY",
                                         "value" => $organization
-                                    ],
+                                    ]
                                 ],
                                 "enrollmentStatus" => "ACTIVE",
                                 "notes" => [
