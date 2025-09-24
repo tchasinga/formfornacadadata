@@ -14,8 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type_of_training = $_POST['type_of_training'];
     $training_dates_booked = $_POST['training_dates_booked'];
     $county = $_POST['county'];
-
-
+    $payment_status = $_POST['payment_status']; // Yes or No
 
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
     $fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
@@ -24,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $currentDate = date('Y-m-d');
 
     $fileResourceId = null;
+    $paymentInvoiceFileId = null;
 
-    // ✅ Step 1: Upload file to DHIS2 if provided
+    // ✅ Step 1: Upload participant list file (if provided)
     if (isset($_FILES['participant_details_list']) && $_FILES['participant_details_list']['error'] === UPLOAD_ERR_OK) {
         $tmpFilePath = $_FILES['participant_details_list']['tmp_name'];
         $originalName = $_FILES['participant_details_list']['name'];
@@ -44,11 +44,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($fileData['response']['fileResource']['id'])) {
             $fileResourceId = $fileData['response']['fileResource']['id'];
         } else {
-            $error_message = "File upload failed: " . htmlspecialchars($fileResponse);
+            $error_message = "Participant list upload failed: " . htmlspecialchars($fileResponse);
         }
     }
 
-    // ✅ Step 2: Build DHIS2 payload
+    // ✅ Step 2: Upload payment invoice file if Payment status = Yes
+    if ($payment_status === "Yes" && isset($_FILES['payment_invoice']) && $_FILES['payment_invoice']['error'] === UPLOAD_ERR_OK) {
+        $tmpFilePath = $_FILES['payment_invoice']['tmp_name'];
+        $originalName = $_FILES['payment_invoice']['name'];
+
+        $ch = curl_init($fileUrl);
+        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, [
+            "file" => new CURLFile($tmpFilePath, mime_content_type($tmpFilePath), $originalName)
+        ]);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $fileResponse = curl_exec($ch);
+        curl_close($ch);
+
+        $fileData = json_decode($fileResponse, true);
+        if (isset($fileData['response']['fileResource']['id'])) {
+            $paymentInvoiceFileId = $fileData['response']['fileResource']['id'];
+        } else {
+            $error_message = "Payment invoice upload failed: " . htmlspecialchars($fileResponse);
+        }
+    }
+
+    // ✅ Step 3: Build DHIS2 payload
     if (!$error_message) {
         $dataValues = [
             ["dataElement" => "j4HzS4rPYj6", "value" => $name_of_contact_person],
@@ -64,45 +87,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($fileResourceId) {
             $dataValues[] = [
-                "dataElement" => "CQuirKMNHgw", // File-type dataElement UID
+                "dataElement" => "CQuirKMNHgw",
                 "value" => $fileResourceId
             ];
         }
 
-        $data = [
-            "trackedEntities" => [
-                [
-                    "attributes" => [
-                        ["attribute" => "ubboTrUjHgI", "value" => $name_of_contact_person]
-                    ],
-                    "enrollments" => [
-                        [
-                            "enrolledAt" => date("Y-m-d"),
-                            "occurredAt" => date("Y-m-d"),
-                            "orgUnit" => "ORwhnDymBpM",
-                            "program" => "qe6YyhZxdig",
-                            "status" => "ACTIVE",
+        // ✅ Payment status
+        $dataValues[] = [
+            "dataElement" => "DVoZ4DKOeBK",
+            "value" => ($payment_status === "Yes" ? "Paid" : "Unpaid")
+        ];
+
+        // ✅ Payment invoice file if Paid
+        if ($paymentInvoiceFileId) {
+            $dataValues[] = [
+                "dataElement" => "tpBR1T35HvU",
+                "value" => $paymentInvoiceFileId
+            ];
+        }
+
+        $eventData = [
                             "events" => [
                                 [
                                     "dataValues" => $dataValues,
                                     "enrollmentStatus" => "ACTIVE",
-                                    "notes" => [["value" => "Needs review"]],
                                     "occurredAt" => date("Y-m-d"),
                                     "orgUnit" => "ORwhnDymBpM",
-                                    "program" => "qe6YyhZxdig",
-                                    "programStage" => "BK0u9qeQHLZ",
+                                    "program" => "urqEiI9nx5C",
                                     "status" => "ACTIVE"
                                 ]
                             ]
-                        ]
-                    ],
-                    "orgUnit" => "ORwhnDymBpM",
-                    "trackedEntityType" => "h63vN1RMO4P"
-                ]
-            ]
         ];
 
-        // ✅ Step 3: Send payload to DHIS2
+        // ✅ Step 4: Send payload to DHIS2
         $jsonData = json_encode($data);
 
         $ch = curl_init($url);
@@ -148,7 +165,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-group { margin-bottom: 15px; }
         label { display: block; margin-bottom: 5px; font-weight: 600; color: #2c3e50; }
         input, select { padding: 12px; width: 100%; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
-        input:focus { border-color: #3498db; outline: none; box-shadow: 0 0 5px rgba(52,152,219,0.5); }
+        input:focus, select:focus { border-color: #3498db; outline: none; box-shadow: 0 0 5px rgba(52,152,219,0.5); }
         button { padding: 12px 24px; background: #3498db; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: 600; }
         button:hover { background: #2980b9; }
         .message { padding: 15px; border-radius: 4px; margin-bottom: 20px; }
@@ -156,6 +173,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
         .response { margin-top: 10px; padding: 10px; background-color: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 14px; overflow-x: auto; }
     </style>
+    <script>
+        function toggleInvoiceField() {
+            var status = document.getElementById("payment_status").value;
+            var invoiceField = document.getElementById("invoice_field");
+            invoiceField.style.display = (status === "Yes") ? "block" : "none";
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -175,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="organization">Your organization</label>
                 <input type="text" id="organization" name="organization" required>
 
-                <label for="county">county</label>
+                <label for="county">County</label>
                 <input type="text" id="county" name="county" required>
 
                 <label for="number_of_participants">Number of participants</label>
@@ -190,6 +214,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="training_dates_booked">Training date booked</label>
                 <input type="date" id="training_dates_booked" name="training_dates_booked" required>
+
+                <label for="payment_status">Payment Status</label>
+                <select id="payment_status" name="payment_status" onchange="toggleInvoiceField()" required>
+                    <option value="">-- Select --</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <div id="invoice_field" style="display:none; margin-top:10px;">
+                    <label for="payment_invoice">Upload Payment Invoice</label>
+                    <input type="file" id="payment_invoice" name="payment_invoice" accept=".pdf,.jpg,.png,.jpeg" />
+                </div>
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
