@@ -246,6 +246,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        <label for="number_of_participants">Number of participant</label>
                 <input type="text" id="number_of_participants" name="number_of_participants" required 
                        value="<?php echo isset($_POST['number_of_participants']) ? htmlspecialchars($_POST['number_of_participants']) : ''; ?>">
+
+                       <p>Name, telephone, and email addresses of participants (Mandatory to complete booking process) </p>
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
