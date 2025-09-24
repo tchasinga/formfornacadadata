@@ -10,6 +10,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mobile_number = $_POST['mobile_number'];
     $email_address_of_contact_person = $_POST['email_address_of_contact_person'];
     $organization = $_POST['organization'];
+    $number_of_participants = $_POST['number_of_participants'];
+ 
     
    
 
@@ -56,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     ],
                                     [
                                         "dataElement" => "OD1J33PcpOx",
-                                        "value" => $organization
+                                        "value" => $number_of_participants
                                     ],
 
                                 ],
