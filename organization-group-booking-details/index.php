@@ -53,7 +53,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     [
                                         "dataElement" => "aTgEEzrsXRY",
                                         "value" => $organization
-                                    ]
+                                    ],
+                                    [
+                                        "dataElement" => "OD1J33PcpOx",
+                                        "value" => $organization
+                                    ],
+
                                 ],
                                 "enrollmentStatus" => "ACTIVE",
                                 "notes" => [
