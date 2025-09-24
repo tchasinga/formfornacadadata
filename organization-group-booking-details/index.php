@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address_of_contact_person = $_POST['email_address_of_contact_person'];
     $organization = $_POST['organization'];
     $number_of_participants = $_POST['number_of_participants'];
-    $type_of_training = $_POST['tbf_type_of_training'];
+    $type_of_training = $_POST['type_of_training'];
 
 
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
@@ -171,9 +171,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="number_of_participants">Number of participants</label>
                 <input type="text" id="number_of_participants" name="number_of_participants" required>
 
-                <h3>Upload Participant List / Payment Invoice</h3>
+                <h3>Upload Participant List (name, telephone, and email)</h3>
                 <p>(Excel, PDF, Image)</p>
                 <input type="file" name="participant_details_list" accept=".pdf,.jpg,.png,.jpeg,.xlsx,.xls,.xlsm,.xlsb,.xltx" />
+
+                <label for="type_of_training">Type of training</label>
+                <input type="text" id="type_of_training" name="type_of_training" required>
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
