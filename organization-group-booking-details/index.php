@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $organization = $_POST['organization'];
     $number_of_participants = $_POST['number_of_participants'];
     $type_of_training = $_POST['type_of_training'];
+    $training_dates_booked = $_POST['training_dates_booked'];
 
 
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
@@ -53,6 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "aTgEEzrsXRY", "value" => $organization],
             ["dataElement" => "OD1J33PcpOx", "value" => $number_of_participants],
             ["dataElement" => "hHwkWGfBOQC", "value" => $type_of_training]
+            ["dataElement" => "ey7StdOdVCi", "value" => $training_dates_booked]
         ];
 
         if ($fileResourceId) {
@@ -177,6 +179,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="type_of_training">Type of training</label>
                 <input type="text" id="type_of_training" name="type_of_training" required>
+
+                <label for="training_dates_booked">Training date booked</label>
+                <input type="text" id="training_dates_booked" name="training_dates_booked" required>
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
