@@ -181,7 +181,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="text" id="type_of_training" name="type_of_training" required>
 
                 <label for="training_dates_booked">Training date booked</label>
-                <input type="text" id="training_dates_booked" name="training_dates_booked" required>
+                <input type="date" id="training_dates_booked" name="training_dates_booked" required>
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
