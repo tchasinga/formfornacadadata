@@ -361,7 +361,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                  </select>
             </div>	
 
-            <button type="submit">Submit to DHIS2</button>
+            <button type="submit">Submit application</button>
         </form>
 
         <?php if ($success_message): ?>
