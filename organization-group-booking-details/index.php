@@ -14,7 +14,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type_of_training = $_POST['type_of_training'];
     $training_dates_booked = $_POST['training_dates_booked'];
     $county = $_POST['county'];
-    $payment_status = $_POST['payment_status']; // Yes or No
+    $payment_status = $_POST['payment_status'];
+    $kra_pin_number = $_POST['kra_pin_number'];
+
 
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
     $fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
@@ -83,6 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "ey7StdOdVCi", "value" => $training_dates_booked],
             ["dataElement" => "T3Ke5Jx4lGp", "value" => $currentDate],
             ["dataElement" => "X5GBez1nxB3", "value" => $county]
+            ["dataElement" => "vynbAUseXd2", "value" => $kra_pin_number]
         ];
 
         if ($fileResourceId) {
@@ -209,6 +212,9 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
                 <label for="type_of_training">Type of training</label>
                 <input type="text" id="type_of_training" name="type_of_training" required>
+
+                <label for="kra_pin_number">TKRA Pin Number</label>
+                <input type="text" id="kra_pin_number" name="kra_pin_number" required>
 
                 <label for="training_dates_booked">Training date booked</label>
                 <input type="date" id="training_dates_booked" name="training_dates_booked" required>
