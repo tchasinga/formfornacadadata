@@ -172,7 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             color: #333;
         }
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             padding: 25px;
@@ -191,11 +191,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-group {
             margin-bottom: 15px;
         }
+
+        select{
+            color:rgb(139, 139, 139);
+        }
+
         label {
             display: block;
             margin-bottom: 5px;
-            font-weight: 600;
-            color: #2c3e50;
+            font-weight: 100;
+            color:rgb(25, 32, 39);
         }
         input[type="email"], select { 
             padding: 12px; 
