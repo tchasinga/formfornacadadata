@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "VdsNUj9NJvL", "value" => $mobile_number],
             ["dataElement" => "SMyZqFsr9rQ", "value" => $email_address_of_contact_person],
             ["dataElement" => "aTgEEzrsXRY", "value" => $organization],
-            ["dataElement" => "OD1J33PcpOx", "value" => $number_of_participants]
+            ["dataElement" => "OD1J33PcpOx", "value" => $number_of_participants],
             ["dataElement" => "hHwkWGfBOQC", "value" => $type_of_training]
         ];
 
