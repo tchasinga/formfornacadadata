@@ -55,8 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "aTgEEzrsXRY", "value" => $organization],
             ["dataElement" => "OD1J33PcpOx", "value" => $number_of_participants],
             ["dataElement" => "hHwkWGfBOQC", "value" => $type_of_training],
-            ["dataElement" => "ey7StdOdVCi", "value" => $training_dates_booked]
-            ["dataElement" => "T3Ke5Jx4lGp", "value" => $currentDate]
+            ["dataElement" => "ey7StdOdVCi", "value" => $training_dates_booked],
+            ["dataElement" => "T3Ke5Jx4lGp", "value" => $currentDate],
+            ["dataElement" => "X5GBez1nxB3", "value" => $currentDate]
         ];
 
         if ($fileResourceId) {
