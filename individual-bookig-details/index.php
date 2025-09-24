@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         ["dataElement" => "cr1sc6CYNaq", "value" => $tbf_pin_number_institution],
         [
             "dataElement" => "pJxxjthNFNX", // Payment status
-            "value" => $payment_status === "Yes" ? "Paid" : ""
+            "value" => $payment_status === "Yes" ? "Paid" : "Unpaid"
         ]
     ];
 
@@ -156,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         <label>County</label>
         <input type="text" name="tbf_county" value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_county'] ?? ''); ?>">
 
-        <label>Training choice</label>
+        <label>Type of training</label>
         <input type="text" name="tbf_type_of_training" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_type_of_training'] ?? ''); ?>">
 
         <label>Training date booked</label>
