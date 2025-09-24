@@ -259,7 +259,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
 
                        <label for="tel_no">Participant phone number</label>
-                <input type="tel" id="tel_no" name="tel_no" required 
+                <input type="text" id="tel_no" name="tel_no" required 
                        value="<?php echo isset($_POST['tel_no']) ? htmlspecialchars($_POST['tel_no']) : ''; ?>">
 
 
