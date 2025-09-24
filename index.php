@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DHIS2 Enrollment (Tracker API)</title>
+    <title>POST TEST: WORKPLACE BASED PREVENTION INTERVENTIONS</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -260,12 +260,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h2>DHIS2 Enrollment Form</h2>
-        
-        <div class="info-box">
-            <strong>Note:</strong> This form will create a Tracked Entity Instance with an enrollment in the DHIS2 system.
-            The email address will be stored as an attribute value.
-        </div>
+        <h2>POST TEST: WORKPLACE BASED PREVENTION INTERVENTIONS</h2>
+      
         
         <form method="POST">
             <div class="form-group">
@@ -373,7 +369,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <strong>Success!</strong> 
                 <?php 
                 // Display the success message without the technical details for better UX
-                $msg = explode("<br>", $success_message);
+                $msg = explode("<br>", "Data submitted successfully");
                 echo $msg[0]; 
                 ?>
                 <div class="response">
