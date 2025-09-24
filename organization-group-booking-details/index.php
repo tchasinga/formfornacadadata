@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     [
                                         "dataElement" => "NungUFo5Qxo",
                                         "value" => $tel_no
-                                    ],
+                                    ]
                                 ],
                                 "enrollmentStatus" => "ACTIVE",
                                 "notes" => [
