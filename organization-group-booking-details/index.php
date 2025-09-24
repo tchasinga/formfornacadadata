@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
     $username = "admin";
     $password = "Jocsoft@2025!";
+    $currentDate = date('Y-m-d');
 
     $fileResourceId = null;
 
@@ -53,8 +54,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "SMyZqFsr9rQ", "value" => $email_address_of_contact_person],
             ["dataElement" => "aTgEEzrsXRY", "value" => $organization],
             ["dataElement" => "OD1J33PcpOx", "value" => $number_of_participants],
-            ["dataElement" => "hHwkWGfBOQC", "value" => $type_of_training]
+            ["dataElement" => "hHwkWGfBOQC", "value" => $type_of_training],
             ["dataElement" => "ey7StdOdVCi", "value" => $training_dates_booked]
+            ["dataElement" => "T3Ke5Jx4lGp", "value" => $currentDate]
         ];
 
         if ($fileResourceId) {
