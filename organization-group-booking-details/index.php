@@ -242,6 +242,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        <label for="organization">Your organization </label>
                 <input type="text" id="organization" name="organization" required 
                        value="<?php echo isset($_POST['organization']) ? htmlspecialchars($_POST['organization']) : ''; ?>">
+
+                       <label for="number_of_participants">Number of participant</label>
+                <input type="text" id="number_of_participants" name="number_of_participants" required 
+                       value="<?php echo isset($_POST['number_of_participants']) ? htmlspecialchars($_POST['number_of_participants']) : ''; ?>">
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
