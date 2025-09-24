@@ -11,10 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address_of_contact_person = $_POST['email_address_of_contact_person'];
     $organization = $_POST['organization'];
     $number_of_participants = $_POST['number_of_participants'];
- 
-    
-   
-
+    $name = $_POST['name'];
+    $tel_no = $_POST['tel_no'];
     
     $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
     $username = "admin";
@@ -60,7 +58,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         "dataElement" => "OD1J33PcpOx",
                                         "value" => $number_of_participants
                                     ],
-
+                                    [
+                                        "dataElement" => "IemLyIaatLH",
+                                        "value" => $name
+                                    ],
+                                    [
+                                        "dataElement" => "NungUFo5Qxo",
+                                        "value" => $tel_no
+                                    ],
                                 ],
                                 "enrollmentStatus" => "ACTIVE",
                                 "notes" => [
@@ -248,6 +253,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        value="<?php echo isset($_POST['number_of_participants']) ? htmlspecialchars($_POST['number_of_participants']) : ''; ?>">
 
                        <p>Name, telephone, and email addresses of participants (Mandatory to complete booking process) </p>
+                       
+                       <label for="name">Participant name</label>
+                <input type="text" id="name" name="name" required 
+                       value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name']) : ''; ?>">
+
+                       <label for="tel_no">Participant phone number</label>
+                <input type="tel" id="tel_no" name="tel_no" required 
+                       value="<?php echo isset($_POST['tel_no']) ? htmlspecialchars($_POST['tel_no']) : ''; ?>">
+
+
             </div>
             <button type="submit">Submit to DHIS2</button>
         </form>
