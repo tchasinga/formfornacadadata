@@ -107,36 +107,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         $eventData = [
-                            "events" => [
-                                [
-                                    "dataValues" => $dataValues,
-                                    "enrollmentStatus" => "ACTIVE",
-                                    "occurredAt" => date("Y-m-d"),
-                                    "orgUnit" => "ORwhnDymBpM",
-                                    "program" => "urqEiI9nx5C",
-                                    "status" => "ACTIVE"
-                                ]
-                            ]
+            "events" => [[
+                "program" => "urqEiI9nx5C",
+                "orgUnit" => "ORwhnDymBpM",
+                "occurredAt" => $currentDate,
+                "status" => "ACTIVE",
+                "dataValues" => $dataValues
+            ]]
         ];
 
         // ✅ Step 4: Send payload to DHIS2
-        $jsonData = json_encode($data);
+$jsonData = json_encode($eventData);
 
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            "Content-Type: application/json",
-            "Accept: application/json",
-            "Content-Length: " . strlen($jsonData)
-        ]);
-        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+$ch = curl_init($url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type: application/json",
+    "Accept: application/json",
+    "Content-Length: " . strlen($jsonData)
+]);
+curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, true);
+curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 
-        $response = curl_exec($ch);
-        $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+$response = curl_exec($ch);
+$httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 
         if (curl_errno($ch)) {
             $error_message = "cURL Error: " . curl_error($ch);
