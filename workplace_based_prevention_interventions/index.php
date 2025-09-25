@@ -280,8 +280,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Fair">Fair</option>
 				<option value="Good">Good</option>
                 <option value="Excellent">Excellent</option>
+				</select> 
 
-                <p>Employee education</p>
+                <p>Employee Education</p>
                 <select name ="employee_education" class="form-group">
 				<option value="Low">Low</option>
 				<option value="Fair">Fair</option>
