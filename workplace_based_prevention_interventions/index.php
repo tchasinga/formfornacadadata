@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $participant_questions = $_POST['participant_questions']
         $engagement_and_participation = $_POST['engagement_and_participation']
 
+        $wb_trainer_was_well_prepares = $_POST['wb_trainer_was_well_prepares'];
 
 
 
@@ -125,6 +126,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "d1dpauBRfZP",
 												"value" => $engagement_and_participation
+                                            ],
+                                            [
+                                                "dataElement" => "Rho5FT0sJSs",
+												"value" => $wb_trainer_was_well_prepares
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -429,7 +434,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
-            
+
 
             <button type="submit">Submit to DHIS2</button>
         </form>
