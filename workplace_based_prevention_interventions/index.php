@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $wb_Trainer_was_knowledgeable_about_the_subject_matters = $_POST['wb_Trainer_was_knowledgeable_about_the_subject_matters'];
         $trainer_communicated_the_material_in_a_meaningful_ways = $_POST['trainer_communicated_the_material_in_a_meaningful_ways'];
         $trainer_provided_clear_answers_to_participant_questions = $_POST['trainer_provided_clear_answers_to_participant_questions'];
-
+        $trainer_promoted_engagement_and_participations = $_POST['trainer_promoted_engagement_and_participations'];
         
 
 
@@ -147,6 +147,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "deepkm4efeQ",
 												"value" => $trainer_provided_clear_answers_to_participant_questions
+                                            ],
+                                            [
+                                                "dataElement" => "mNMjmbuwn91",
+												"value" => $trainer_promoted_engagement_and_participations
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
