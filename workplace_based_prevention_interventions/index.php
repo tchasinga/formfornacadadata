@@ -478,6 +478,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Disagree">Disagree</option>
                 <option value="Strongly disagree">Strongly disagree</option>
 				</select>
+
+                <p>Trainer provided clear answers to participant questions</p>
+            <select name ="trainer_provided_clear_answers_to_participant_questions" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
            </div>
 
 
