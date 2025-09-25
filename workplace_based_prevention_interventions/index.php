@@ -163,6 +163,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                 "dataElement" => "oKM8l6v8YLP",
 												"value" => $what_one_thing_could_be_improved_for_future_trainings
                                             ],
+
+                                            [
+                                                "dataElement" => "uyFieWMpzpd",
+												"value" => $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training
+                                            ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
@@ -523,8 +528,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            </div>
 
            <div class="form-group">
-           <label for="what_one_thing_could_be_improved_for_future_trainings">Kindly share any other comments or suggestions you may have with regard to workplace training</label><br>
-           <textarea id="what_one_thing_could_be_improved_for_future_trainings" name="what_one_thing_could_be_improved_for_future_trainings" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
+           <label for="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training">Kindly share any other comments or suggestions you may have with regard to workplace training</label><br>
+           <textarea id="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" name="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
            </div>
 
 
