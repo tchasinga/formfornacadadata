@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $wbptime_name_of_your_institution = $_POST['wbptime_name_of_your_institution'];
         $result_of_training = $_POST['result_of_training'];
         $programmes_and_policies = $_POST['programmes_and_policies'];
+        $employee_education = $_POST['employee_education'];
+
 
 
 
@@ -68,6 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "VTk2tnlHOV3",
 												"value" => $programmes_and_policies
+                                            ],
+                                            [
+                                                "dataElement" => "BOwxoPdtcXC",
+												"value" => $employee_education
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -270,6 +276,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <p>Key components of substance use prevention programmes and policies</p>
                 <select name ="programmes_and_policies" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+
+                <p>Employee education</p>
+                <select name ="employee_education" class="form-group">
 				<option value="Low">Low</option>
 				<option value="Fair">Fair</option>
 				<option value="Good">Good</option>
