@@ -28,6 +28,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $engagement_and_participation = $_POST['engagement_and_participation']
 
         $wb_trainer_was_well_prepares = $_POST['wb_trainer_was_well_prepares'];
+        $wb_Trainer_was_knowledgeable_about_the_subject_matters = $_POST['wb_Trainer_was_knowledgeable_about_the_subject_matters'];
+        $trainer_communicated_the_material_in_a_meaningful_ways = $_POST['trainer_communicated_the_material_in_a_meaningful_ways'];
+
+        
 
 
 
@@ -130,6 +134,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "Rho5FT0sJSs",
 												"value" => $wb_trainer_was_well_prepares
+                                            ],
+                                            [
+                                                "dataElement" => "NIebazDM70k",
+												"value" => $wb_Trainer_was_knowledgeable_about_the_subject_matters
+                                            ],
+                                            [
+                                                "dataElement" => "ACtrH6Na3VH",
+												"value" => $trainer_communicated_the_material_in_a_meaningful_ways
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -434,6 +446,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
+
+           <div class="form-group">
+           <label for="q4">Trainer 2: Diana Ouma  </label>
+                
+                <p>Trainer was well prepared</p>
+            <select name ="wb_trainer_was_well_prepares" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer was knowledgeable about the subject matters</p>
+            <select name ="wb_Trainer_was_knowledgeable_about_the_subject_matters" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer communicated the material in a meaningful ways</p>
+            <select name ="wb_Trainer_was_knowledgeable_about_the_subject_matters" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+           </div>
 
 
             <button type="submit">Submit to DHIS2</button>
