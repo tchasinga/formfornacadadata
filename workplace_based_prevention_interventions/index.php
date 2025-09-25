@@ -32,6 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $trainer_communicated_the_material_in_a_meaningful_ways = $_POST['trainer_communicated_the_material_in_a_meaningful_ways'];
         $trainer_provided_clear_answers_to_participant_questions = $_POST['trainer_provided_clear_answers_to_participant_questions'];
         $trainer_promoted_engagement_and_participations = $_POST['trainer_promoted_engagement_and_participations'];
+        $what_did_you_like_best_about_the_training = $_POST['what_did_you_like_best_about_the_training'];
+
         
 
 
@@ -151,7 +153,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "mNMjmbuwn91",
 												"value" => $trainer_promoted_engagement_and_participations
-                                            ]
+                                            ],
+                                            [
+                                                "dataElement" => "Av2LTgmtHMv",
+												"value" => $what_did_you_like_best_about_the_training
+                                            ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
@@ -499,6 +505,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Disagree">Disagree</option>
                 <option value="Strongly disagree">Strongly disagree</option>
 				</select>
+           </div>
+
+           <div class="form-group">
+           <label for="what_did_you_like_best_about_the_training">What did you like best about the training?</label><br>
+           <textarea id="what_did_you_like_best_about_the_training" name="what_did_you_like_best_about_the_training" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
            </div>
 
 
