@@ -33,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $trainer_provided_clear_answers_to_participant_questions = $_POST['trainer_provided_clear_answers_to_participant_questions'];
         $trainer_promoted_engagement_and_participations = $_POST['trainer_promoted_engagement_and_participations'];
         $what_did_you_like_best_about_the_training = $_POST['what_did_you_like_best_about_the_training'];
-
-        
+        $what_one_thing_could_be_improved_for_future_trainings = $_POST['what_one_thing_could_be_improved_for_future_trainings'];
+        $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training = $_POST['kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training']
 
 
 
@@ -157,6 +157,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "Av2LTgmtHMv",
 												"value" => $what_did_you_like_best_about_the_training
+                                            ],
+
+                                            [
+                                                "dataElement" => "oKM8l6v8YLP",
+												"value" => $what_one_thing_could_be_improved_for_future_trainings
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -510,6 +515,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
            <div class="form-group">
            <label for="what_did_you_like_best_about_the_training">What did you like best about the training?</label><br>
            <textarea id="what_did_you_like_best_about_the_training" name="what_did_you_like_best_about_the_training" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
+           </div>
+
+           <div class="form-group">
+           <label for="what_one_thing_could_be_improved_for_future_trainings">What one thing could be improved for future trainings?</label><br>
+           <textarea id="what_one_thing_could_be_improved_for_future_trainings" name="what_one_thing_could_be_improved_for_future_trainings" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
+           </div>
+
+           <div class="form-group">
+           <label for="what_one_thing_could_be_improved_for_future_trainings">Kindly share any other comments or suggestions you may have with regard to workplace training</label><br>
+           <textarea id="what_one_thing_could_be_improved_for_future_trainings" name="what_one_thing_could_be_improved_for_future_trainings" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
            </div>
 
 
