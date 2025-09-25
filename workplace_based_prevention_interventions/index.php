@@ -11,6 +11,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
         $result_of =$_POST['result_of'];
+        $wbpitm_name = $_POST['wbpitm_name'];
+        $wbptime_name_of_your_institution = $_POST['wbptime_name_of_your_institution'];
+        $result_of_training = $_POST['result_of_training'];
+        $programmes_and_policies = $_POST['programmes_and_policies'];
+
+
+
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
         } else {
@@ -41,7 +48,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 											[
                                                 "dataElement" => "MLJAYxAStqC",
 												"value" => $result_of
-                                             ]
+                                            ],
+                                            [
+                                                "dataElement" => "q6Lc52NhvGp",
+												"value" => $email
+                                            ],
+                                            [
+                                                "dataElement" => "Nec3qnL80Ar",
+												"value" => $wbpitm_name
+                                            ],
+                                            [
+                                                "dataElement" => "DOMDwji0qcy",
+												"value" => $wbptime_name_of_your_institution
+                                            ],
+                                            [
+                                                "dataElement" => "krtxCg3otEo",
+												"value" => $result_of_training
+                                            ],
+                                            [
+                                                "dataElement" => "VTk2tnlHOV3",
+												"value" => $programmes_and_policies
+                                            ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
@@ -213,13 +240,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="email">Email Address:</label>
                 <input type="email" id="email" name="email" placeholder="Enter valid email address" required 
                        value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+
+                       <label for="wbpitm_name">Your name:</label>
+                <input type="text" id="wbpitm_name" name="wbpitm_name" required 
+                       value="<?php echo isset($_POST['wbpitm_name']) ? htmlspecialchars($_POST['wbpitm_name']) : ''; ?>">
+
+                       <label for="wbptime_name_of_your_institution">Name of your institution:</label>
+                <input type="text" id="wbptime_name_of_your_institution" name="wbptime_name_of_your_institution" required 
+                       value="<?php echo isset($_POST['wbptime_name_of_your_institution']) ? htmlspecialchars($_POST['wbptime_name_of_your_institution']) : ''; ?>">
             </div>
 			<div class="form-group">
-                <label for="qi">Alcohol or drug use is the result of:</label>
+                <label for="qi">Kindly rate your understanding of the modules learned by checking the relevant space</label>
+
+                <p>Facts about Drugs</p>
 				<select name ="result_of" class="form-group">
-				<option value="Personality flaws.">Personality flaws.</option>
-				<option value="Inheritance">Inheritance</option>
-				<option value="Mental problems">Mental problems</option>
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+
+                <p>Supervisor Training</p>
+                <select name ="result_of_training" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
 				</select> 
             </div>
 			
