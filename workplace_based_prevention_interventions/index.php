@@ -467,7 +467,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</select>
 
                 <p>Trainer communicated the material in a meaningful ways</p>
-            <select name ="wb_Trainer_was_knowledgeable_about_the_subject_matters" class="form-group">
+            <select name ="trainer_communicated_the_material_in_a_meaningful_ways" class="form-group">
 				<option value="Strongly agree">Strongly agree</option>
 				<option value="Agree">Agree</option>
 				<option value="Disagree">Disagree</option>
