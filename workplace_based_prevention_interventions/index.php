@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $trainer_was_well_prepared = $_POST['trainer_was_well_prepared'];
         $about_the_subject_matter = $_POST['about_the_subject_matter'];
         $meaningful_way = $_POST['meaningful_way'];
-        $participant_questions = $_POST['participant_questions']
-        $engagement_and_participation = $_POST['engagement_and_participation']
+        $participant_questions = $_POST['participant_questions'];
+        $engagement_and_participation = $_POST['engagement_and_participation'];
 
         $wb_trainer_was_well_prepares = $_POST['wb_trainer_was_well_prepares'];
         $wb_Trainer_was_knowledgeable_about_the_subject_matters = $_POST['wb_Trainer_was_knowledgeable_about_the_subject_matters'];
@@ -151,7 +151,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "mNMjmbuwn91",
 												"value" => $trainer_promoted_engagement_and_participations
-                                            ],
+                                            ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
