@@ -116,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>INDIVIDUAL BOOKING DETAILS</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; background-color: #f5f5f5; }
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 50px auto; padding: 20px; background-color: #f5f5f5; }
     .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     h1 { color: #333; text-align: center; margin-bottom: 30px; font-weight: 100; }
     .form-group { margin-bottom: 20px; display:flex; flex-direction: column; gap: 10px; width: 100%; }
