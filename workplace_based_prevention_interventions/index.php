@@ -16,8 +16,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result_of_training = $_POST['result_of_training'];
         $programmes_and_policies = $_POST['programmes_and_policies'];
         $employee_education = $_POST['employee_education'];
-
-
+        $relevant_option = $_POST['relevant_option'];
+        $relevant_to_your_work = $_POST['relevant_to_your_work'];
+        
 
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -74,6 +75,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "BOwxoPdtcXC",
 												"value" => $employee_education
+                                            ],
+                                            [
+                                                "dataElement" => "rCPy024LLiQ",
+												"value" => $relevant_option
+                                            ],
+                                            [
+                                                "dataElement" => "tOhjeywOSyq",
+												"value" => $relevant_to_your_work
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -257,7 +266,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 			<div class="form-group">
                 <label for="qi">Kindly rate your understanding of the modules learned by checking the relevant space</label>
-
                 <p>Facts about Drugs</p>
 				<select name ="result_of" class="form-group">
 				<option value="Low">Low</option>
@@ -291,7 +299,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				</select> 
             </div>
 			
-			
+			<div class="form-group">
+                <label for="q2">Kindly rate the following training components by checking the relevant option </label>
+                <p>Achievement of training objectives</p>
+                <select name ="relevant_option" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+
+                <p>Knowledge and skills gained are relevant to your work</p>
+                <select name ="relevant_to_your_work" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+            </div>
 
             <button type="submit">Submit to DHIS2</button>
         </form>
