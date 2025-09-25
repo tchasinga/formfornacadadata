@@ -38,10 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 "events" => [  // Events should be inside enrollment
                                     [
                                         "dataValues" => [
-                                            [
-                                                "dataElement" => "JeIfzF0BRUk",
-                                                "value" => 30
-                                            ],
 											[
                                                 "dataElement" => "GfkJ46rlDC9",
 												"value" => $result_of
@@ -112,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DHIS2 Enrollment (Tracker API)</title>
+    <title>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING FOR MANAGERS AND SUPERVISORS EVALUATION</title>
     <style>
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
@@ -210,12 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h2>DHIS2 Enrollment Form</h2>
-        
-        <div class="info-box">
-            <strong>Note:</strong> This form will create a Tracked Entity Instance with an enrollment in the DHIS2 system.
-            The email address will be stored as an attribute value.
-        </div>
+        <h2>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING FOR MANAGERS AND SUPERVISORS EVALUATION</h2>
         
         <form method="POST">
             <div class="form-group">
@@ -229,8 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Personality flaws.">Personality flaws.</option>
 				<option value="Inheritance">Inheritance</option>
 				<option value="Mental problems">Mental problems</option>
-				</select>
-               
+				</select> 
             </div>
 			
 			
