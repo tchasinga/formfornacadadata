@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     [
                         "attributes" => [
                             [
-                                "attribute" => "v7FLq8y7EMu", // Full Name attribute
+                                "attribute" => "GcY28sK8JnU", // Full Name attribute
                                 "value" => $email
                             ]
                         ],
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 "enrolledAt" => date("Y-m-d"),
                                 "occurredAt" => date("Y-m-d"),
                                 "orgUnit" => "ORwhnDymBpM",
-                                "program" => "PgKF7mXlZe0",
+                                "program" => "Jx3L6PmQiEM",
                                 "status" => "ACTIVE",
                                 "events" => [  // Events should be inside enrollment
                                     [
@@ -55,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         ],
                                         "occurredAt" => date("Y-m-d"),
                                         "orgUnit" => "ORwhnDymBpM",
-                                        "program" => "PgKF7mXlZe0",
+                                        "program" => "Jx3L6PmQiEM",
                                         "programStage" => "ofNlBAcA1kY",
                                         "status" => "ACTIVE"
                                     ]
