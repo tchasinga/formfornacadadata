@@ -267,6 +267,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Good">Good</option>
                 <option value="Excellent">Excellent</option>
 				</select> 
+
+                <p>Key components of substance use prevention programmes and policies</p>
+                <select name ="programmes_and_policies" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select> 
             </div>
 			
 			
