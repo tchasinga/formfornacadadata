@@ -20,6 +20,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $relevant_to_your_work = $_POST['relevant_to_your_work'];
         $schedule_and_duration = $_POST['schedule_and_duration'];
         $training_methodologies_used = $_POST['training_methodologies_used'];
+        $handouts_received = $_POST['handouts_received'];
+        $trainer_was_well_prepared = $_POST['trainer_was_well_prepared'];
+        $about_the_subject_matter = $_POST['about_the_subject_matter'];
+        $meaningful_way = $_POST['meaningful_way'];
+        $participant_questions = $_POST['participant_questions']
+        $engagement_and_participation = $_POST['engagement_and_participation']
+
 
 
 
@@ -94,6 +101,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "lKTIx5Ak0QU",
 												"value" => $training_methodologies_used
+                                            ],
+                                            [
+                                                "dataElement" => "amNyePYrSIb",
+												"value" => $handouts_received
+                                            ],
+                                            [
+                                                "dataElement" => "TgBe2DJDoJU",
+												"value" => $trainer_was_well_prepared
+                                            ],
+                                            [
+                                                "dataElement" => "v0n8SjfNOLv",
+												"value" => $about_the_subject_matter
+                                            ],
+                                            [
+                                                "dataElement" => "CdmwS3SDgB3",
+												"value" => $meaningful_way
+                                            ],
+                                            [
+                                                "dataElement" => "p3enA3ux1q5",
+												"value" => $participant_questions
+                                            ],
+                                            [
+                                                "dataElement" => "d1dpauBRfZP",
+												"value" => $engagement_and_participation
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -343,6 +374,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				<option value="Good">Good</option>
                 <option value="Excellent">Excellent</option>
 				</select>
+
+                <p>Training materials and handouts received</p>
+                <select name ="handouts_received" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+            </div>
+
+            <div class="form-group">
+                <label for="q3">Trainer 1: Dr. Elizabeth Njani </label>
+                
+                <p>Trainer was well prepared</p>
+            <select name ="trainer_was_well_prepared" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer was knowledgeable about the subject matter</p>
+                <select name ="about_the_subject_matter" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer was knowledgeable about the subject matter</p>
+                <select name ="meaningful_way" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer provided clear answers to participant questions.</p>
+                <select name ="participant_questions" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
+                <p>Trainer promoted engagement and participation</p>
+                <select name ="engagement_and_participation" class="form-group">
+				<option value="Strongly agree">Strongly agree</option>
+				<option value="Agree">Agree</option>
+				<option value="Disagree">Disagree</option>
+                <option value="Strongly disagree">Strongly disagree</option>
+				</select>
+
             </div>
 
             <button type="submit">Submit to DHIS2</button>
