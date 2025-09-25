@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $error_message = "Invalid email format";
         } else {
             $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
-            $username = "admin";
-            $password = "Jocsoft@2025!";
+            $username = "jack";
+            $password = "Jocsoft@2027!!";
 
             // Corrected DHIS2 payload structure
             $data = [
