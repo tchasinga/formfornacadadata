@@ -18,7 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $employee_education = $_POST['employee_education'];
         $relevant_option = $_POST['relevant_option'];
         $relevant_to_your_work = $_POST['relevant_to_your_work'];
-        
+        $schedule_and_duration = $_POST['schedule_and_duration'];
+
 
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -83,6 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "tOhjeywOSyq",
 												"value" => $relevant_to_your_work
+                                            ],
+                                            [
+                                                "dataElement" => "eJHNTNLV7FY",
+												"value" => $schedule_and_duration
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -311,6 +316,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <p>Knowledge and skills gained are relevant to your work</p>
                 <select name ="relevant_to_your_work" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+
+                <p>Training schedule and duration</p>
+                <select name ="schedule_and_duration" class="form-group">
 				<option value="Low">Low</option>
 				<option value="Fair">Fair</option>
 				<option value="Good">Good</option>
