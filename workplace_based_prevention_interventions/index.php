@@ -56,14 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         "occurredAt" => date("Y-m-d"),
                                         "orgUnit" => "ORwhnDymBpM",
                                         "program" => "Jx3L6PmQiEM",
-                                        "programStage" => "ofNlBAcA1kY",
+                                        "programStage" => "j1Ci20huoTK",
                                         "status" => "ACTIVE"
                                     ]
                                 ]
                             ]
                         ],
                         "orgUnit" => "ORwhnDymBpM",
-                        "trackedEntityType" => "ad6uk49xve7" // trackdatacollector entity
+                        "trackedEntityType" => "kBS2MoCIdew" 
                     ]
                 ]
             ];
