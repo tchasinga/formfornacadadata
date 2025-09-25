@@ -19,6 +19,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $relevant_option = $_POST['relevant_option'];
         $relevant_to_your_work = $_POST['relevant_to_your_work'];
         $schedule_and_duration = $_POST['schedule_and_duration'];
+        $training_methodologies_used = $_POST['training_methodologies_used'];
+
 
 
 
@@ -88,6 +90,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "eJHNTNLV7FY",
 												"value" => $schedule_and_duration
+                                            ],
+                                            [
+                                                "dataElement" => "lKTIx5Ak0QU",
+												"value" => $training_methodologies_used
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -324,6 +330,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <p>Training schedule and duration</p>
                 <select name ="schedule_and_duration" class="form-group">
+				<option value="Low">Low</option>
+				<option value="Fair">Fair</option>
+				<option value="Good">Good</option>
+                <option value="Excellent">Excellent</option>
+				</select>
+
+                <p>Training methodologies used</p>
+                <select name ="training_methodologies_used" class="form-group">
 				<option value="Low">Low</option>
 				<option value="Fair">Fair</option>
 				<option value="Good">Good</option>
