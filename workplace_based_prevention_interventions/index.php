@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $trainer_promoted_engagement_and_participations = $_POST['trainer_promoted_engagement_and_participations'];
         $what_did_you_like_best_about_the_training = $_POST['what_did_you_like_best_about_the_training'];
         $what_one_thing_could_be_improved_for_future_trainings = $_POST['what_one_thing_could_be_improved_for_future_trainings'];
-        $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training = $_POST['kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training']
+        $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training = $_POST['kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training'];
 
 
 
@@ -167,7 +167,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "uyFieWMpzpd",
 												"value" => $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training
-                                            ],
+                                            ]
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
