@@ -429,6 +429,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             </div>
 
+            
+
             <button type="submit">Submit to DHIS2</button>
         </form>
 
