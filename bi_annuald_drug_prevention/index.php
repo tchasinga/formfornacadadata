@@ -89,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $drug_abuse
             ],
             [
-                "dataElement" => "u47SzV1jyIe",
+                "dataElement" => "aoDLyMgu5qk",
                 "value" => $intervention_activity
             ],
         ]
@@ -202,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
         <textarea rows="4" cols="50" type="text" name="drug_abuse" id="drug_abuse"></textarea>
         
-        <label for="intervention_activity">Intervention/Activity</label>
+        <label for="intervention_activity">Specify Intervention Activity</label>
         <input type="text" name="intervention_activity" id="intervention_activity" required>
         
         <button type="submit">Submit</button>
