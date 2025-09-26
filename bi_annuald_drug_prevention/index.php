@@ -202,6 +202,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
         <textarea rows="4" cols="50" type="text" name="drug_abuse" id="drug_abuse"></textarea>
         
+        <label for="intervention_activity">Intervention/Activity</label>
+        <input type="text" name="intervention_activity" id="intervention_activity" required>
         
         <button type="submit">Submit</button>
     </form>
