@@ -135,9 +135,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="type_of_registration" id="type_of_registration">
             <option value="Government Ministry or Agency">Government Ministry or Agency</option>
             <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
-            <option value="Private">Private</option>
-            <option value="Private">Private</option>
-            <option value="Private">Private</option>
+            <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
+            <option value="Faith Based Organization">Faith Based Organization</option>
+            <option value="Community Based Organisations">Community Based Organisations</option>
             <option value="Private">Private</option>
             <option value="Private">Private</option>
         </select>
