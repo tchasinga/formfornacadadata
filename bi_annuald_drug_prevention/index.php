@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $source_of_funding = $_POST['source_of_funding'];
     $badp_government = $_POST['badp_government'];
     $donor_funding = $_POST['donor_funding'];
+    $networks = $_POST['networks'];
 
     
 
