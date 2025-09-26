@@ -140,8 +140,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Community Based Organisations">Community Based Organisations</option>
             <option value="County Community Workgroup">County Community Workgroup</option>
             <option value="Women's Organizations">Women's Organizations</option>
-            <option value="Private">Private</option>
-            <option value="Private">Private</option>
+            <option value="Youth Organizations">Youth Organizations</option>
+            <option value="Children's Organizations">Children's Organizations</option>
             <option value="Private">Private</option>
         </select>
         
