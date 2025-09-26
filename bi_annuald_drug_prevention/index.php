@@ -28,6 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $counties_of_operation = $_POST['counties_of_operation'];
     $drug_abuse = $_POST['drug_abuse'];
     $intervention_activity = $_POST['intervention_activity'];
+    $setting = $_POST['setting'];
+    $target_group = $_POST['target_group'];
+    $no_of_people_reached = $_POST['no_of_people_reached'];
     
 
     $data = [
@@ -90,8 +93,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ],
             [
                 "dataElement" => "aoDLyMgu5qk",
-                "categoryOptionCombo": "enNrceyGpbI",
+                "categoryOptionCombo" => "h61nf5pMlL2",
                 "value" => $intervention_activity
+            ],
+            [
+                "dataElement" => "aoDLyMgu5qk",
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $intervention_activity
+            ],
+
+            [
+                "dataElement" => "UC83uH0BzlF",
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $setting
+            ],
+            [
+                "dataElement" => "UC83uH0BzlF",
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $setting
+            ],
+
+
+            [
+                "dataElement" => "bneey8XnDZN",
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $target_group
+            ],
+            [
+                "dataElement" => "bneey8XnDZN",
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $target_group
+            ],
+
+            [
+                "dataElement" => "qnwKlYFwO2b",
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $no_of_people_reached
+            ],
+            [
+                "dataElement" => "qnwKlYFwO2b",
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $no_of_people_reached
             ]
         ]
     ];
@@ -203,8 +245,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
         <textarea rows="4" cols="50" type="text" name="drug_abuse" id="drug_abuse"></textarea>
         
-        <label for="intervention_activity">Specify Intervention Activity</label>
+        <label for="intervention_activity">Specify Intervention Activity | 01</label>
         <input type="text" name="intervention_activity" id="intervention_activity" required>
+        <label for="intervention_activity">Specify Intervention Activity | 02</label>
+        <input type="text" name="intervention_activity" id="intervention_activity" required>
+
+        <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 01</label>
+        <input type="text" name="setting" id="setting" required>
+        <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 02</label>
+        <input type="text" name="setting" id="setting" required>
+
+        <label for="target_group">Target group | 01</label>
+        <input type="text" name="target_group" id="target_group" required>
+        <label for="target_group">Target group | 02</label>
+        <input type="text" name="target_group" id="target_group" required>
         
         <button type="submit">Submit</button>
     </form>
