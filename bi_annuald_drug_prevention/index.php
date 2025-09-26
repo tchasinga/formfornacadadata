@@ -15,7 +15,7 @@ $data = [
     "orgUnit" => "FdXc2bAfqzd",           // org unit ID (facility)
     "dataValues" => [
         [
-            "dataElement" => "Bky63h2AUxp",   // malaria cases data element ID
+            "dataElement" => "ORwhnDymBpM",   // malaria cases data element ID
             "value" => $malaria_cases
         ]
     ]
