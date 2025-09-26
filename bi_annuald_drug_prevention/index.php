@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type_of_registration = $_POST['type_of_registration'];
     $source_of_funding = $_POST['source_of_funding'];
     $badp_government = $_POST['badp_government'];
+    $donor_funding = $_POST['donor_funding'];
 
     
 
@@ -67,7 +68,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "LodLeVlIigm",
                 "value" => $badp_government
-            ]
+            ],
+            [
+                "dataElement" => "wuzKPV7v6ei",
+                "value" => $donor_funding
+            ],
         ]
     ];
 
