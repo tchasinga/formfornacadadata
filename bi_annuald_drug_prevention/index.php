@@ -119,7 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST">
         <br><br>
 
-        <label for="value">Enter Value:</label>
+        <label for="value">Designation</label>
         <input type="text" name="value" id="value" required>
 
         <label for="full_nameoforganization">Full name of organization/WorkGroup</label>
