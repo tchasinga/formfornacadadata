@@ -35,6 +35,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $badpgovernment = $_POST['badpgovernment'];
     $badp_learninginstitution = $_POST['badp_learninginstitution'];
     $badp_other_specify = $_POST['badp_other_specify'];
+    $badp_international_NGO = $_POST['badp_international_NGO'];
+
 
 
 
@@ -163,6 +165,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $badp_other_specify
             ],
 
+            [
+                "dataElement" => "Fln8WDtWJDK",
+                "value" => $badp_international_NGO
+            ]
         ]
     ];
 
@@ -302,6 +308,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="badp_learninginstitution">Learning institution</label>
         <input type="text" name="badp_learninginstitution" id="badp_learninginstitution" required>
+
+        <label for="badp_other_specify">Learning institution</label>
+        <input type="text" name="badp_other_specify" id="badp_other_specify" required>
+
 
 
         
