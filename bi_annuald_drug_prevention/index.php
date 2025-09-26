@@ -21,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $physical_location = $_POST['physical_location'];
     $email_address = $_POST['email_address'];
     $type_of_registration = $_POST['type_of_registration'];
+    $source_of_funding = $_POST['source_of_funding'];
     
 
     $data = [
@@ -56,7 +57,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "RXedT8xP8dW",
                 "value" => $type_of_registration
+            ],
+            [
+                "dataElement" => "VJISUqCq7ee",
+                "value" => $source_of_funding
             ]
+
         ]
     ];
 
@@ -143,6 +149,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Youth Organizations">Youth Organizations</option>
             <option value="Children's Organizations">Children's Organizations</option>
             <option value="Charitable Trust">Charitable Trust</option>
+        </select>
+
+        <label for="source_of_funding">Source of funding</label>
+        <select name="source_of_funding" id="source_of_funding">
+            <option value="Income generating activities">Income generating activities</option>
+            <option value="Private">Private</option>
+            <option value="Donations & contributions">Donations & contributions</option>
         </select>
         
         <button type="submit">Submit</button>
