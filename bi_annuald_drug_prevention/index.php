@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contact_person = $_POST['contact_person'];
     $physical_location = $_POST['physical_location'];
     $email_address = $_POST['email_address'];
-    $type_of_registration = $_POST['type_of_registration']
+    $type_of_registration = $_POST['type_of_registration'];
     
 
     $data = [
