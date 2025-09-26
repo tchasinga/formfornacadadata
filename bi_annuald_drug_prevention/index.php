@@ -22,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email_address = $_POST['email_address'];
     $type_of_registration = $_POST['type_of_registration'];
     $source_of_funding = $_POST['source_of_funding'];
+    $badp_government = $_POST['badp_government'];
+
     
 
     $data = [
@@ -61,8 +63,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "VJISUqCq7ee",
                 "value" => $source_of_funding
+            ],
+            [
+                "dataElement" => "LodLeVlIigm",
+                "value" => $badp_government
             ]
-
         ]
     ];
 
@@ -155,8 +160,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <select name="source_of_funding" id="source_of_funding">
             <option value="Income generating activities">Income generating activities</option>
             <option value="Private">Private</option>
-            <option value="Donations & contributions">Donations & contributions</option>
+            <option value="Donations and contributions">Donations and contributions</option>
         </select>
+
+        <label for="badp_government"> Government (specify)</label>
+        <input type="text" name="badp_government" id="badp_government" required>
+
+
         
         <button type="submit">Submit</button>
     </form>
