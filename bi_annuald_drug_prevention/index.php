@@ -31,6 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $setting = $_POST['setting'];
     $target_group = $_POST['target_group'];
     $no_of_people_reached = $_POST['no_of_people_reached'];
+    $other_csos = $_POST['other_csos'];
     
 
     $data = [
