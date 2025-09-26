@@ -149,16 +149,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="type_of_registration">Type of registration</label>
         <select name="type_of_registration" id="type_of_registration">
-            <option value="Government Ministry or Agency">Government Ministry or Agency</option>
-            <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
-            <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
-            <option value="Faith Based Organization">Faith Based Organization</option>
-            <option value="Community Based Organisations">Community Based Organisations</option>
-            <option value="County Community Workgroup">County Community Workgroup</option>
-            <option value="Women's Organizations">Women's Organizations</option>
-            <option value="Youth Organizations">Youth Organizations</option>
-            <option value="Children's Organizations">Children's Organizations</option>
-            <option value="Charitable Trust">Charitable Trust</option>
+            <option value="q01">Government Ministry or Agency</option>
+            <option value="q02">International Non-Governmental Organizations (iNGOs)</option>
+            <option value="q03">Local Non-Governmental Organization</option>
+            <option value="q04">Faith Based Organization</option>
+            <option value="q05">Community Based Organisations</option>
+            <option value="q06">County Community Workgroup</option>
+            <option value="q07">Women's Organizations</option>
+            <option value="q08">Youth Organizations</option>
+            <option value="q09">Children's Organizations</option>
+            <option value="q10">Charitable Trust</option>
         </select>
 
         <label for="source_of_funding">Source of funding</label>
@@ -171,7 +171,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="badp_government"> Government (specify)</label>
         <input type="text" name="badp_government" id="badp_government" required>
 
-
+        <label for="donor_funding">Donor funding (specify)</label>
+        <input type="text" name="donor_funding" id="donor_funding" required>
         
         <button type="submit">Submit</button>
     </form>
