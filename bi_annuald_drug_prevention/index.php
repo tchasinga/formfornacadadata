@@ -32,6 +32,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $target_group = $_POST['target_group'];
     $no_of_people_reached = $_POST['no_of_people_reached'];
     $other_csos = $_POST['other_csos'];
+    $badpgovernment = $_POST['badpgovernment'];
+    $badp_learninginstitution = $_POST['badp_learninginstitution'];
+    $badp_other_specify = $_POST['badp_other_specify'];
+
+
+
     
 
     $data = [
@@ -135,7 +141,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "qnwKlYFwO2b",
                 "categoryOptionCombo" => "h61nf5pMlL2",
                 "value" => $no_of_people_reached
-            ]
+            ],
+
+            [
+                "dataElement" => "TYZpDx8uaQV",
+                "value" => $other_csos
+            ],
+
+            [
+                "dataElement" => "k4OaK5mkRoU",
+                "value" => $badpgovernment
+            ],
+
+            [
+                "dataElement" => "XuVoRN9if8o",
+                "value" => $badp_learninginstitution
+            ],
+
+            [
+                "dataElement" => "JptsZIwUQDA",
+                "value" => $badp_other_specify
+            ],
+
         ]
     ];
 
@@ -266,6 +293,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
         <label for="no_of_people_reached">No. of people reached | 02</label>
         <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+
+        <label for="other_csos"> Other CSOs (specify)</label>
+        <input type="text" name="other_csos" id="other_csos" required>
+
+        <label for="badpgovernment">Government</label>
+        <input type="text" name="badpgovernment" id="badpgovernment" required>
+
+        <label for="badp_learninginstitution">Learning institution</label>
+        <input type="text" name="badp_learninginstitution" id="badp_learninginstitution" required>
+
+
         
         <button type="submit">Submit</button>
     </form>
