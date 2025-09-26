@@ -259,6 +259,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="target_group" id="target_group" required>
         <label for="target_group">Target group | 02</label>
         <input type="text" name="target_group" id="target_group" required>
+
+
+        <label for="no_of_people_reached">No. of people reached | 01</label>
+        <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+        <label for="no_of_people_reached">No. of people reached | 02</label>
+        <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
         
         <button type="submit">Submit</button>
     </form>
