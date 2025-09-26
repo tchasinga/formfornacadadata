@@ -90,8 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ],
             [
                 "dataElement" => "aoDLyMgu5qk",
+                "categoryOptionCombo": "enNrceyGpbI",
                 "value" => $intervention_activity
-            ],
+            ]
         ]
     ];
 
