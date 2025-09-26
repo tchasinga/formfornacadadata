@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $donor_funding = $_POST['donor_funding'];
     $networks = $_POST['networks'];
     $counties_of_operation = $_POST['counties_of_operation'];
+    $drug_abuse = $_POST['drug_abuse']
 
 
     
@@ -83,6 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "A5noZTfQUCK",
                 "value" => $counties_of_operation
+            ],
+            [
+                "dataElement" => "cDdD8DMQ3sC",
+                "value" => $drug_abuse
             ]
         ]
     ];
@@ -190,6 +195,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="counties_of_operation">County/counties of operation</label>
         <textarea rows="4" cols="50" type="text" name="counties_of_operation" id="counties_of_operation"></textarea>
+
+        <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
+        <textarea rows="4" cols="50" type="text" name="drug_abuse" id="drug_abuse"></textarea>
+        
         
         <button type="submit">Submit</button>
     </form>
