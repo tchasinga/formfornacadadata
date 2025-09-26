@@ -27,8 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $networks = $_POST['networks'];
     $counties_of_operation = $_POST['counties_of_operation'];
     $drug_abuse = $_POST['drug_abuse'];
-
-
+    $intervention_activity = $_POST['intervention_activity'];
     
 
     $data = [
@@ -88,7 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "cDdD8DMQ3sC",
                 "value" => $drug_abuse
-            ]
+            ],
+            [
+                "dataElement" => "u47SzV1jyIe",
+                "value" => $intervention_activity
+            ],
         ]
     ];
 
