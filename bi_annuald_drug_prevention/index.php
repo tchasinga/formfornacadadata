@@ -142,7 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <option value="Women's Organizations">Women's Organizations</option>
             <option value="Youth Organizations">Youth Organizations</option>
             <option value="Children's Organizations">Children's Organizations</option>
-            <option value="Private">Private</option>
+            <option value="Charitable Trust">Charitable Trust</option>
         </select>
         
         <button type="submit">Submit</button>
