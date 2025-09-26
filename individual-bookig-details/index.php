@@ -113,21 +113,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>INDIVIDUAL BOOKING DETAILS</title>
   <style>
-    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 50px auto; padding: 20px; background-color: #f5f5f5; }
-    .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-    h1 { color: #333; text-align: center; margin-bottom: 30px; font-weight: 100; }
+    :root {
+      --primary: #2c3e50;
+      --secondary: #3498db;
+      --accent: #2980b9;
+      --success: #27ae60;
+      --danger: #e74c3c;
+      --text: #333;
+      --border: #ddd;
+    }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: linear-gradient(135deg, #f5f9fc 0%, #e8f4fc 100%); color: var(--text); }
+    .container { max-width: 960px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    h1 { color: var(--primary); text-align: center; margin-bottom: 24px; font-weight: 600; }
     .form-group { margin-bottom: 20px; display:flex; flex-direction: column; gap: 10px; width: 100%; }
-    label { font-weight: 100; color: #555; }
-    input, select { padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
-    button { background-color: #007cba; color: white; padding: 12px 30px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; }
-    button:hover { background-color: #005a87; }
-    .message { padding: 10px; margin: 20px 0; border-radius: 4px; text-align: center; }
-    .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-    .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+    label { font-weight: 500; color: var(--primary); }
+    input, select { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 16px; background: #fff; transition: border-color .2s, box-shadow .2s; }
+    input:focus, select:focus { outline: none; border-color: var(--secondary); box-shadow: 0 0 0 3px rgba(52,152,219,.2); }
+    button { background: linear-gradient(90deg, var(--secondary), var(--accent)); color: white; padding: 14px 30px; border: none; border-radius: 6px; cursor: pointer; font-size: 16px; width: 100%; transition: transform .1s, box-shadow .2s; box-shadow: 0 4px 10px rgba(52,152,219,.25); }
+    button:hover { transform: translateY(-1px); box-shadow: 0 6px 14px rgba(52,152,219,.35); }
+    .message { padding: 12px; margin: 20px 0; border-radius: 6px; text-align: center; }
+    .success { background-color: rgba(39,174,96,.1); color: var(--success); border-left: 4px solid var(--success); }
+    .error { background-color: rgba(231,76,60,.1); color: var(--danger); border-left: 4px solid var(--danger); }
+    @media (max-width: 768px) { body { padding: 12px; } .container { padding: 20px; } }
   </style>
+  
 </head>
 <body>
   <div class="container">

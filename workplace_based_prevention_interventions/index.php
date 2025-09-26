@@ -36,9 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $what_one_thing_could_be_improved_for_future_trainings = $_POST['what_one_thing_could_be_improved_for_future_trainings'];
         $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training = $_POST['kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training'];
 
-
-
-
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
         } else {
@@ -232,341 +229,567 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING FOR MANAGERS AND SUPERVISORS EVALUATION</title>
     <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --gray: #95a5a6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding: 20px; 
-            background-color: #f5f9fc;
-            color: #333;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding: 20px;
         }
+        
         .container {
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+        
+        .form-content {
+            padding: 30px;
+        }
+        
+        .form-section {
+            background: var(--light);
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--secondary);
         }
-        h2 {
-            color: #2c3e50;
-            margin-top: 0;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
+        
+        .form-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        form { 
-            margin-bottom: 25px; 
+        
+        .form-section h3::before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 2rem;
         }
+        
         .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        input[type="email"], select { 
-            padding: 12px; 
-            width: 100%; 
-            box-sizing: border-box;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        input[type="email"]:focus, select:focus {
-            border-color: #3498db;
-            outline: none;
-            box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
-        }
-        button { 
-            padding: 12px 24px; 
-            background: #3498db; 
-            color: white; 
-            border: none; 
-            border-radius: 4px;
-            cursor: pointer; 
-            font-size: 16px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        button:hover { 
-            background: #2980b9; 
-        }
-        .message {
-            padding: 15px;
-            border-radius: 4px;
             margin-bottom: 20px;
         }
+        
+        .form-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .form-hint {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+        
+        input[type="email"], 
+        input[type="text"], 
+        select, 
+        textarea { 
+            width: 100%; 
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input[type="email"]:focus, 
+        input[type="text"]:focus, 
+        select:focus, 
+        textarea:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 45px;
+        }
+        
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, var(--secondary) 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .btn-submit:active {
+            transform: translateY(-1px);
+        }
+        
+        .message {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            animation: fadeIn 0.5s ease;
+        }
+        
         .success {
-            color: #155724;
             background-color: #d4edda;
             border: 1px solid #c3e6cb;
+            color: #155724;
         }
+        
         .error {
-            color: #721c24;
             background-color: #f8d7da;
             border: 1px solid #f5c6cb;
+            color: #721c24;
         }
+        
         .response {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 4px;
+            margin-top: 15px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 5px;
             font-family: monospace;
             font-size: 14px;
             overflow-x: auto;
+            white-space: pre-wrap;
         }
-        .info-box {
-            background-color: #e8f4fc;
-            border-left: 4px solid #3498db;
+        
+        .rating-item {
+            background: white;
             padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 4px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .rating-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .rating-item p {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 10px;
+            }
+            
+            .header {
+                padding: 20px;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-content {
+                padding: 20px;
+            }
+            
+            .form-section {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .form-section h3 {
+                font-size: 1.1rem;
+            }
+            
+            input[type="email"], 
+            input[type="text"], 
+            select, 
+            textarea {
+                padding: 10px 12px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING FOR MANAGERS AND SUPERVISORS EVALUATION</h2>
+        <div class="header">
+            <h1>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING</h1>
+            <p>For Managers and Supervisors Evaluation</p>
+        </div>
         
-        <form method="POST">
-            <div class="form-group">
-                <label for="email">Email Address:</label>
-                <input type="email" id="email" name="email" placeholder="Enter valid email address" required 
-                       value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
-
-                       <label for="wbpitm_name">Your name:</label>
-                <input type="text" id="wbpitm_name" name="wbpitm_name" required 
-                       value="<?php echo isset($_POST['wbpitm_name']) ? htmlspecialchars($_POST['wbpitm_name']) : ''; ?>">
-
-                       <label for="wbptime_name_of_your_institution">Name of your institution:</label>
-                <input type="text" id="wbptime_name_of_your_institution" name="wbptime_name_of_your_institution" required 
-                       value="<?php echo isset($_POST['wbptime_name_of_your_institution']) ? htmlspecialchars($_POST['wbptime_name_of_your_institution']) : ''; ?>">
-            </div>
-			<div class="form-group">
-                <label for="qi">Kindly rate your understanding of the modules learned by checking the relevant space</label>
-                <p>Facts about Drugs</p>
-				<select name ="result_of" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-
-                <p>Supervisor Training</p>
-                <select name ="result_of_training" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select> 
-
-                <p>Key components of substance use prevention programmes and policies</p>
-                <select name ="programmes_and_policies" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select> 
-
-                <p>Employee Education</p>
-                <select name ="employee_education" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select> 
-            </div>
-			
-			<div class="form-group">
-                <label for="q2">Kindly rate the following training components by checking the relevant option </label>
-                <p>Achievement of training objectives</p>
-                <select name ="relevant_option" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-
-                <p>Knowledge and skills gained are relevant to your work</p>
-                <select name ="relevant_to_your_work" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-
-                <p>Training schedule and duration</p>
-                <select name ="schedule_and_duration" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-
-                <p>Training methodologies used</p>
-                <select name ="training_methodologies_used" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-
-                <p>Training materials and handouts received</p>
-                <select name ="handouts_received" class="form-group">
-				<option value="Low">Low</option>
-				<option value="Fair">Fair</option>
-				<option value="Good">Good</option>
-                <option value="Excellent">Excellent</option>
-				</select>
-            </div>
-
-            <div class="form-group">
-                <label for="q3">Trainer 1: Dr. Elizabeth Njani </label>
-                
-                <p>Trainer was well prepared</p>
-            <select name ="trainer_was_well_prepared" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer was knowledgeable about the subject matter</p>
-                <select name ="about_the_subject_matter" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer was knowledgeable about the subject matter</p>
-                <select name ="meaningful_way" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer provided clear answers to participant questions.</p>
-                <select name ="participant_questions" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer promoted engagement and participation</p>
-                <select name ="engagement_and_participation" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-            </div>
-
-
-           <div class="form-group">
-           <label for="q4">Trainer 2: Diana Ouma  </label>
-                
-                <p>Trainer was well prepared</p>
-            <select name ="wb_trainer_was_well_prepares" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer was knowledgeable about the subject matters</p>
-            <select name ="wb_Trainer_was_knowledgeable_about_the_subject_matters" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer communicated the material in a meaningful ways</p>
-            <select name ="trainer_communicated_the_material_in_a_meaningful_ways" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-
-                <p>Trainer provided clear answers to participant questions</p>
-            <select name ="trainer_provided_clear_answers_to_participant_questions" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-           </div>
-
-           <p>Trainer promoted engagement and participations</p>
-            <select name ="trainer_promoted_engagement_and_participations" class="form-group">
-				<option value="Strongly agree">Strongly agree</option>
-				<option value="Agree">Agree</option>
-				<option value="Disagree">Disagree</option>
-                <option value="Strongly disagree">Strongly disagree</option>
-				</select>
-           </div>
-
-           <div class="form-group">
-           <label for="what_did_you_like_best_about_the_training">What did you like best about the training?</label><br>
-           <textarea id="what_did_you_like_best_about_the_training" name="what_did_you_like_best_about_the_training" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
-           </div>
-
-           <div class="form-group">
-           <label for="what_one_thing_could_be_improved_for_future_trainings">What one thing could be improved for future trainings?</label><br>
-           <textarea id="what_one_thing_could_be_improved_for_future_trainings" name="what_one_thing_could_be_improved_for_future_trainings" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
-           </div>
-
-           <div class="form-group">
-           <label for="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training">Kindly share any other comments or suggestions you may have with regard to workplace training</label><br>
-           <textarea id="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" name="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" rows="5" cols="40" placeholder="Enter your comments here..."></textarea>
-           </div>
-
-
-            <button type="submit">Submit to DHIS2</button>
-        </form>
-
-        <?php if ($success_message): ?>
-            <div class="message success">
-                <strong>Success!</strong> 
-                <?php 
-                // Display the success message without the technical details for better UX
-                $msg = explode("<br>", "Submitted successfully!");
-                echo $msg[0]; 
-                ?>
-                <div class="response">
-                    <?php 
-                    // Show the response details in a formatted way
-                    if (isset($msg[1])) echo $msg[1]; 
-                    ?>
+        <div class="form-content">
+            <form method="POST">
+                <div class="form-section">
+                    <h3>Personal Information</h3>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required 
+                               value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wbpitm_name">Your Name</label>
+                        <input type="text" id="wbpitm_name" name="wbpitm_name" required 
+                               value="<?php echo isset($_POST['wbpitm_name']) ? htmlspecialchars($_POST['wbpitm_name']) : ''; ?>">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="wbptime_name_of_your_institution">Name of Your Institution</label>
+                        <input type="text" id="wbptime_name_of_your_institution" name="wbptime_name_of_your_institution" required 
+                               value="<?php echo isset($_POST['wbptime_name_of_your_institution']) ? htmlspecialchars($_POST['wbptime_name_of_your_institution']) : ''; ?>">
+                    </div>
                 </div>
-            </div>
-        <?php endif; ?>
-
-        <?php if ($error_message): ?>
-            <div class="message error">
-                <strong>Error:</strong> 
-                <?php 
-                $msg = explode("<br>", $error_message);
-                echo $msg[0]; 
-                ?>
-                <div class="response">
-                    <?php 
-                    if (isset($msg[1])) echo $msg[1]; 
-                    ?>
+                
+                <div class="form-section">
+                    <h3>Understanding of Training Modules</h3>
+                    <p class="form-hint">Kindly rate your understanding of the modules learned by checking the relevant space</p>
+                    
+                    <div class="rating-item">
+                        <p>Facts about Drugs</p>
+                        <select name="result_of" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Supervisor Training</p>
+                        <select name="result_of_training" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Key components of substance use prevention programmes and policies</p>
+                        <select name="programmes_and_policies" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Employee Education</p>
+                        <select name="employee_education" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-        <?php endif; ?>
+                
+                <div class="form-section">
+                    <h3>Training Components Evaluation</h3>
+                    <p class="form-hint">Kindly rate the following training components by checking the relevant option</p>
+                    
+                    <div class="rating-item">
+                        <p>Achievement of training objectives</p>
+                        <select name="relevant_option" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Knowledge and skills gained are relevant to your work</p>
+                        <select name="relevant_to_your_work" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Training schedule and duration</p>
+                        <select name="schedule_and_duration" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Training methodologies used</p>
+                        <select name="training_methodologies_used" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Training materials and handouts received</p>
+                        <select name="handouts_received" required>
+                            <option value="Low">Low</option>
+                            <option value="Fair">Fair</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Trainer 1: Dr. Elizabeth Njani</h3>
+                    
+                    <div class="rating-item">
+                        <p>Trainer was well prepared</p>
+                        <select name="trainer_was_well_prepared" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer was knowledgeable about the subject matter</p>
+                        <select name="about_the_subject_matter" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer communicated the material in a meaningful way</p>
+                        <select name="meaningful_way" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer provided clear answers to participant questions</p>
+                        <select name="participant_questions" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer promoted engagement and participation</p>
+                        <select name="engagement_and_participation" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Trainer 2: Diana Ouma</h3>
+                    
+                    <div class="rating-item">
+                        <p>Trainer was well prepared</p>
+                        <select name="wb_trainer_was_well_prepares" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer was knowledgeable about the subject matter</p>
+                        <select name="wb_Trainer_was_knowledgeable_about_the_subject_matters" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer communicated the material in a meaningful way</p>
+                        <select name="trainer_communicated_the_material_in_a_meaningful_ways" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer provided clear answers to participant questions</p>
+                        <select name="trainer_provided_clear_answers_to_participant_questions" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                    
+                    <div class="rating-item">
+                        <p>Trainer promoted engagement and participation</p>
+                        <select name="trainer_promoted_engagement_and_participations" required>
+                            <option value="Strongly agree">Strongly agree</option>
+                            <option value="Agree">Agree</option>
+                            <option value="Disagree">Disagree</option>
+                            <option value="Strongly disagree">Strongly disagree</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Additional Feedback</h3>
+                    
+                    <div class="form-group">
+                        <label for="what_did_you_like_best_about_the_training">What did you like best about the training?</label>
+                        <textarea id="what_did_you_like_best_about_the_training" name="what_did_you_like_best_about_the_training" 
+                                  placeholder="Please share what you enjoyed most about the training..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="what_one_thing_could_be_improved_for_future_trainings">What one thing could be improved for future trainings?</label>
+                        <textarea id="what_one_thing_could_be_improved_for_future_trainings" name="what_one_thing_could_be_improved_for_future_trainings" 
+                                  placeholder="Your suggestions for improvement..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training">Kindly share any other comments or suggestions you may have with regard to workplace training</label>
+                        <textarea id="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" 
+                                  name="kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training" 
+                                  placeholder="Any additional comments or suggestions..."></textarea>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Submit Evaluation</button>
+            </form>
+            
+            <?php if ($success_message): ?>
+                <div class="message success">
+                    <strong>Success!</strong> 
+                    <?php 
+                    $msg = explode("<br>", "Submitted successfully!");
+                    echo $msg[0]; 
+                    ?>
+                    <div class="response">
+                        <?php 
+                        if (isset($msg[1])) echo $msg[1]; 
+                        ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+            <?php if ($error_message): ?>
+                <div class="message error">
+                    <strong>Error:</strong> 
+                    <?php 
+                    $msg = explode("<br>", $error_message);
+                    echo $msg[0]; 
+                    ?>
+                    <div class="response">
+                        <?php 
+                        if (isset($msg[1])) echo $msg[1]; 
+                        ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>
