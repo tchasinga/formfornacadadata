@@ -309,10 +309,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="badp_learninginstitution">Learning institution</label>
         <input type="text" name="badp_learninginstitution" id="badp_learninginstitution" required>
 
-        <label for="badp_other_specify">Learning institution</label>
+        <label for="badp_other_specify">Other (Specify)</label>
         <input type="text" name="badp_other_specify" id="badp_other_specify" required>
 
-
+        <label for="badp_international_NGO">International NGO</label>
+        <input type="text" name="badp_international_NGO" id="badp_international_NGO" required>
 
         
         <button type="submit">Submit</button>
