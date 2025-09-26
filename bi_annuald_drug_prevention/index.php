@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $donor_funding = $_POST['donor_funding'];
     $networks = $_POST['networks'];
     $counties_of_operation = $_POST['counties_of_operation'];
-    $drug_abuse = $_POST['drug_abuse']
+    $drug_abuse = $_POST['drug_abuse'];
 
 
     
