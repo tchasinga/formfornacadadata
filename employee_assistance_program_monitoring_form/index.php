@@ -1,3 +1,4 @@
+
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -47,11 +48,15 @@ $current_quarter = getCurrentQuarter();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
     $reporting_period = $_POST['reporting_period'];
+    $other_data = $_POST['other_data'];
+    $sensitization_on_available = $_POST['sensitization_on_available'];
+    $how_many_employees_reached = $_POST['how_many_employees_reached'];
+
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
     $in_house_and_external = isset($_POST['in_house_and_external']) ? "true" : "false";
-    $other = isset($_POST['other']);
+   
 
 
 
@@ -83,7 +88,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ],
             [
                 "dataElement" => "NYHVR5HsxYS",
-                "value" => $other
+                "value" => $other_data
+            ],
+            [
+                "dataElement" => "BUOEjGsMPQQ",
+                "value" => $sensitization_on_available
+            ],
+            [
+                "dataElement" => "toCflxtfBvP",
+                "value" => $how_many_employees_reached
             ],
         ]
     ];
@@ -130,7 +143,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         label {
             margin-bottom: 5px;
         }
+        #how_many_employees_reached_container {
+            display: none;
+            margin-top: 10px;
+        }
     </style>
+    <script>
+        function toggleEmployeesReached() {
+            var sensitizationSelect = document.getElementById('sensitization_on_available');
+            var employeesReachedContainer = document.getElementById('how_many_employees_reached_container');
+            
+            if (sensitizationSelect.value === 'yes') {
+                employeesReachedContainer.style.display = 'block';
+            } else {
+                employeesReachedContainer.style.display = 'none';
+            }
+        }
+    </script>
 </head>
 <body>
     <?php if ($success_message): ?>
@@ -164,20 +193,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
         </div>
+        
         <div>
-             <h2>EAP services available</h2>
+            <h2>EAP services available</h2>
 
-             <input type="checkbox" id="health_center" name="health_center" value="health_center">
-<label for="health_center">In-house clinic/health center/EAP</label><br>
+            <input type="checkbox" id="health_center" name="health_center" value="health_center">
+            <label for="health_center">In-house clinic/health center/EAP</label><br>
 
-<input type="checkbox" id="services_providers" name="services_providers" value="services_providers">
-<label for="services_providers">Schedule of external services/providers</label><br>
+            <input type="checkbox" id="services_providers" name="services_providers" value="services_providers">
+            <label for="services_providers">Schedule of external services/providers</label><br>
 
-<input type="checkbox" id="in_house_and_external" name="in_house_and_external" value="in_house_and_external">
-<label for="in_house_and_external">Hybrid (in-house and external)</label><br>
+            <input type="checkbox" id="in_house_and_external" name="in_house_and_external" value="in_house_and_external">
+            <label for="in_house_and_external">Hybrid (in-house and external)</label><br>
 
-<input type="text" id="other" name="other" value="other">
-<label for="other">Other (specify)</label><br>
+            <label for="other_data">Other (specify)</label><br>
+            <input type="text" id="other_data" name="other_data">
+        </div>
+
+        <div>
+            <label for="sensitization_on_available">Sensitization on available:</label>
+            <select name="sensitization_on_available" id="sensitization_on_available" required onchange="toggleEmployeesReached()">
+                <option value="">Select Option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <div id="how_many_employees_reached_container">
+            <label for="how_many_employees_reached">How many employees reached:</label>
+            <input type="text" name="how_many_employees_reached" id="how_many_employees_reached" />
         </div>
 
         <button type="submit">Submit</button>
