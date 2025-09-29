@@ -61,13 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $poor_decision_making = isset($_POST['poor_decision_making']) ? "true" : "false";
     $poor_judgement = isset($_POST['poor_judgement']) ? "true" : "false";
     $unusual_carelessness = isset($_POST['unusual_carelessness']) ? "true" : "false";
-
-
-
-
-   
-
-
+    $unsteady_gait =  isset($_POST['unsteady_gait']) ? "true" : "false";
+    $excessive_mood_swings = isset($_POST['excessive_mood_swings']) ? "true" : "false";
+    $energetic_or_sedated = isset($_POST['energetic_or_sedated']) ? "true" : "false";
 
     $data = [
         "dataSet" => "hb6Y59T4YEc",
@@ -127,6 +123,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "KEs7EKi49M7",
                 "value" => $unusual_carelessness
+            ],
+            [
+                "dataElement" => "Pu6yfQjPmmq",
+                "value" => $unsteady_gait
+            ],
+            [
+                "dataElement" => "RpCwCDUHjQy",
+                "value" => $excessive_mood_swings
+            ],
+            [
+                "dataElement" => "wyvbLSxv3ro",
+                "value" => $energetic_or_sedated
             ],
         ]
     ];
@@ -269,6 +277,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="unusual_carelessness" name="unusual_carelessness" value="unusual_carelessness">
         <label for="unusual_carelessness">Unusual carelessness</label><br>
+
+        <input type="checkbox" id="unsteady_gait" name="unsteady_gait" value="unsteady_gait">
+        <label for="unsteady_gait">Unsteady gait</label><br>
+
+        <input type="checkbox" id="excessive_mood_swings" name="excessive_mood_swings" value="excessive_mood_swings">
+        <label for="excessive_mood_swings">Excessive mood swings</label><br>
+
+        <input type="checkbox" id="energetic_or_sedated" name="energetic_or_sedated" value="energetic_or_sedated">
+        <label for="energetic_or_sedated">Appearance of being high, unusually energetic or sedated</label><br>
 
 
         </div>
