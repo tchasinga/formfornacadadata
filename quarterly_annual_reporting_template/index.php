@@ -10,40 +10,43 @@ $url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
-// Function to get current quarter
+// Function to get current quarter (DHIS2 standard quarters)
 function getCurrentQuarter() {
-    $month = date('n'); // Current month (1-12)
-    $year = date('Y'); // Current year
-    
-    // Determine quarter based on month
-    if ($month >= 1 && $month <= 4) {
-        return $year . "Q1"; // Jan-Apr
-    } elseif ($month >= 5 && $month <= 8) {
-        return $year . "Q2"; // May-Aug
-    } else {
-        return $year . "Q3"; // Sep-Dec
-    }
+	$month = date('n'); // Current month (1-12)
+	$year = date('Y'); // Current year
+
+	// Determine quarter based on month (Q1: Jan-Mar, Q2: Apr-Jun, Q3: Jul-Sep, Q4: Oct-Dec)
+	if ($month >= 1 && $month <= 3) {
+		return $year . "Q1";
+	} elseif ($month >= 4 && $month <= 6) {
+		return $year . "Q2";
+	} elseif ($month >= 7 && $month <= 9) {
+		return $year . "Q3";
+	} else {
+		return $year . "Q4";
+	}
 }
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $value = $_POST['value'];
-    
-    // Get current quarter
-    $currentPeriod = getCurrentQuarter();
+	$value = $_POST['value'];
+
+	// Use user-provided period if present, otherwise default to current quarter
+	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
+	$currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
 
     $data = [
-        "dataSet" => "n65Xeqc6HN1",
-        "completeDate" => date("Y-m-d"),
-        "period" => $currentPeriod,
-        "orgUnit" => "ORwhnDymBpM",
-        "dataValues" => [
-            [
-                "dataElement" => "Ar1Rlf7Yfkq",
-                "value" => $value
-            ]
-        ]
-    ];
+		"dataSet" => "n65Xeqc6HN1",
+		"completeDate" => date("Y-m-d"),
+		"period" => $currentPeriod,
+		"orgUnit" => "ORwhnDymBpM",
+		"dataValues" => [
+			[
+				"dataElement" => "Ar1Rlf7Yfkq",
+				"value" => $value
+			]
+		]
+	];
 
     $payload = json_encode($data);
 
@@ -96,6 +99,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php endif; ?>
     
     <form method="POST">
+        <label for="period">Reporting Period (e.g., 2025Q2)</label>
+        <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
         <label for="value">ADA-Name of the Institution</label>
         <input type="text" name="value" id="value" required />
         <button type="submit">Submit</button>
