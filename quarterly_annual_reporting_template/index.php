@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				"value" => $from_annual_target
 			],
             [
-				"dataElement" => "kMBdGEyWR4n",
+				"dataElement" => "PDZrDagKlqY",
 				"value" => $challenges_or_learnings
 			],
 		]
@@ -190,6 +190,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="from_annual_target">Variance from annual target (%)</label>
         <input type="text" name="from_annual_target" id="from_annual_target" required />
 
+        <label for="challenges_or_learnings">Comments on any variance, challenges or learnings</label>
+        <input type="text" name="challenges_or_learnings" id="challenges_or_learnings" required />
 
         <button type="submit">Submit</button>
     </form>
