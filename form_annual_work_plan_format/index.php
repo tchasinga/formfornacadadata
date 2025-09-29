@@ -28,10 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $activities01 = $_POST['activities01'];
 
 
-
-
-
-
     $data = [
         "dataSet" => "i0kCTg3AIlJ",
         "completeDate" => date("Y-m-d"),
