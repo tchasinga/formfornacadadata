@@ -99,6 +99,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				"dataElement" => "PDZrDagKlqY",
 				"value" => $challenges_or_learnings
 			],
+            [
+				"dataElement" => "b0Nahc1BfKj",
+				"value" => $quarterly_totals
+			],
 		]
 	];
 
