@@ -56,6 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
     $in_house_and_external = isset($_POST['in_house_and_external']) ? "true" : "false";
+    $decreasing_work_quality = isset($_POST['decreasing_work_quality']) ? "true" : "false";
+
    
 
 
@@ -97,6 +99,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "toCflxtfBvP",
                 "value" => $how_many_employees_reached
+            ],
+
+            [
+                "dataElement" => "QIc1Oph1w9n",
+                "value" => $decreasing_work_quality
             ],
         ]
     ];
@@ -222,6 +229,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div id="how_many_employees_reached_container">
             <label for="how_many_employees_reached">How many employees reached:</label>
             <input type="text" name="how_many_employees_reached" id="how_many_employees_reached" />
+        </div>
+
+        <div>
+        <input type="checkbox" id="decreasing_work_quality" name="decreasing_work_quality" value="decreasing_work_quality">
+        <label for="decreasing_work_quality">Low productivity/declining performance/decreasing work quality</label><br>
         </div>
 
         <button type="submit">Submit</button>
