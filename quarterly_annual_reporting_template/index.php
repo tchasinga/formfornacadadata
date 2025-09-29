@@ -46,6 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			[
 				"dataElement" => "Ar1Rlf7Yfkq",
 				"value" => $value
+            ],
+            [
+				"dataElement" => "lmOU0RK4aYg",
+				"value" => $prevention_activities
 			]
 		]
 	];
