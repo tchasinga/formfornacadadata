@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $from_annual_target = $_POST['from_annual_target'];
     $challenges_or_learnings = $_POST['challenges_or_learnings'];
     $quarterly_totals = $_POST['quarterly_totals'];
+    $name_of_reporter = $_POST['name_of_reporter'];
 
     // Use user-provided period if present, otherwise default to current quarter
     $userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
@@ -100,6 +101,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "b0Nahc1BfKj",
                 "value" => $quarterly_totals
+            ],
+            [
+                "dataElement" => "WZNGURW8bVg",
+                "value" => $name_of_reporter
             ],
         ]
     ];
