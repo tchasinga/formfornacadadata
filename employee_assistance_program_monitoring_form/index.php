@@ -47,7 +47,13 @@ $current_quarter = getCurrentQuarter();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
     $reporting_period = $_POST['reporting_period'];
-    $health_center = $_POST['health_center'];
+
+    $health_center = isset($_POST['health_center']) ? "true" : "false";
+    $services_providers = isset($_POST['services_providers']) ? "true" : "false";
+    $in_house_and_external = isset($_POST['in_house_and_external']) ? "true" : "false";
+    $other = isset($_POST['other']);
+
+
 
     $data = [
         "dataSet" => "hb6Y59T4YEc",
@@ -64,8 +70,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $reporting_period
             ],
             [
-                "dataElement" => "E8FUm5o1CaH",
+                "dataElement" => "q3nIhzLobBY",
                 "value" => $health_center
+            ],
+            [
+                "dataElement" => "RuHhXGH0T4E",
+                "value" => $services_providers
+            ],
+            [
+                "dataElement" => "QPWXligjV7t",
+                "value" => $in_house_and_external
+            ],
+            [
+                "dataElement" => "NYHVR5HsxYS",
+                "value" => $other
             ],
         ]
     ];
@@ -150,7 +168,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
              <h2>EAP services available</h2>
 
              <input type="checkbox" id="health_center" name="health_center" value="health_center">
-<label for="health_center">EAPM - In-house clinic/health center/EAP</label><br>
+<label for="health_center">In-house clinic/health center/EAP</label><br>
+
+<input type="checkbox" id="services_providers" name="services_providers" value="services_providers">
+<label for="services_providers">Schedule of external services/providers</label><br>
+
+<input type="checkbox" id="in_house_and_external" name="in_house_and_external" value="in_house_and_external">
+<label for="in_house_and_external">Hybrid (in-house and external)</label><br>
+
+<input type="text" id="other" name="other" value="other">
+<label for="other">Other (specify)</label><br>
         </div>
 
         <button type="submit">Submit</button>
