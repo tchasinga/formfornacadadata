@@ -36,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $badp_learninginstitution = $_POST['badp_learninginstitution'];
     $badp_other_specify = $_POST['badp_other_specify'];
     $badp_international_NGO = $_POST['badp_international_NGO'];
+    $your_work = $_POST['your_work'];
+    $other_commentsbadp = $_POST['other_commentsbadp'];
+
+
 
 
 
@@ -168,6 +172,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "Fln8WDtWJDK",
                 "value" => $badp_international_NGO
+            ],
+
+            [
+                "dataElement" => "lHDdoBjlhpL",
+                "value" => $your_work
+            ],
+            [
+                "dataElement" => "NsMnddzr3qN",
+                "value" => $other_commentsbadp
             ]
         ]
     ];
@@ -314,6 +327,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="badp_international_NGO">International NGO</label>
         <input type="text" name="badp_international_NGO" id="badp_international_NGO" required>
+
+        <label for="your_work">Challenges faced in your work</label>
+        <textarea rows="4" cols="50" type="text" name="your_work" id="your_work"></textarea>
+
+        <label for="other_commentsbadp">Other comments</label>
+        <textarea rows="4" cols="50" type="text" name="other_commentsbadp" id="other_commentsbadp"></textarea>
 
         
         <button type="submit">Submit</button>
