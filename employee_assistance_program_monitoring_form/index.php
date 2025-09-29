@@ -57,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
     $in_house_and_external = isset($_POST['in_house_and_external']) ? "true" : "false";
     $decreasing_work_quality = isset($_POST['decreasing_work_quality']) ? "true" : "false";
+    $lack_attention_focus = isset($_POST['lack_attention_focus']) ? "true" : "false";
 
    
 
@@ -104,6 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "QIc1Oph1w9n",
                 "value" => $decreasing_work_quality
+            ],
+            [
+                "dataElement" => "S4WRkCE29Ix",
+                "value" => $lack_attention_focus
             ],
         ]
     ];
@@ -234,6 +239,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
         <input type="checkbox" id="decreasing_work_quality" name="decreasing_work_quality" value="decreasing_work_quality">
         <label for="decreasing_work_quality">Low productivity/declining performance/decreasing work quality</label><br>
+
+        <input type="checkbox" id="lack_attention_focus" name="lack_attention_focus" value="lack_attention_focus">
+        <label for="lack_attention_focus">Lack of attention or focus</label><br>
+
         </div>
 
         <button type="submit">Submit</button>
