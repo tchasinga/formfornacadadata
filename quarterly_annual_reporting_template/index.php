@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quarter_achievement = $_POST['quarter_achievement'];
     $quarter_in = $_POST['quarter_in'];
     $for_the_quarter = $_POST['for_the_quarter'];
+    $variance_for_the_quarter = $_POST['variance_for_the_quarter'];
 
 
 	// Use user-provided period if present, otherwise default to current quarter
@@ -70,6 +71,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "Jl3akdWGvKD",
 				"value" => $for_the_quarter
+			],
+            [
+				"dataElement" => "Ck5dK8YBkIW",
+				"value" => $variance_for_the_quarter
 			],
 		]
 	];
@@ -150,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="for_the_quarter">Target for the quarter (%)</label>
         <input type="text" name="for_the_quarter" id="for_the_quarter" required />
+
+        <label for="variance_for_the_quarter">Variance for the quarter (%)</label>
+        <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter" required />
 
         <button type="submit">Submit</button>
     </form>
