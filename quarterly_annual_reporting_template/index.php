@@ -148,6 +148,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="quarter_in">Performance for the quarter in (%)</label>
         <input type="text" name="quarter_in" id="quarter_in" required />
 
+        <label for="for_the_quarter">Target for the quarter (%)</label>
+        <input type="text" name="for_the_quarter" id="for_the_quarter" required />
+
         <button type="submit">Submit</button>
     </form>
     
