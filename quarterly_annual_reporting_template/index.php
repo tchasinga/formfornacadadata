@@ -163,6 +163,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="variance_for_the_quarter">Variance for the quarter (%)</label>
         <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter" required />
 
+        <label for="achievement_to_date">Cumulative achievement to date</label>
+        <input type="date" name="achievement_to_date" id="achievement_to_date" required />
+
+
         <button type="submit">Submit</button>
     </form>
     
