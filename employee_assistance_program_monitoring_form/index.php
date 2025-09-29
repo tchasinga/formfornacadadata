@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $other_data = $_POST['other_data'];
     $sensitization_on_available = $_POST['sensitization_on_available'];
     $how_many_employees_reached = $_POST['how_many_employees_reached'];
+    $other_specify = $_POST['other_specify'];
 
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
@@ -318,9 +319,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="smell_alcohol_tobacco" name="smell_alcohol_tobacco" value="smell_alcohol_tobacco">
         <label for="smell_alcohol_tobacco">Smell of alcohol or tobacco</label><br>
+        
+        <input type="checkbox" id="on_the_job_accident" name="on_the_job_accident" value="on_the_job_accident">
+        <label for="on_the_job_accident">On the job accident</label><br>
 
-        <input type="checkbox" id="smell_alcohol_tobacco" name="smell_alcohol_tobacco" value="smell_alcohol_tobacco">
-        <label for="smell_alcohol_tobacco">Smell of alcohol or tobacco</label><br>
+        <input type="text" id="other_specify" name="other_specify" value="other_specify">
+        <label for="other_specify">Other (specify)</label><br>
 
 
         </div>
