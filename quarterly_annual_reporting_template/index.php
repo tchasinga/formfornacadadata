@@ -37,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $for_the_quarter = $_POST['for_the_quarter'];
     $variance_for_the_quarter = $_POST['variance_for_the_quarter'];
     $achievement_to_date = $_POST['achievement_to_date'];
+    $annual_activity_target = $_POST['annual_activity_target'];
+
 
 	// Use user-provided period if present, otherwise default to current quarter
 	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
@@ -79,6 +81,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "kID9ezyALKP",
 				"value" => $achievement_to_date
+			],
+            [
+				"dataElement" => "y1lhKjYuTOZ",
+				"value" => $annual_activity_target
 			],
 		]
 	];
