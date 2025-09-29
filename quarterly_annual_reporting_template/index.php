@@ -46,6 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $designation = $_POST['designation'];
     $Tel_No  = $_POST['Tel_No'];
     $prqt_email = $_POST['prqt_email'];
+    $prq_date = $_POST['prq_date'];
    
 
 
@@ -122,6 +123,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "dzUAl9ZpDRB",
                 "value" => $prqt_email
+            ],
+            [
+                "dataElement" => "wgvylEsNXEl",
+                "value" => $prq_date
             ],
         ]
     ];
