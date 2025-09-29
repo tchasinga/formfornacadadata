@@ -160,6 +160,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "VhDte8t3OoQ",
                 "value" => $on_the_job_accident
             ],
+            [
+                "dataElement" => "KEv6aPzdLqP",
+                "value" => $other_specify
+            ],
         ]
     ];
 
