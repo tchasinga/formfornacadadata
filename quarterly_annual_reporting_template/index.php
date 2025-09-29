@@ -260,6 +260,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h1>I certify that this report submitted to NACADA is accurate</h1>
 
+        <label for="name_of_reporter">Name of reporter </label>
+        <input type="text" name="name_of_reporter" id="name_of_reporter" required />
+
         <button type="submit">Submit</button>
     </form>
     
