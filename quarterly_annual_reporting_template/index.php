@@ -198,6 +198,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="challenges_or_learnings">Comments on any variance, challenges or learnings</label>
         <input type="text" name="challenges_or_learnings" id="challenges_or_learnings" required />
 
+        <label for="quarterly_totals">Quarterly totals</label>
+        <input type="text" name="quarterly_totals" id="quarterly_totals" required />
+
+
         <button type="submit">Submit</button>
     </form>
     
