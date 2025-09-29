@@ -12,24 +12,23 @@ $password = "Jocsoft@2027!!";
 
 // Function to get current quarter (DHIS2 standard quarters)
 function getCurrentQuarter() {
-	$month = date('n'); // Current month (1-12)
-	$year = date('Y'); // Current year
+    $month = date('n'); // Current month (1-12)
+    $year = date('Y'); // Current year
 
-	// Determine quarter based on month (Q1: Jan-Mar, Q2: Apr-Jun, Q3: Jul-Sep, Q4: Oct-Dec)
-	if ($month >= 1 && $month <= 3) {
-		return $year . "Q1";
-	} elseif ($month >= 4 && $month <= 6) {
-		return $year . "Q2";
-	} elseif ($month >= 7 && $month <= 9) {
-		return $year . "Q3";
-	} else {
-		return $year . "Q4";
-	}
+    if ($month >= 1 && $month <= 3) {
+        return $year . "Q1";
+    } elseif ($month >= 4 && $month <= 6) {
+        return $year . "Q2";
+    } elseif ($month >= 7 && $month <= 9) {
+        return $year . "Q3";
+    } else {
+        return $year . "Q4";
+    }
 }
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$value = $_POST['value'];
+    $value = $_POST['value'];
     $prevention_activities = $_POST['prevention_activities'];
     $reporting_period = $_POST['reporting_period'];
     $quarter_achievement = $_POST['quarter_achievement'];
@@ -41,70 +40,113 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $from_annual_target = $_POST['from_annual_target'];
     $challenges_or_learnings = $_POST['challenges_or_learnings'];
     $quarterly_totals = $_POST['quarterly_totals'];
+    $document = $_FILES['document'];
 
 
+    // Use user-provided period if present, otherwise default to current quarter
+    $userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
+    $currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
 
+    // ================== FILE UPLOAD START ==================
+    $uploadedFileId = null;
 
-	// Use user-provided period if present, otherwise default to current quarter
-	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
-	$currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
+    if (isset($_FILES['document']) && $_FILES['document']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['document']['tmp_name'];
+        $fileName = $_FILES['document']['name'];
+
+        // Upload to DHIS2 fileResources
+        $fileCh = curl_init("https://monitoring.jocsoft.net/dhis/api/fileResources");
+        curl_setopt($fileCh, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($fileCh, CURLOPT_POST, true);
+        curl_setopt($fileCh, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($fileCh, CURLOPT_USERPWD, "$username:$password");
+
+        $cfile = new CURLFile($fileTmpPath, mime_content_type($fileTmpPath), $fileName);
+        $postFields = ['file' => $cfile];
+
+        curl_setopt($fileCh, CURLOPT_POSTFIELDS, $postFields);
+
+        $fileResponse = curl_exec($fileCh);
+        $fileHttpCode = curl_getinfo($fileCh, CURLINFO_HTTP_CODE);
+
+        if ($fileHttpCode == 200 || $fileHttpCode == 201) {
+            $fileJson = json_decode($fileResponse, true);
+            if (isset($fileJson['response']['fileResource']['id'])) {
+                $uploadedFileId = $fileJson['response']['fileResource']['id'];
+            }
+        }
+        curl_close($fileCh);
+    }
+    // ================== FILE UPLOAD END ==================
 
     $data = [
-		"dataSet" => "n65Xeqc6HN1",
-		"completeDate" => date("Y-m-d"),
-		"period" => $currentPeriod,
-		"orgUnit" => "ORwhnDymBpM",
-		"dataValues" => [
-			[
-				"dataElement" => "Ar1Rlf7Yfkq",
-				"value" => $value
+        "dataSet" => "n65Xeqc6HN1",
+        "completeDate" => date("Y-m-d"),
+        "period" => $currentPeriod,
+        "orgUnit" => "ORwhnDymBpM",
+        "dataValues" => [
+            [
+                "dataElement" => "Ar1Rlf7Yfkq",
+                "value" => $value
             ],
             [
-				"dataElement" => "lmOU0RK4aYg",
-				"value" => $prevention_activities
-			],
+                "dataElement" => "lmOU0RK4aYg",
+                "value" => $prevention_activities
+            ],
             [
-				"dataElement" => "k9JFftbp7x3",
-				"value" => $reporting_period
-			],
+                "dataElement" => "k9JFftbp7x3",
+                "value" => $reporting_period
+            ],
             [
-				"dataElement" => "B6Erpz2KXpC",
-				"value" => $quarter_achievement
-			],
+                "dataElement" => "B6Erpz2KXpC",
+                "value" => $quarter_achievement
+            ],
             [
-				"dataElement" => "tsD42vC6oDG",
-				"value" => $quarter_in
-			],
+                "dataElement" => "tsD42vC6oDG",
+                "value" => $quarter_in
+            ],
             [
-				"dataElement" => "Jl3akdWGvKD",
-				"value" => $for_the_quarter
-			],
+                "dataElement" => "Jl3akdWGvKD",
+                "value" => $for_the_quarter
+            ],
             [
-				"dataElement" => "Ck5dK8YBkIW",
-				"value" => $variance_for_the_quarter
-			],
+                "dataElement" => "Ck5dK8YBkIW",
+                "value" => $variance_for_the_quarter
+            ],
             [
-				"dataElement" => "kID9ezyALKP",
-				"value" => $achievement_to_date
-			],
+                "dataElement" => "kID9ezyALKP",
+                "value" => $achievement_to_date
+            ],
             [
-				"dataElement" => "y1lhKjYuTOZ",
-				"value" => $annual_activity_target
-			],
+                "dataElement" => "y1lhKjYuTOZ",
+                "value" => $annual_activity_target
+            ],
             [
-				"dataElement" => "kMBdGEyWR4n",
-				"value" => $from_annual_target
-			],
+                "dataElement" => "kMBdGEyWR4n",
+                "value" => $from_annual_target
+            ],
             [
-				"dataElement" => "PDZrDagKlqY",
-				"value" => $challenges_or_learnings
-			],
+                "dataElement" => "PDZrDagKlqY",
+                "value" => $challenges_or_learnings
+            ],
             [
-				"dataElement" => "b0Nahc1BfKj",
-				"value" => $quarterly_totals
-			],
-		]
-	];
+                "dataElement" => "b0Nahc1BfKj",
+                "value" => $quarterly_totals
+            ],
+            [
+                "dataElement" => "gE1XvtJR7Rv",
+                "value" => $document
+            ],
+        ]
+    ];
+
+    // If file uploaded, add it as a dataValue
+    if ($uploadedFileId) {
+        $data["dataValues"][] = [
+            "dataElement" => "gE1XvtJR7Rv", // PQRT - Document
+            "value" => $uploadedFileId
+        ];
+    }
 
     $payload = json_encode($data);
 
@@ -161,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="message error"><?php echo htmlspecialchars($error_message); ?></div>
     <?php endif; ?>
     
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="period">Reporting Period (e.g., 2025Q2)</label>
         <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
        
@@ -200,6 +242,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="quarterly_totals">Quarterly totals</label>
         <input type="text" name="quarterly_totals" id="quarterly_totals" required />
+
+        <label for="document">Upload Document</label>
+        <input type="file" name="document" id="document" required />
 
         <button type="submit">Submit</button>
     </form>
