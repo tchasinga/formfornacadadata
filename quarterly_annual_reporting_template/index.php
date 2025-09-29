@@ -82,6 +82,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUARTERLY/ANNUAL REPORTING TEMPLATE</title>
     <style>
+        form{
+            display:flex;
+            flex-direction:column;
+            max-width: 400px;
+        }
         .message { padding: 10px; margin: 10px 0; border-radius: 4px; }
         .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
         .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
