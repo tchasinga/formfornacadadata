@@ -64,6 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $unsteady_gait =  isset($_POST['unsteady_gait']) ? "true" : "false";
     $excessive_mood_swings = isset($_POST['excessive_mood_swings']) ? "true" : "false";
     $energetic_or_sedated = isset($_POST['energetic_or_sedated']) ? "true" : "false";
+    $Repeated_lateness = isset($_POST['Repeated_lateness']) ? "true" : "false";
+    $including_unexplained_absences = isset($_POST['including_unexplained_absences']) ? "true" : "false";
+    
 
     $data = [
         "dataSet" => "hb6Y59T4YEc",
@@ -135,6 +138,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "wyvbLSxv3ro",
                 "value" => $energetic_or_sedated
+            ],
+            [
+                "dataElement" => "P3xNWTMTBJ1",
+                "value" => $Repeated_lateness
+            ],
+            [
+                "dataElement" => "UfDEWWGiAg5",
+                "value" => $including_unexplained_absences
             ],
         ]
     ];
@@ -286,6 +297,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="energetic_or_sedated" name="energetic_or_sedated" value="energetic_or_sedated">
         <label for="energetic_or_sedated">Appearance of being high, unusually energetic or sedated</label><br>
+
+        <input type="checkbox" id="Repeated_lateness" name="Repeated_lateness" value="Repeated_lateness">
+        <label for="Repeated_lateness">Repeated lateness</label><br>
+
+        <input type="checkbox" id="including_unexplained_absences" name="including_unexplained_absences" value="including_unexplained_absences">
+        <label for="including_unexplained_absences">Increased absenteeism, including unexplained absences</label><br>
 
 
         </div>
