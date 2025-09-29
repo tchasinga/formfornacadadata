@@ -201,7 +201,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="quarterly_totals">Quarterly totals</label>
         <input type="text" name="quarterly_totals" id="quarterly_totals" required />
 
-
         <button type="submit">Submit</button>
     </form>
     
