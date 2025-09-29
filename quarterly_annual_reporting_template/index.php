@@ -38,6 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $variance_for_the_quarter = $_POST['variance_for_the_quarter'];
     $achievement_to_date = $_POST['achievement_to_date'];
     $annual_activity_target = $_POST['annual_activity_target'];
+    $from_annual_target = $_POST['from_annual_target'];
+
 
 
 	// Use user-provided period if present, otherwise default to current quarter
@@ -85,6 +87,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "y1lhKjYuTOZ",
 				"value" => $annual_activity_target
+			],
+            [
+				"dataElement" => "kMBdGEyWR4n",
+				"value" => $from_annual_target
 			],
 		]
 	];
@@ -174,6 +180,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="annual_activity_target">Annual activity target in (%)</label>
         <input type="text" name="annual_activity_target" id="annual_activity_target" required />
+
+        <label for="from_annual_target">Variance from annual target (%)</label>
+        <input type="text" name="from_annual_target" id="from_annual_target" required />
+
 
         <button type="submit">Submit</button>
     </form>
