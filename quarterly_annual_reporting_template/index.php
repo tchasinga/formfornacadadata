@@ -45,6 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name_of_reporter = $_POST['name_of_reporter'];
     $designation = $_POST['designation'];
     $Tel_No  = $_POST['Tel_No'];
+    $prqt_email = $_POST['prqt_email'];
    
 
 
@@ -117,6 +118,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "tBdllAaimjr",
                 "value" => $Tel_No
+            ],
+            [
+                "dataElement" => "dzUAl9ZpDRB",
+                "value" => $prqt_email
             ],
         ]
     ];
@@ -280,6 +285,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="Tel_No">Tel No. </label>
         <input type="text" name="Tel_No" id="Tel_No" required />
+
+        <label for="prqt_email">Email address</label>
+        <input type="email" name="prqt_email" id="prqt_email" required />
 
         <button type="submit">Submit</button>
     </form>
