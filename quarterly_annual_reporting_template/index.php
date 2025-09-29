@@ -31,6 +31,8 @@ function getCurrentQuarter() {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$value = $_POST['value'];
     $prevention_activities = $_POST['prevention_activities'];
+    $reporting_period = $_POST['reporting_period'];
+
 
 
 	// Use user-provided period if present, otherwise default to current quarter
@@ -50,7 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "lmOU0RK4aYg",
 				"value" => $prevention_activities
-			]
+			],
+            [
+				"dataElement" => "k9JFftbp7x3",
+				"value" => $reporting_period
+			],
 		]
 	];
 
