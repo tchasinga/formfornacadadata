@@ -148,7 +148,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <div>
              <h2>EAP services available</h2>
-             
+
              <input type="checkbox" id="health_center" name="health_center" value="health_center">
 <label for="health_center">EAPM - In-house clinic/health center/EAP</label><br>
         </div>
