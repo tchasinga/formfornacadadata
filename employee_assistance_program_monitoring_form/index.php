@@ -141,6 +141,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 ?>
             </select>
         </div>
+        <div>
+             <h2>EAP services available</h2>
+             
+        </div>
 
         <button type="submit">Submit</button>
     </form>
