@@ -66,6 +66,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $energetic_or_sedated = isset($_POST['energetic_or_sedated']) ? "true" : "false";
     $Repeated_lateness = isset($_POST['Repeated_lateness']) ? "true" : "false";
     $including_unexplained_absences = isset($_POST['including_unexplained_absences']) ? "true" : "false";
+    $smell_alcohol_tobacco = isset($_POST['Smell_alcohol_tobacco']) ? "true" : "false";
+
     
 
     $data = [
@@ -146,6 +148,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "UfDEWWGiAg5",
                 "value" => $including_unexplained_absences
+            ],
+            [
+                "dataElement" => "BSQr2TUD6bN",
+                "value" => $smell_alcohol_tobacco
             ],
         ]
     ];
@@ -303,6 +309,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="including_unexplained_absences" name="including_unexplained_absences" value="including_unexplained_absences">
         <label for="including_unexplained_absences">Increased absenteeism, including unexplained absences</label><br>
+
+        <input type="checkbox" id="smell_alcohol_tobacco" name="smell_alcohol_tobacco" value="smell_alcohol_tobacco">
+        <label for="smell_alcohol_tobacco">Smell of alcohol or tobacco</label><br>
 
 
         </div>
