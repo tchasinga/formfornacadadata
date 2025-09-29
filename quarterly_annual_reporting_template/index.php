@@ -30,6 +30,8 @@ function getCurrentQuarter() {
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$value = $_POST['value'];
+    $prevention_activities = $_POST['prevention_activities'];
+
 
 	// Use user-provided period if present, otherwise default to current quarter
 	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
@@ -106,8 +108,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST">
         <label for="period">Reporting Period (e.g., 2025Q2)</label>
         <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
+       
         <label for="value">ADA-Name of the Institution</label>
         <input type="text" name="value" id="value" required />
+
+        <label for="prevention_activities">Annual ADA Prevention activities</label>
+        <input type="text" name="prevention_activities" id="prevention_activities" required />
+
         <button type="submit">Submit</button>
     </form>
     
