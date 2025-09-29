@@ -34,6 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reporting_period = $_POST['reporting_period'];
     $quarter_achievement = $_POST['quarter_achievement'];
     $quarter_in = $_POST['quarter_in'];
+    $for_the_quarter = $_POST['for_the_quarter'];
+
 
 	// Use user-provided period if present, otherwise default to current quarter
 	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
@@ -64,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "tsD42vC6oDG",
 				"value" => $quarter_in
+			],
+            [
+				"dataElement" => "Jl3akdWGvKD",
+				"value" => $for_the_quarter
 			],
 		]
 	];
