@@ -125,6 +125,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="prevention_activities">Annual ADA Prevention activities</label>
         <input type="text" name="prevention_activities" id="prevention_activities" required />
 
+        <label for="reporting_period">Progress during the quarter/reporting period</label>
+        <input type="text" name="reporting_period" id="reporting_period" required />
+
         <button type="submit">Submit</button>
     </form>
     
