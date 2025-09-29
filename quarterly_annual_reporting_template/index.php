@@ -44,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $quarterly_totals = $_POST['quarterly_totals'];
     $name_of_reporter = $_POST['name_of_reporter'];
     $designation = $_POST['designation'];
+    $Tel_No  = $_POST['Tel_No'];
+   
 
 
     // Use user-provided period if present, otherwise default to current quarter
@@ -111,6 +113,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "ONIqRkRuK9a",
                 "value" => $designation
+            ],
+            [
+                "dataElement" => "tBdllAaimjr",
+                "value" => $Tel_No
             ],
         ]
     ];
@@ -271,6 +277,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="designation">designation </label>
         <input type="text" name="designation" id="designation" required />
+
+        <label for="Tel_No">Tel No. </label>
+        <input type="text" name="Tel_No" id="Tel_No" required />
 
         <button type="submit">Submit</button>
     </form>
