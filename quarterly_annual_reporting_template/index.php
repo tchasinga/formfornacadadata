@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$value = $_POST['value'];
     $prevention_activities = $_POST['prevention_activities'];
     $reporting_period = $_POST['reporting_period'];
-
-
+    $quarter_achievement = $_POST['quarter_achievement'];
+    $quarter_in = $_POST['quarter_in'];
 
 	// Use user-provided period if present, otherwise default to current quarter
 	$userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
@@ -56,6 +56,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "k9JFftbp7x3",
 				"value" => $reporting_period
+			],
+            [
+				"dataElement" => "B6Erpz2KXpC",
+				"value" => $quarter_achievement
+			],
+            [
+				"dataElement" => "tsD42vC6oDG",
+				"value" => $quarter_in
 			],
 		]
 	];
@@ -127,6 +135,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="reporting_period">Progress during the quarter/reporting period</label>
         <input type="text" name="reporting_period" id="reporting_period" required />
+
+        <label for="quarter_achievement">Indicator(s) of quarter achievement</label>
+        <input type="text" name="quarter_achievement" id="quarter_achievement" required />
+
+        <label for="quarter_in">Performance for the quarter in (%)</label>
+        <input type="text" name="quarter_in" id="quarter_in" required />
 
         <button type="submit">Submit</button>
     </form>
