@@ -39,6 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $achievement_to_date = $_POST['achievement_to_date'];
     $annual_activity_target = $_POST['annual_activity_target'];
     $from_annual_target = $_POST['from_annual_target'];
+    $challenges_or_learnings = $_POST['challenges_or_learnings'];
+
 
 
 
@@ -91,6 +93,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
 				"dataElement" => "kMBdGEyWR4n",
 				"value" => $from_annual_target
+			],
+            [
+				"dataElement" => "kMBdGEyWR4n",
+				"value" => $challenges_or_learnings
 			],
 		]
 	];
