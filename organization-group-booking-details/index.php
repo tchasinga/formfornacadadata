@@ -5,6 +5,31 @@ ini_set('display_errors', 1);
 $success_message = "";
 $error_message = "";
 
+// Poll DHIS2 fileResource until storageStatus is STORED (or timeout)
+function pollFileResourceReady($fileUrl, $fileResourceId, $username, $password, $timeoutSeconds = 30, $intervalMs = 500) {
+    $deadline = microtime(true) + $timeoutSeconds;
+    $lastStatus = null;
+    while (microtime(true) < $deadline) {
+        $chPoll = curl_init($fileUrl . "/" . urlencode($fileResourceId) . "?fields=id,storageStatus");
+        curl_setopt($chPoll, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($chPoll, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($chPoll, CURLOPT_USERPWD, "$username:$password");
+        $pollResponse = curl_exec($chPoll);
+        $httpPoll = curl_getinfo($chPoll, CURLINFO_HTTP_CODE);
+        curl_close($chPoll);
+
+        if ($httpPoll == 200 && $pollResponse) {
+            $pollData = json_decode($pollResponse, true);
+            $lastStatus = $pollData['storageStatus'] ?? null;
+            if ($lastStatus === 'STORED') {
+                return true;
+            }
+        }
+        usleep($intervalMs * 1000);
+    }
+    return false;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name_of_contact_person = $_POST['name_of_contact_person'];
     $mobile_number = $_POST['mobile_number'];
@@ -40,11 +65,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $fileResponse = curl_exec($ch);
+        $http_file = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
         $fileData = json_decode($fileResponse, true);
-        if (isset($fileData['response']['fileResource']['id'])) {
+        if (($http_file == 200 || $http_file == 201 || $http_file == 202) && isset($fileData['response']['fileResource']['id'])) {
             $fileResourceId = $fileData['response']['fileResource']['id'];
+            $initialStatus = $fileData['response']['fileResource']['storageStatus'] ?? null;
+            if ($initialStatus !== 'STORED') {
+                pollFileResourceReady($fileUrl, $fileResourceId, $username, $password, 30, 500);
+            }
         } else {
             $error_message = "Participant list upload failed: " . htmlspecialchars($fileResponse);
         }
@@ -63,11 +93,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $fileResponse = curl_exec($ch);
+        $http_file = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
         $fileData = json_decode($fileResponse, true);
-        if (isset($fileData['response']['fileResource']['id'])) {
+        if (($http_file == 200 || $http_file == 201 || $http_file == 202) && isset($fileData['response']['fileResource']['id'])) {
             $paymentInvoiceFileId = $fileData['response']['fileResource']['id'];
+            $initialStatus = $fileData['response']['fileResource']['storageStatus'] ?? null;
+            if ($initialStatus !== 'STORED') {
+                pollFileResourceReady($fileUrl, $paymentInvoiceFileId, $username, $password, 30, 500);
+            }
         } else {
             $error_message = "Payment invoice upload failed: " . htmlspecialchars($fileResponse);
         }

@@ -20,6 +20,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
     $password = "Jocsoft@2027!!";
     $currentDate = date('Y-m-d');
 
+    // Poll DHIS2 fileResource until storageStatus is STORED (or timeout)
+    function pollFileResourceReady($fileUrl, $fileResourceId, $username, $password, $timeoutSeconds = 30, $intervalMs = 500) {
+        $deadline = microtime(true) + $timeoutSeconds;
+        $lastStatus = null;
+        while (microtime(true) < $deadline) {
+            $chPoll = curl_init($fileUrl . "/" . urlencode($fileResourceId) . "?fields=id,storageStatus");
+            curl_setopt($chPoll, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($chPoll, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($chPoll, CURLOPT_USERPWD, "$username:$password");
+            $pollResponse = curl_exec($chPoll);
+            $httpPoll = curl_getinfo($chPoll, CURLINFO_HTTP_CODE);
+            curl_close($chPoll);
+
+            if ($httpPoll == 200 && $pollResponse) {
+                $pollData = json_decode($pollResponse, true);
+                $lastStatus = $pollData['storageStatus'] ?? null;
+                if ($lastStatus === 'STORED') {
+                    return true;
+                }
+            }
+            usleep($intervalMs * 1000);
+        }
+        return false;
+    }
+
     // ✅ Step 1: If payment_status is Yes, upload invoice file
     if ($payment_status === "Yes" && isset($_FILES['tbf_payment_invoice']) && $_FILES['tbf_payment_invoice']['error'] === 0) {
         $file_path = $_FILES['tbf_payment_invoice']['tmp_name'];
@@ -36,11 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $uploadResponse = curl_exec($ch);
+        $uploadHttp = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         curl_close($ch);
 
         $uploadData = json_decode($uploadResponse, true);
-        if (isset($uploadData['response']['fileResource']['id'])) {
+        if (($uploadHttp == 200 || $uploadHttp == 201 || $uploadHttp == 202) && isset($uploadData['response']['fileResource']['id'])) {
             $payment_invoice_uid = $uploadData['response']['fileResource']['id'];
+            $initialStatus = $uploadData['response']['fileResource']['storageStatus'] ?? null;
+            if ($initialStatus !== 'STORED') {
+                pollFileResourceReady($fileUrl, $payment_invoice_uid, $username, $password, 30, 500);
+            }
         }
     }
 

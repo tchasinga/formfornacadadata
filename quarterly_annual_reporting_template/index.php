@@ -7,6 +7,7 @@ $error_message = "";
 
 // API credentials
 $url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
+$fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
@@ -15,6 +16,7 @@ function getCurrentQuarter() {
     $month = date('n'); // Current month (1-12)
     $year = date('Y'); // Current year
 
+    // Determine quarter based on month (Q1: Jan-Mar, Q2: Apr-Jun, Q3: Jul-Sep, Q4: Oct-Dec)
     if ($month >= 1 && $month <= 3) {
         return $year . "Q1";
     } elseif ($month >= 4 && $month <= 6) {
@@ -40,44 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $from_annual_target = $_POST['from_annual_target'];
     $challenges_or_learnings = $_POST['challenges_or_learnings'];
     $quarterly_totals = $_POST['quarterly_totals'];
-    $document = $_FILES['document'];
-
 
     // Use user-provided period if present, otherwise default to current quarter
     $userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
     $currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
-
-    // ================== FILE UPLOAD START ==================
-    $uploadedFileId = null;
-
-    if (isset($_FILES['document']) && $_FILES['document']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['document']['tmp_name'];
-        $fileName = $_FILES['document']['name'];
-
-        // Upload to DHIS2 fileResources
-        $fileCh = curl_init("https://monitoring.jocsoft.net/dhis/api/fileResources");
-        curl_setopt($fileCh, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($fileCh, CURLOPT_POST, true);
-        curl_setopt($fileCh, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_setopt($fileCh, CURLOPT_USERPWD, "$username:$password");
-
-        $cfile = new CURLFile($fileTmpPath, mime_content_type($fileTmpPath), $fileName);
-        $postFields = ['file' => $cfile];
-
-        curl_setopt($fileCh, CURLOPT_POSTFIELDS, $postFields);
-
-        $fileResponse = curl_exec($fileCh);
-        $fileHttpCode = curl_getinfo($fileCh, CURLINFO_HTTP_CODE);
-
-        if ($fileHttpCode == 200 || $fileHttpCode == 201) {
-            $fileJson = json_decode($fileResponse, true);
-            if (isset($fileJson['response']['fileResource']['id'])) {
-                $uploadedFileId = $fileJson['response']['fileResource']['id'];
-            }
-        }
-        curl_close($fileCh);
-    }
-    // ================== FILE UPLOAD END ==================
 
     $data = [
         "dataSet" => "n65Xeqc6HN1",
@@ -133,19 +101,55 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "b0Nahc1BfKj",
                 "value" => $quarterly_totals
             ],
-            [
-                "dataElement" => "gE1XvtJR7Rv",
-                "value" => $document
-            ],
         ]
     ];
 
-    // If file uploaded, add it as a dataValue
-    if ($uploadedFileId) {
-        $data["dataValues"][] = [
-            "dataElement" => "gE1XvtJR7Rv", // PQRT - Document
-            "value" => $uploadedFileId
+    // Handle file upload
+    $fileResourceId = null;
+    if (isset($_FILES['document']) && $_FILES['document']['error'] === UPLOAD_ERR_OK) {
+        $fileName = $_FILES['document']['name'];
+        $fileTmpPath = $_FILES['document']['tmp_name'];
+        $fileSize = $_FILES['document']['size'];
+        $fileType = $_FILES['document']['type'];
+        
+        // Read file content
+        $fileContent = file_get_contents($fileTmpPath);
+        $base64File = base64_encode($fileContent);
+        
+        // Prepare file resource data
+        $fileData = [
+            "name" => $fileName,
+            "content" => $base64File,
+            "contentLength" => $fileSize,
+            "contentType" => $fileType
         ];
+        
+        $filePayload = json_encode($fileData);
+        
+        $fileCh = curl_init($fileUrl);
+        curl_setopt($fileCh, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($fileCh, CURLOPT_POST, true);
+        curl_setopt($fileCh, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($fileCh, CURLOPT_USERPWD, "$username:$password");
+        curl_setopt($fileCh, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+        curl_setopt($fileCh, CURLOPT_POSTFIELDS, $filePayload);
+        
+        $fileResponse = curl_exec($fileCh);
+        $fileHttpCode = curl_getinfo($fileCh, CURLINFO_HTTP_CODE);
+        
+        if ($fileHttpCode == 200 || $fileHttpCode == 201) {
+            $fileResponseData = json_decode($fileResponse, true);
+            if (isset($fileResponseData['response']['fileResource']['id'])) {
+                $fileResourceId = $fileResponseData['response']['fileResource']['id'];
+                
+                // Add file resource to data values
+                $data['dataValues'][] = [
+                    "dataElement" => "gE1XvtJR7Rv",
+                    "value" => $fileResourceId
+                ];
+            }
+        }
+        curl_close($fileCh);
     }
 
     $payload = json_encode($data);
@@ -166,6 +170,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($http_code == 200 || $http_code == 201) {
             $success_message = "Data submitted successfully for period $currentPeriod!";
+            if ($fileResourceId) {
+                $success_message .= " Document uploaded successfully!";
+            }
         } else {
             $error_message = "Error: HTTP $http_code - " . $response;
         }
@@ -243,8 +250,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="quarterly_totals">Quarterly totals</label>
         <input type="text" name="quarterly_totals" id="quarterly_totals" required />
 
-        <label for="document">Upload Document</label>
-        <input type="file" name="document" id="document" required />
+        <label for="document">Document</label>
+        <input type="file" name="document" id="document" accept="*/*" />
+
+        <h1>I certify that this report submitted to NACADA is accurate</h1>
 
         <button type="submit">Submit</button>
     </form>
