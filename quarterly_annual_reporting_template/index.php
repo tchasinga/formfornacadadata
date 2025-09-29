@@ -172,6 +172,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="achievement_to_date">Cumulative achievement to date</label>
         <input type="date" name="achievement_to_date" id="achievement_to_date" required />
 
+        <label for="annual_activity_target">Annual activity target in (%)</label>
+        <input type="text" name="annual_activity_target" id="annual_activity_target" required />
 
         <button type="submit">Submit</button>
     </form>
