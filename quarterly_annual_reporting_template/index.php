@@ -269,6 +269,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="name_of_reporter">Name of reporter </label>
         <input type="text" name="name_of_reporter" id="name_of_reporter" required />
 
+        <label for="designation">designation </label>
+        <input type="text" name="designation" id="designation" required />
+
         <button type="submit">Submit</button>
     </form>
     
