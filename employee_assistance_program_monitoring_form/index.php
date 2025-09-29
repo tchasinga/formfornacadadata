@@ -47,6 +47,7 @@ $current_quarter = getCurrentQuarter();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
     $reporting_period = $_POST['reporting_period'];
+    $health_center = $_POST['health_center'];
 
     $data = [
         "dataSet" => "hb6Y59T4YEc",
@@ -61,6 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "N11bNXXYl8E",
                 "value" => $reporting_period
+            ],
+            [
+                "dataElement" => "E8FUm5o1CaH",
+                "value" => $health_center
             ],
         ]
     ];
@@ -144,6 +149,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div>
              <h2>EAP services available</h2>
              
+             <input type="checkbox" id="health_center" name="health_center" value="health_center">
+<label for="health_center">EAPM - In-house clinic/health center/EAP</label><br>
         </div>
 
         <button type="submit">Submit</button>
