@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $in_house_and_external = isset($_POST['in_house_and_external']) ? "true" : "false";
     $decreasing_work_quality = isset($_POST['decreasing_work_quality']) ? "true" : "false";
     $lack_attention_focus = isset($_POST['lack_attention_focus']) ? "true" : "false";
+    $poor_decision_making = isset($_POST['poor_decision_making']) ? "true" : "false";
+
 
    
 
@@ -109,6 +111,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "S4WRkCE29Ix",
                 "value" => $lack_attention_focus
+            ],
+            [
+                "dataElement" => "NZORRYWuaWP",
+                "value" => $poor_decision_making
             ],
         ]
     ];
@@ -242,6 +248,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="lack_attention_focus" name="lack_attention_focus" value="lack_attention_focus">
         <label for="lack_attention_focus">Lack of attention or focus</label><br>
+
+        <input type="checkbox" id="poor_decision_making" name="poor_decision_making" value="poor_decision_making">
+        <label for="poor_decision_making">Poor decision making</label><br>
 
         </div>
 
