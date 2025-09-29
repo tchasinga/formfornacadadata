@@ -59,6 +59,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $decreasing_work_quality = isset($_POST['decreasing_work_quality']) ? "true" : "false";
     $lack_attention_focus = isset($_POST['lack_attention_focus']) ? "true" : "false";
     $poor_decision_making = isset($_POST['poor_decision_making']) ? "true" : "false";
+    $poor_judgement = isset($_POST['poor_judgement']) ? "true" : "false";
+
 
 
    
@@ -115,6 +117,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "NZORRYWuaWP",
                 "value" => $poor_decision_making
+            ],
+            [
+                "dataElement" => "TlatYboVO7T",
+                "value" => $poor_judgement
             ],
         ]
     ];
@@ -251,6 +257,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="poor_decision_making" name="poor_decision_making" value="poor_decision_making">
         <label for="poor_decision_making">Poor decision making</label><br>
+
+        <input type="checkbox" id="poor_judgement" name="poor_judgement" value="poor_judgement">
+        <label for="poor_judgement">Poor judgement</label><br>
+
 
         </div>
 
