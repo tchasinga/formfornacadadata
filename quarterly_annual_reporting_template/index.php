@@ -294,6 +294,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label for="prqt_email">Email address</label>
         <input type="email" name="prqt_email" id="prqt_email" required />
 
+        <label for="prq_date">Date</label>
+        <input type="date" name="prq_date" id="prq_date" required />
+
         <button type="submit">Submit</button>
     </form>
     
