@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reporting_period = $_POST['reporting_period'];
     $other_data = $_POST['other_data'];
     $sensitization_on_available = $_POST['sensitization_on_available'];
-    $how_many_employees_reached = $_POST['how_many_employees_reached'];
+    $how_many_employees_reached_input = isset($_POST['how_many_employees_reached']) ? trim($_POST['how_many_employees_reached']) : '';
     $other_specify = $_POST['other_specify'];
 
 
@@ -72,6 +72,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     
+
+    // Server-side validation/defaulting for employees reached
+    // If sensitization is "yes", value must be a non-negative integer; otherwise default to 0
+    $shouldSubmit = true;
+    if ($sensitization_on_available === 'yes') {
+        if ($how_many_employees_reached_input === '' || !ctype_digit($how_many_employees_reached_input)) {
+            $error_message = "Please enter a valid non-negative number for 'How many employees reached'.";
+            $shouldSubmit = false;
+        } else {
+            $how_many_employees_reached = (int)$how_many_employees_reached_input;
+        }
+    } else {
+        $how_many_employees_reached = 0;
+    }
 
     $data = [
         "dataSet" => "hb6Y59T4YEc",
@@ -167,30 +181,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ]
     ];
 
-    $payload = json_encode($data);
+    if ($shouldSubmit) {
+        $payload = json_encode($data);
 
-    $ch = curl_init($url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-    curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
-    curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$username:$password");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, ["Content-Type: application/json"]);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
 
-    $response = curl_exec($ch);
+        $response = curl_exec($ch);
 
-    if (curl_errno($ch)) {
-        $error_message = "Curl error: " . curl_error($ch);
-    } else {
-        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        if ($http_code == 200 || $http_code == 201) {
-            $success_message = "Data submitted successfully!";
+        if (curl_errno($ch)) {
+            $error_message = "Curl error: " . curl_error($ch);
         } else {
-            $error_message = "Error: HTTP $http_code - " . $response;
+            $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            if ($http_code == 200 || $http_code == 201) {
+                $success_message = "Data submitted successfully!";
+            } else {
+                $error_message = "Error: HTTP $http_code - " . $response;
+            }
         }
-    }
 
-    curl_close($ch);
+        curl_close($ch);
+    }
 }
 ?>
 
@@ -218,11 +234,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function toggleEmployeesReached() {
             var sensitizationSelect = document.getElementById('sensitization_on_available');
             var employeesReachedContainer = document.getElementById('how_many_employees_reached_container');
-            
+            var employeesReachedInput = document.getElementById('how_many_employees_reached');
+
             if (sensitizationSelect.value === 'yes') {
                 employeesReachedContainer.style.display = 'block';
+                employeesReachedInput.setAttribute('required', 'required');
             } else {
                 employeesReachedContainer.style.display = 'none';
+                employeesReachedInput.removeAttribute('required');
+                employeesReachedInput.value = '';
             }
         }
     </script>
@@ -287,7 +307,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div id="how_many_employees_reached_container">
             <label for="how_many_employees_reached">How many employees reached:</label>
-            <input type="text" name="how_many_employees_reached" id="how_many_employees_reached" />
+            <input type="number" min="0" step="1" name="how_many_employees_reached" id="how_many_employees_reached" />
         </div>
 
         <div>
@@ -327,7 +347,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="checkbox" id="on_the_job_accident" name="on_the_job_accident" value="on_the_job_accident">
         <label for="on_the_job_accident">On the job accident</label><br>
 
-        <input type="text" id="other_specify" name="other_specify" value="other_specify">
+        <input type="text" id="other_specify" name="other_specify">
         <label for="other_specify">Other (specify)</label><br>
 
 
