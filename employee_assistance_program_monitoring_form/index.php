@@ -1,4 +1,3 @@
-
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -373,263 +372,610 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMPLOYEE ASSISTANCE PROGRAM MONITORING FORM</title>
     <style>
-        form > div{
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --light-gray: #f5f7fa;
+            --border-color: #ddd;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            font-weight: 100;
+        }
+        
+        .alert-success {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+            border: 1px solid var(--success-color);
+        }
+        
+        .alert-error {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--error-color);
+            border: 1px solid var(--error-color);
+        }
+        
+        .form-section {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .form-section:last-of-type {
+            border-bottom: none;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
         label {
-            margin-bottom: 5px;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 100;
+            color: var(--primary-color);
         }
-        #how_many_employees_reached_container {
-            display: none;
+        
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            justiy-content: center;
+            align-item: center;
+            gap: 12px;
             margin-top: 10px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            justiy-content: center;
+        }
+        
+        .checkbox-item input {
+            margin-right: 10px;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .required::after {
+            content: " *";
+            color: var(--error-color);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 100;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .conditional-field {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .conditional-field.hidden {
+            max-height: 0;
+            opacity: 0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .conditional-field.visible {
+            max-height: 100px;
+            opacity: 1;
+            margin-top: 15px;
+        }
+        
+        .form-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
         }
     </style>
     <script>
         function toggleEmployeesReached() {
             var sensitizationSelect = document.getElementById('sensitization_on_available');
             var employeesReachedContainer = document.getElementById('how_many_employees_reached_container');
-            var employeesReachedInput = document.getElementById('how_many_employees_reached');
-
+            
             if (sensitizationSelect.value === 'yes') {
-                employeesReachedContainer.style.display = 'block';
-                employeesReachedInput.setAttribute('required', 'required');
+                employeesReachedContainer.classList.remove('hidden');
+                employeesReachedContainer.classList.add('visible');
+                document.getElementById('how_many_employees_reached').setAttribute('required', 'required');
             } else {
-                employeesReachedContainer.style.display = 'none';
-                employeesReachedInput.removeAttribute('required');
-                employeesReachedInput.value = '';
+                employeesReachedContainer.classList.remove('visible');
+                employeesReachedContainer.classList.add('hidden');
+                document.getElementById('how_many_employees_reached').removeAttribute('required');
+                document.getElementById('how_many_employees_reached').value = '';
             }
         }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            toggleEmployeesReached();
+        });
     </script>
 </head>
 <body>
-    <?php if ($success_message): ?>
-        <div style="color: green; padding: 10px; margin: 10px 0; border: 1px solid green;">
-            <?php echo htmlspecialchars($success_message); ?>
-        </div>
-    <?php endif; ?>
-    
-    <?php if ($error_message): ?>
-        <div style="color: red; padding: 10px; margin: 10px 0; border: 1px solid red;">
-            <?php echo htmlspecialchars($error_message); ?>
-        </div>
-    <?php endif; ?>
-
-    <form method="POST">
-        <div>
-            <label for="value">Name of the Institution:</label>
-            <input type="text" name="value" id="value" required />
-        </div>
-
-        <div>
-            <label for="reporting_period">Reporting quarter:</label>
-            <select name="reporting_period" id="reporting_period" required>
-                <option value="">Select Quarter</option>
-                <?php
-                $quarter_options = getQuarterOptions();
-                foreach ($quarter_options as $option) {
-                    $selected = ($option === $current_quarter) ? 'selected' : '';
-                    echo "<option value=\"$option\" $selected>$option</option>";
-                }
-                ?>
-            </select>
+    <div class="container">
+        <div class="header">
+            <h1>EMPLOYEE ASSISTANCE PROGRAM MONITORING FORM</h1>
+            <p>Complete all sections below to submit your EAP monitoring data</p>
         </div>
         
-        <div>
-            <h2>EAP services available</h2>
-
-            <input type="checkbox" id="health_center" name="health_center" value="health_center">
-            <label for="health_center">In-house clinic/health center/EAP</label><br>
-
-            <input type="checkbox" id="services_providers" name="services_providers" value="services_providers">
-            <label for="services_providers">Schedule of external services/providers</label><br>
-
-            <input type="checkbox" id="in_house_and_external" name="in_house_and_external" value="in_house_and_external">
-            <label for="in_house_and_external">Hybrid (in-house and external)</label><br>
-
-            <label for="other_data">Other (specify)</label><br>
-            <input type="text" id="other_data" name="other_data">
-        </div>
-
-        <div>
-            <label for="sensitization_on_available">Sensitization on available:</label>
-            <select name="sensitization_on_available" id="sensitization_on_available" required onchange="toggleEmployeesReached()">
-                <option value="">Select Option</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <div id="how_many_employees_reached_container">
-            <label for="how_many_employees_reached">How many employees reached:</label>
-            <input type="number" min="0" step="1" name="how_many_employees_reached" id="how_many_employees_reached" />
-        </div>
-
-        <div>
-            <h4>Types of problems manifested/identified (Tick all that apply)</h4>
-        <input type="checkbox" id="decreasing_work_quality" name="decreasing_work_quality" value="decreasing_work_quality">
-        <label for="decreasing_work_quality">Low productivity/declining performance/decreasing work quality</label><br>
-
-        <input type="checkbox" id="lack_attention_focus" name="lack_attention_focus" value="lack_attention_focus">
-        <label for="lack_attention_focus">Lack of attention or focus</label><br>
-
-        <input type="checkbox" id="poor_decision_making" name="poor_decision_making" value="poor_decision_making">
-        <label for="poor_decision_making">Poor decision making</label><br>
-
-        <input type="checkbox" id="poor_judgement" name="poor_judgement" value="poor_judgement">
-        <label for="poor_judgement">Poor judgement</label><br>
-
-        <input type="checkbox" id="unusual_carelessness" name="unusual_carelessness" value="unusual_carelessness">
-        <label for="unusual_carelessness">Unusual carelessness</label><br>
-
-        <input type="checkbox" id="unsteady_gait" name="unsteady_gait" value="unsteady_gait">
-        <label for="unsteady_gait">Unsteady gait</label><br>
-
-        <input type="checkbox" id="excessive_mood_swings" name="excessive_mood_swings" value="excessive_mood_swings">
-        <label for="excessive_mood_swings">Excessive mood swings</label><br>
-
-        <input type="checkbox" id="energetic_or_sedated" name="energetic_or_sedated" value="energetic_or_sedated">
-        <label for="energetic_or_sedated">Appearance of being high, unusually energetic or sedated</label><br>
-
-        <input type="checkbox" id="Repeated_lateness" name="Repeated_lateness" value="Repeated_lateness">
-        <label for="Repeated_lateness">Repeated lateness</label><br>
-
-        <input type="checkbox" id="including_unexplained_absences" name="including_unexplained_absences" value="including_unexplained_absences">
-        <label for="including_unexplained_absences">Increased absenteeism, including unexplained absences</label><br>
-
-        <input type="checkbox" id="smell_alcohol_tobacco" name="smell_alcohol_tobacco" value="smell_alcohol_tobacco">
-        <label for="smell_alcohol_tobacco">Smell of alcohol or tobacco</label><br>
+        <?php if ($success_message): ?>
+            <div class="alert alert-success">
+                <?php echo htmlspecialchars($success_message); ?>
+            </div>
+        <?php endif; ?>
         
-        <input type="checkbox" id="on_the_job_accident" name="on_the_job_accident" value="on_the_job_accident">
-        <label for="on_the_job_accident">On the job accident</label><br>
+        <?php if ($error_message): ?>
+            <div class="alert alert-error">
+                <?php echo htmlspecialchars($error_message); ?>
+            </div>
+        <?php endif; ?>
 
-        <input type="text" id="other_specify" name="other_specify">
-        <label for="other_specify">Other (specify)</label><br>
+        <form method="POST" class="form-container">
+            <div class="form-section">
+                <h2 class="section-title">Basic Information</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="value" class="required">Name of the Institution:</label>
+                        <input type="text" name="value" id="value" required />
+                    </div>
 
-        <input type="checkbox" id="self_referral" name="self_referral" value="self_referral">
-        <label for="self_referral">Self referral</label><br>
-
-        <input type="checkbox" id="informal_referral" name="informal_referral" value="informal_referral">
-        <label for="informal_referral">Informal referral</label><br>
-
-        <input type="checkbox" id="formal_referral" name="formal_referral" value="formal_referral">
-        <label for="formal_referral">Formal referral</label><br>
-
-        <input type="text" id="referred_for_counselling" name="referred_for_counselling">
-        <label for="referred_for_counselling">Number of staff/students referred for counselling</label><br>
-        </div>
-
-        <div>
-        <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
-        <label for="treatment_and_rehabilitation">Number of staff/students referred for drug treatment and rehabilitation</label><br>
-
-        <input type="text" id="counselling_services" name="counselling_services">
-        <label for="counselling_services">Number of staff/students who utilized counselling services</label><br>
-
-        <input type="number" id="went_for_treatmentv" name="went_for_treatmentv">
-        <label for="went_for_treatmentv">Number of staff/students who went for treatment and rehabilitation</label><br>
-
-        </div>
-
-        <div>
-          <h4>Job category of staff who went for counselling or treatment and rehabilitation (Tick all that apply) </h4>
-          
-          <input type="checkbox" id="top_management" name="top_management" value="top_management">
-        <label for="top_management">Top management</label><br>
-
-        <input type="checkbox" id="management_station_head" name="management_station_head" value="management_station_head">
-        <label for="management_station_head">Middle Management/Station Head</label><br>
-
-        <input type="checkbox" id="technical_staff" name="technical_staff" value="technical_staff">
-        <label for="technical_staff">Technical Staff</label><br>
-
-        <input type="checkbox" id="support_staff" name="support_staff" value="support_staff">
-        <label for="support_staff">Support Staff</label><br>
-
-
-        </div>
-
-        <div>
-            <!-- tchasinga.... -->
-             <h4>Issues addressed in EAP (Tick all that apply)</h4>
-
-             <input type="checkbox" id="alcohol_and_drug" name="alcohol_and_drug" value="alcohol_and_drug">
-        <label for="alcohol_and_drug">Alcohol and drug use</label><br>
-
-        <input type="checkbox" id="work_related_stress" name="work_related_stress" value="work_related_stress">
-        <label for="work_related_stress">Work related stress</label><br>
-
-        <input type="checkbox" id="mental_health_issues" name="mental_health_issues" value="mental_health_issues">
-        <label for="mental_health_issues">Depression or other mental health issues</label><br>
-
-        <input type="checkbox" id="family_issues" name="family_issues" value="family_issues">
-        <label for="family_issues">Family issues</label><br>
-
-        <input type="checkbox" id="personal_challenges_difficulties" name="personal_challenges_difficulties" value="personal_challenges_difficulties">
-        <label for="personal_challenges_difficulties">Personal challenges/difficulties</label><br>
-
-        <input type="checkbox" id="financial_or_legal" name="financial_or_legal" value="financial_or_legal">
-        <label for="financial_or_legal">Financial or legal</label><br>
-
-        <input type="checkbox" id="health_problems" name="health_problems" value="health_problems">
-        <label for="health_problems">Illness/health problems</label><br>
-
-        <input type="text" id="specify_more" name="specify_more">
-        <label for="specify_more">EAPM - Other (specify more)</label><br>
-
-        </div>
-
-        <div>
-        <input type="checkbox" id="gender_females" name="gender_females" value="gender_females">
-        <label for="gender_females">Gender females</label><br>
-
-        <input type="checkbox" id="gender_males" name="gender_males" value="gender_males">
-        <label for="gender_males">Gender males</label><br>
-        </div>
-
-        <div>
-            <h2>Age :</h2>
+                    <div class="form-group">
+                        <label for="reporting_period" class="required">Reporting quarter:</label>
+                        <select name="reporting_period" id="reporting_period" required>
+                            <option value="">Select Quarter</option>
+                            <?php
+                            $quarter_options = getQuarterOptions();
+                            foreach ($quarter_options as $option) {
+                                $selected = ($option === $current_quarter) ? 'selected' : '';
+                                echo "<option value=\"$option\" $selected>$option</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
             
-            <input type="checkbox" id="ages_from_10_18" name="ages_from_10_18" value="ages_from_10_18">
-        <label for="ages_from_10_18">Ages from 10 to 18 years</label><br>
-
-        <input type="checkbox" id="ages_from_19_25" name="ages_from_19_25" value="ages_from_19_25">
-        <label for="ages_from_19_25">Ages from 19 to 25 years</label><br>
-
-        <input type="checkbox" id="ages_from_26_35" name="ages_from_26_35" value="ages_from_26_35">
-        <label for="ages_from_26_35">Ages from 26 to 35 years</label><br>
-
-        <input type="checkbox" id="ages_from_36_45" name="ages_from_36_45" value="ages_from_36_45">
-        <label for="ages_from_36_45">Ages from 36 to 45 years</label><br>
-        </div>
-
-        <div>
-        <label for="after_care_services">Number of staff vs. dependents receiving after-care services</label><br>
-        <input type="text" id="after_care_services" name="after_care_services">
-        
-        <label for="dependents">Staff vs. dependents</label><br>
-        <input type="text" id="dependents" name="dependents">
-        </div>
-
-        <div>
-        <label for="challenges_one">EAPM - Challenges one</label><br>
-        <input type="text" id="challenges_one" name="challenges_one">
-
-        <label for="challenges_two">EAPM - Challenges two</label><br>
-        <input type="text" id="challenges_two" name="challenges_two">
-
-        <label for="challenges_three">EAPM - Challenges three</label><br>
-        <input type="text" id="challenges_three" name="challenges_three">
-
-        <label for="challenges_four">EAPM - Challenges four</label><br>
-        <input type="text" id="challenges_four" name="challenges_four">
-
-        <label for="challenges_five">EAPM - Challenges five</label><br>
-        <input type="text" id="challenges_five" name="challenges_five">
-        </div>
-
-        <button type="submit">Submit</button>
-    </form>
+            <div class="form-section">
+                <h2 class="section-title">EAP Services Available</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="health_center" name="health_center" value="health_center">
+                        <label for="health_center">In-house clinic/health center/EAP</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="services_providers" name="services_providers" value="services_providers">
+                        <label for="services_providers">Schedule of external services/providers</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="in_house_and_external" name="in_house_and_external" value="in_house_and_external">
+                        <label for="in_house_and_external">Hybrid (in-house and external)</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="other_data">Other (specify)</label>
+                    <input type="text" id="other_data" name="other_data">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Sensitization Information</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="sensitization_on_available" class="required">Sensitization on available:</label>
+                        <select name="sensitization_on_available" id="sensitization_on_available" required onchange="toggleEmployeesReached()">
+                            <option value="">Select Option</option>
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                    
+                    <div id="how_many_employees_reached_container" class="conditional-field">
+                        <div class="form-group">
+                            <label for="how_many_employees_reached" class="required">How many employees reached:</label>
+                            <input type="number" min="0" step="1" name="how_many_employees_reached" id="how_many_employees_reached" />
+                            <div class="form-note">Enter a non-negative whole number</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Types of Problems Manifested/Identified</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="decreasing_work_quality" name="decreasing_work_quality" value="decreasing_work_quality">
+                        <label for="decreasing_work_quality">Low productivity/declining performance/decreasing work quality</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="lack_attention_focus" name="lack_attention_focus" value="lack_attention_focus">
+                        <label for="lack_attention_focus">Lack of attention or focus</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="poor_decision_making" name="poor_decision_making" value="poor_decision_making">
+                        <label for="poor_decision_making">Poor decision making</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="poor_judgement" name="poor_judgement" value="poor_judgement">
+                        <label for="poor_judgement">Poor judgement</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="unusual_carelessness" name="unusual_carelessness" value="unusual_carelessness">
+                        <label for="unusual_carelessness">Unusual carelessness</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="unsteady_gait" name="unsteady_gait" value="unsteady_gait">
+                        <label for="unsteady_gait">Unsteady gait</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="excessive_mood_swings" name="excessive_mood_swings" value="excessive_mood_swings">
+                        <label for="excessive_mood_swings">Excessive mood swings</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="energetic_or_sedated" name="energetic_or_sedated" value="energetic_or_sedated">
+                        <label for="energetic_or_sedated">Appearance of being high, unusually energetic or sedated</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="Repeated_lateness" name="Repeated_lateness" value="Repeated_lateness">
+                        <label for="Repeated_lateness">Repeated lateness</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="including_unexplained_absences" name="including_unexplained_absences" value="including_unexplained_absences">
+                        <label for="including_unexplained_absences">Increased absenteeism, including unexplained absences</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="smell_alcohol_tobacco" name="smell_alcohol_tobacco" value="smell_alcohol_tobacco">
+                        <label for="smell_alcohol_tobacco">Smell of alcohol or tobacco</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="on_the_job_accident" name="on_the_job_accident" value="on_the_job_accident">
+                        <label for="on_the_job_accident">On the job accident</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="other_specify">Other (specify)</label>
+                    <input type="text" id="other_specify" name="other_specify">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Referral Information</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="self_referral" name="self_referral" value="self_referral">
+                        <label for="self_referral">Self referral</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="informal_referral" name="informal_referral" value="informal_referral">
+                        <label for="informal_referral">Informal referral</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="formal_referral" name="formal_referral" value="formal_referral">
+                        <label for="formal_referral">Formal referral</label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="referred_for_counselling">Number of staff/students referred for counselling</label>
+                        <input type="text" id="referred_for_counselling" name="referred_for_counselling">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="treatment_and_rehabilitation">Number of staff/students referred for drug treatment and rehabilitation</label>
+                        <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="counselling_services">Number of staff/students who utilized counselling services</label>
+                        <input type="text" id="counselling_services" name="counselling_services">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="went_for_treatmentv">Number of staff/students who went for treatment and rehabilitation</label>
+                        <input type="number" id="went_for_treatmentv" name="went_for_treatmentv">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Job Category of Staff</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="top_management" name="top_management" value="top_management">
+                        <label for="top_management">Top management</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="management_station_head" name="management_station_head" value="management_station_head">
+                        <label for="management_station_head">Middle Management/Station Head</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="technical_staff" name="technical_staff" value="technical_staff">
+                        <label for="technical_staff">Technical Staff</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="support_staff" name="support_staff" value="support_staff">
+                        <label for="support_staff">Support Staff</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Issues Addressed in EAP</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="alcohol_and_drug" name="alcohol_and_drug" value="alcohol_and_drug">
+                        <label for="alcohol_and_drug">Alcohol and drug use</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="work_related_stress" name="work_related_stress" value="work_related_stress">
+                        <label for="work_related_stress">Work related stress</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="mental_health_issues" name="mental_health_issues" value="mental_health_issues">
+                        <label for="mental_health_issues">Depression or other mental health issues</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="family_issues" name="family_issues" value="family_issues">
+                        <label for="family_issues">Family issues</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="personal_challenges_difficulties" name="personal_challenges_difficulties" value="personal_challenges_difficulties">
+                        <label for="personal_challenges_difficulties">Personal challenges/difficulties</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="financial_or_legal" name="financial_or_legal" value="financial_or_legal">
+                        <label for="financial_or_legal">Financial or legal</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="health_problems" name="health_problems" value="health_problems">
+                        <label for="health_problems">Illness/health problems</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specify_more">EAPM - Other (specify more)</label>
+                    <input type="text" id="specify_more" name="specify_more">
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Gender Distribution</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="gender_females" name="gender_females" value="gender_females">
+                        <label for="gender_females">Gender females</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="gender_males" name="gender_males" value="gender_males">
+                        <label for="gender_males">Gender males</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Age Distribution</h2>
+                
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ages_from_10_18" name="ages_from_10_18" value="ages_from_10_18">
+                        <label for="ages_from_10_18">Ages from 10 to 18 years</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ages_from_19_25" name="ages_from_19_25" value="ages_from_19_25">
+                        <label for="ages_from_19_25">Ages from 19 to 25 years</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ages_from_26_35" name="ages_from_26_35" value="ages_from_26_35">
+                        <label for="ages_from_26_35">Ages from 26 to 35 years</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="ages_from_36_45" name="ages_from_36_45" value="ages_from_36_45">
+                        <label for="ages_from_36_45">Ages from 36 to 45 years</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">After-Care Services</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="after_care_services">Number of staff vs. dependents receiving after-care services</label>
+                        <input type="text" id="after_care_services" name="after_care_services">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dependents">Staff vs. dependents</label>
+                        <input type="text" id="dependents" name="dependents">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2 class="section-title">Challenges</h2>
+                
+                <div class="form-group">
+                    <label for="challenges_one">EAPM - Challenges one</label>
+                    <input type="text" id="challenges_one" name="challenges_one">
+                </div>
+                
+                <div class="form-group">
+                    <label for="challenges_two">EAPM - Challenges two</label>
+                    <input type="text" id="challenges_two" name="challenges_two">
+                </div>
+                
+                <div class="form-group">
+                    <label for="challenges_three">EAPM - Challenges three</label>
+                    <input type="text" id="challenges_three" name="challenges_three">
+                </div>
+                
+                <div class="form-group">
+                    <label for="challenges_four">EAPM - Challenges four</label>
+                    <input type="text" id="challenges_four" name="challenges_four">
+                </div>
+                
+                <div class="form-group">
+                    <label for="challenges_five">EAPM - Challenges five</label>
+                    <input type="text" id="challenges_five" name="challenges_five">
+                </div>
+            </div>
+            
+            <button type="submit" class="btn-submit">Submit Form</button>
+        </form>
+    </div>
 </body>
 </html>
