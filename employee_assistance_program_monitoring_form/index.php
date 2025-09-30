@@ -52,6 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sensitization_on_available = $_POST['sensitization_on_available'];
     $how_many_employees_reached_input = isset($_POST['how_many_employees_reached']) ? trim($_POST['how_many_employees_reached']) : '';
     $other_specify = $_POST['other_specify'];
+    $referred_for_counselling = $_POST['referred_for_counselling'];
 
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
@@ -189,6 +190,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "qAXvRt2M4fg",
                 "value" => $formal_referral
+            ],
+            [
+                "dataElement" => "m5ToaNAzxoy",
+                "value" => $referred_for_counselling
             ],
         ]
     ];
@@ -370,6 +375,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="formal_referral" name="formal_referral" value="formal_referral">
         <label for="formal_referral">Formal referral</label><br>
+
+        <input type="text" id="referred_for_counselling" name="referred_for_counselling">
+        <label for="referred_for_counselling">Number of staff/students referred for counselling</label><br>
 
         </div>
 
