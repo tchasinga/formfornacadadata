@@ -622,6 +622,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="challenges_four">EAPM - Challenges four</label><br>
         <input type="text" id="challenges_four" name="challenges_four">
+
+        <label for="challenges_five">EAPM - Challenges five</label><br>
+        <input type="text" id="challenges_five" name="challenges_five">
         </div>
 
         <button type="submit">Submit</button>
