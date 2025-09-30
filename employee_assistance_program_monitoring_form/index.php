@@ -53,6 +53,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $how_many_employees_reached_input = isset($_POST['how_many_employees_reached']) ? trim($_POST['how_many_employees_reached']) : '';
     $other_specify = $_POST['other_specify'];
     $referred_for_counselling = $_POST['referred_for_counselling'];
+    $treatment_and_rehabilitation = $_POST['treatment_and_rehabilitation'];
+    $counselling_services = $_POST['counselling_services'];
+    $went_for_treatmentv = $_POST['went_for_treatmentv']
+
 
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
@@ -194,6 +198,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "m5ToaNAzxoy",
                 "value" => $referred_for_counselling
+            ],
+            [
+                "dataElement" => "BU2cdfreNxj",
+                "value" => $treatment_and_rehabilitation
+            ],
+            [
+                "dataElement" => "Lbc6tSVjkAx",
+                "value" => $counselling_services
+            ],
+            [
+                "dataElement" => "oR2GjFKonjY",
+                "value" => $went_for_treatmentv
             ],
         ]
     ];
@@ -378,6 +394,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="text" id="referred_for_counselling" name="referred_for_counselling">
         <label for="referred_for_counselling">Number of staff/students referred for counselling</label><br>
+        </div>
+
+        <div>
+        <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
+        <label for="treatment_and_rehabilitation">Number of staff/students referred for drug treatment and rehabilitation</label><br>
+
+        <input type="text" id="counselling_services" name="counselling_services">
+        <label for="counselling_services">Number of staff/students who utilized counselling services</label><br>
+
+        <input type="text" id="went_for_treatmentv" name="went_for_treatmentv">
+        <label for="went_for_treatmentv">Number of staff/students who went for treatment and rehabilitation</label><br>
 
         </div>
 
