@@ -77,6 +77,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $self_referral  = isset($_POST['self_referral']) ? "true" : "false";
     $informal_referral = isset($_POST['informal_referral']) ? "true" : "false"; 
     $formal_referral = isset($_POST['formal_referral']) ? "true" : "false";  
+    $alcohol_and_drug = isset($_POST['alcohol_and_drug']) ? "true" : "false";
+    $work_related_stress = isset($_POST['work_related_stress']) ? "true" : "false";
+    $mental_health_issues = isset($_POST['mental_health_issues']) ? "true" : "false";
+    $family_issues = isset($_POST['family_issues']) ? "true" : "false";
+
+
+
 
     // Server-side validation/defaulting for employees reached
     // If sensitization is "yes", value must be a non-negative integer; otherwise default to 0
@@ -211,6 +218,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "oR2GjFKonjY",
                 "value" => $went_for_treatmentv
             ],
+            [
+                "dataElement" => "rApZ4UUPOG3",
+                "value" => $alcohol_and_drug
+            ],
+            [
+                "dataElement" => "TsPdbPKGaJC",
+                "value" => $work_related_stress
+            ],
+            [
+                "dataElement" => "qb3HNF9uk5M",
+                "value" => $mental_health_issues
+            ],
+            [
+                "dataElement" => "M44nTuWGcts",
+                "value" => $family_issues
+            ],
         ]
     ];
 
@@ -344,6 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div>
+            <h4>Types of problems manifested/identified (Tick all that apply)</h4>
         <input type="checkbox" id="decreasing_work_quality" name="decreasing_work_quality" value="decreasing_work_quality">
         <label for="decreasing_work_quality">Low productivity/declining performance/decreasing work quality</label><br>
 
@@ -397,6 +421,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div>
+            <h4>Job category of staff who went for counselling or treatment and rehabilitation (Tick all that apply) </h4>
         <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
         <label for="treatment_and_rehabilitation">Number of staff/students referred for drug treatment and rehabilitation</label><br>
 
@@ -406,6 +431,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="went_for_treatmentv" name="went_for_treatmentv">
         <label for="went_for_treatmentv">Number of staff/students who went for treatment and rehabilitation</label><br>
 
+        </div>
+
+        <div>
+            <!-- tchasinga.... -->
+             <h4>Issues addressed in EAP (Tick all that apply)</h4>
+
+             <input type="checkbox" id="alcohol_and_drug" name="alcohol_and_drug" value="alcohol_and_drug">
+        <label for="alcohol_and_drug">Alcohol and drug use</label><br>
+
+        <input type="checkbox" id="work_related_stress" name="work_related_stress" value="work_related_stress">
+        <label for="work_related_stress">Work related stress</label><br>
+
+        <input type="checkbox" id="mental_health_issues" name="mental_health_issues" value="mental_health_issues">
+        <label for="mental_health_issues">Depression or other mental health issues</label><br>
+
+        <input type="checkbox" id="family_issues" name="family_issues" value="family_issues">
+        <label for="family_issues">Family issues</label><br>
         </div>
 
         <button type="submit">Submit</button>
