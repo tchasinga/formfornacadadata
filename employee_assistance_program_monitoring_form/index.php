@@ -477,8 +477,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="checkbox" id="health_problems" name="health_problems" value="health_problems">
         <label for="health_problems">Illness/health problems</label><br>
 
-        <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
-        <label for="treatment_and_rehabilitation">EAPM - Other (specify more)</label><br>
+        <input type="text" id="specify_more" name="specify_more">
+        <label for="specify_more">EAPM - Other (specify more)</label><br>
 
         </div>
 
