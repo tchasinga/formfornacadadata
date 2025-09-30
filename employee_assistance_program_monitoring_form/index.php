@@ -55,7 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $referred_for_counselling = $_POST['referred_for_counselling'];
     $treatment_and_rehabilitation = $_POST['treatment_and_rehabilitation'];
     $counselling_services = $_POST['counselling_services'];
-    $went_for_treatmentv = $_POST['went_for_treatmentv']
+    $went_for_treatmentv = $_POST['went_for_treatmentv'];
+    $specify_more = $_POST['specify_more'];
+
 
 
 
@@ -246,6 +248,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "bvuIsatD2dO",
                 "value" => $health_problems
+            ],
+            [
+                "dataElement" => "WJQJDBUb8aU",
+                "value" => $specify_more
             ],
         ]
     ];
@@ -470,6 +476,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="health_problems" name="health_problems" value="health_problems">
         <label for="health_problems">Illness/health problems</label><br>
+
+        <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
+        <label for="treatment_and_rehabilitation">EAPM - Other (specify more)</label><br>
+
         </div>
 
         <button type="submit">Submit</button>
