@@ -57,8 +57,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $counselling_services = $_POST['counselling_services'];
     $went_for_treatmentv = $_POST['went_for_treatmentv'];
     $specify_more = $_POST['specify_more'];
-
-
+    $after_care_services = $_POST['after_care_services'];
+    $dependents = $_POST['dependents'];
+    $challenges_one = $_POST['challenges_one'];
+    $challenges_two = $_POST['challenges_two'];
 
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
@@ -88,7 +90,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $health_problems = isset($_POST['health_problems']) ? "true" : "false";
     $gender_females = isset($_POST['gender_females']) ? "true" : "false";
     $gender_males = isset($_POST['gender_males']) ? "true" : "false";
-
+    $top_management = isset($_POST['top_management']) ? "true" : "false";
+    $management_station_head = isset($_POST['management_station_head']) ? "true" : "false";
+    $technical_staff = isset($_POST['technical_staff']) ? "true" : "false";
+    $support_staff = isset($_POST['support_staff']) ? "true" : "false";
+    $ages_from_10_18 = isset($_POST['ages_from_10_18']) ? "true" : "false";
+    $ages_from_19_25 = isset($_POST['ages_from_19_25']) ? "true" : "false";
+    $ages_from_26_35 = isset($_POST['ages_from_26_35']) ? "true" : "false";
+    $ages_from_36_45 = isset($_POST['ages_from_36_45']) ? "true" : "false";
+    
 
 
 
@@ -264,6 +274,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "AZxOGNS5C0C",
                 "value" => $gender_males
+            ],
+            [
+                "dataElement" => "kVNuASljKEc",
+                "value" => $top_management
+            ],
+            [
+                "dataElement" => "BHSdYbuTOYt",
+                "value" => $management_station_head
+            ],
+            [
+                "dataElement" => "YXXg3t5j2pC",
+                "value" => $technical_staff
+            ],
+            [
+                "dataElement" => "ryHsVnZU0iK",
+                "value" => $support_staff
+            ],
+            [
+                "dataElement" => "kgNIv5PXD6z",
+                "value" => $ages_from_10_18
+            ],
+            [
+                "dataElement" => "xNKVmk1ChPs",
+                "value" => $ages_from_19_25
+            ],
+            [
+                "dataElement" => "Sm32O0DJHAa",
+                "value" => $ages_from_26_35
+            ],
+            [
+                "dataElement" => "cxm10lpn3Rn",
+                "value" => $ages_from_36_45
+            ],
+            [
+                "dataElement" => "Zl0KHkoEiAh",
+                "value" => $after_care_services
+            ],
+            [
+                "dataElement" => "npfo3bB4R7x",
+                "value" => $dependents
+            ],
+            [
+                "dataElement" => "VA3Vdl97Fjr",
+                "value" => $challenges_one
+            ],
+            [
+                "dataElement" => "tKld0kKqU0I",
+                "value" => $challenges_two
+            ],
+            [
+                "dataElement" => "SQ0SMN8X01A",
+                "value" => $challenges_three
             ],
         ]
     ];
@@ -452,15 +514,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div>
-            <h4>Job category of staff who went for counselling or treatment and rehabilitation (Tick all that apply) </h4>
         <input type="text" id="treatment_and_rehabilitation" name="treatment_and_rehabilitation">
         <label for="treatment_and_rehabilitation">Number of staff/students referred for drug treatment and rehabilitation</label><br>
 
         <input type="text" id="counselling_services" name="counselling_services">
         <label for="counselling_services">Number of staff/students who utilized counselling services</label><br>
 
-        <input type="text" id="went_for_treatmentv" name="went_for_treatmentv">
+        <input type="number" id="went_for_treatmentv" name="went_for_treatmentv">
         <label for="went_for_treatmentv">Number of staff/students who went for treatment and rehabilitation</label><br>
+
+        </div>
+
+        <div>
+          <h4>Job category of staff who went for counselling or treatment and rehabilitation (Tick all that apply) </h4>
+          
+          <input type="checkbox" id="top_management" name="top_management" value="top_management">
+        <label for="top_management">Top management</label><br>
+
+        <input type="checkbox" id="management_station_head" name="management_station_head" value="management_station_head">
+        <label for="management_station_head">Middle Management/Station Head</label><br>
+
+        <input type="checkbox" id="technical_staff" name="technical_staff" value="technical_staff">
+        <label for="technical_staff">Technical Staff</label><br>
+
+        <input type="checkbox" id="support_staff" name="support_staff" value="support_staff">
+        <label for="support_staff">Support Staff</label><br>
+
 
         </div>
 
@@ -500,6 +579,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="gender_males" name="gender_males" value="gender_males">
         <label for="gender_males">Gender males</label><br>
+        </div>
+
+        <div>
+            <h2>Age :</h2>
+            
+            <input type="checkbox" id="ages_from_10_18" name="ages_from_10_18" value="ages_from_10_18">
+        <label for="ages_from_10_18">Ages from 10 to 18 years</label><br>
+
+        <input type="checkbox" id="ages_from_19_25" name="ages_from_19_25" value="ages_from_19_25">
+        <label for="ages_from_19_25">Ages from 19 to 25 years</label><br>
+
+        <input type="checkbox" id="ages_from_26_35" name="ages_from_26_35" value="ages_from_26_35">
+        <label for="ages_from_26_35">Ages from 26 to 35 years</label><br>
+
+        <input type="checkbox" id="ages_from_36_45" name="ages_from_36_45" value="ages_from_36_45">
+        <label for="ages_from_36_45">Ages from 36 to 45 years</label><br>
+        </div>
+
+        <div>
+        <label for="after_care_services">Number of staff vs. dependents receiving after-care services</label><br>
+        <input type="text" id="after_care_services" name="after_care_services">
+        
+        <label for="dependents">Staff vs. dependents</label><br>
+        <input type="text" id="dependents" name="dependents">
+        </div>
+
+        <div>
+        <label for="challenges_one">EAPM - Challenges one</label><br>
+        <input type="text" id="challenges_one" name="challenges_one">
+
+        <label for="challenges_two">EAPM - Challenges two</label><br>
+        <input type="text" id="challenges_two" name="challenges_two">
+
+        <label for="challenges_three">EAPM - Challenges three</label><br>
+        <input type="text" id="challenges_three" name="challenges_three">
         </div>
 
         <button type="submit">Submit</button>
