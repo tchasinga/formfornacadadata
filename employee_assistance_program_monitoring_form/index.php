@@ -82,7 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mental_health_issues = isset($_POST['mental_health_issues']) ? "true" : "false";
     $family_issues = isset($_POST['family_issues']) ? "true" : "false";
     $personal_challenges_difficulties = isset($_POST['personal_challenges_difficulties']) ? "true" : "false";
-
+    $financial_or_legal = isset($_POST['financial_or_legal']) ? "true" : "false";
+    $health_problems = isset($_POST['health_problems']) ? "true" : "false";
 
 
     // Server-side validation/defaulting for employees reached
@@ -237,6 +238,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "MafafyOewXi",
                 "value" => $personal_challenges_difficulties
+            ],
+            [
+                "dataElement" => "gpGqWvOrT85",
+                "value" => $financial_or_legal
+            ],
+            [
+                "dataElement" => "bvuIsatD2dO",
+                "value" => $health_problems
             ],
         ]
     ];
@@ -455,6 +464,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="personal_challenges_difficulties" name="personal_challenges_difficulties" value="personal_challenges_difficulties">
         <label for="personal_challenges_difficulties">Personal challenges/difficulties</label><br>
+
+        <input type="checkbox" id="financial_or_legal" name="financial_or_legal" value="financial_or_legal">
+        <label for="financial_or_legal">Financial or legal</label><br>
+
+        <input type="checkbox" id="health_problems" name="health_problems" value="health_problems">
+        <label for="health_problems">Illness/health problems</label><br>
         </div>
 
         <button type="submit">Submit</button>
