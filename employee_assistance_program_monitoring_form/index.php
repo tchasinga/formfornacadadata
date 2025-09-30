@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $challenges_two = $_POST['challenges_two'];
     $challenges_three = $_POST['challenges_three'];
     $challenges_four = $_POST['challenges_four'];
+    $challenges_five = $_POST['challenges_five'];
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
@@ -331,6 +332,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "oklba7MCP9S",
                 "value" => $challenges_four
+            ],
+            [
+                "dataElement" => "TEuZ9PaZm8r",
+                "value" => $challenges_five
             ],
         ]
     ];
