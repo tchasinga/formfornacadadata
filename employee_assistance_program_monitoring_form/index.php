@@ -69,9 +69,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $including_unexplained_absences = isset($_POST['including_unexplained_absences']) ? "true" : "false";
     $smell_alcohol_tobacco = isset($_POST['Smell_alcohol_tobacco']) ? "true" : "false";
     $on_the_job_accident = isset($_POST['on_the_job_accident']) ? "true" : "false";
-
-
-    
+    $self_referral  = isset($_POST['self_referral']) ? "true" : "false";
+    $informal_referral = isset($_POST['informal_referral']) ? "true" : "false"; 
+    $formal_referral = isset($_POST['formal_referral']) ? "true" : "false";  
 
     // Server-side validation/defaulting for employees reached
     // If sensitization is "yes", value must be a non-negative integer; otherwise default to 0
@@ -177,6 +177,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "KEv6aPzdLqP",
                 "value" => $other_specify
+            ],
+            [
+                "dataElement" => "Bepzug2sU2R",
+                "value" => $self_referral
+            ],
+            [
+                "dataElement" => "W9j5fypHK6s",
+                "value" => $informal_referral
+            ],
+            [
+                "dataElement" => "qAXvRt2M4fg",
+                "value" => $formal_referral
             ],
         ]
     ];
@@ -350,6 +362,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="other_specify" name="other_specify">
         <label for="other_specify">Other (specify)</label><br>
 
+        <input type="checkbox" id="self_referral" name="self_referral" value="self_referral">
+        <label for="self_referral">Self referral</label><br>
+
+        <input type="checkbox" id="informal_referral" name="informal_referral" value="informal_referral">
+        <label for="informal_referral">Informal referral</label><br>
+
+        <input type="checkbox" id="formal_referral" name="formal_referral" value="formal_referral">
+        <label for="formal_referral">Formal referral</label><br>
 
         </div>
 
