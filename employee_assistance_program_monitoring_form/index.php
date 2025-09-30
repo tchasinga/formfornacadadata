@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $energetic_or_sedated = isset($_POST['energetic_or_sedated']) ? "true" : "false";
     $Repeated_lateness = isset($_POST['Repeated_lateness']) ? "true" : "false";
     $including_unexplained_absences = isset($_POST['including_unexplained_absences']) ? "true" : "false";
-    $smell_alcohol_tobacco = isset($_POST['Smell_alcohol_tobacco']) ? "true" : "false";
+    $smell_alcohol_tobacco = isset($_POST['smell_alcohol_tobacco']) ? "true" : "false";
     $on_the_job_accident = isset($_POST['on_the_job_accident']) ? "true" : "false";
     $self_referral  = isset($_POST['self_referral']) ? "true" : "false";
     $informal_referral = isset($_POST['informal_referral']) ? "true" : "false"; 
