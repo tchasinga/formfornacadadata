@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $challenges_one = $_POST['challenges_one'];
     $challenges_two = $_POST['challenges_two'];
     $challenges_three = $_POST['challenges_three'];
+    $challenges_four = $_POST['challenges_four'];
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
@@ -326,6 +327,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "SQ0SMN8X01A",
                 "value" => $challenges_three
+            ],
+            [
+                "dataElement" => "oklba7MCP9S",
+                "value" => $challenges_four
             ],
         ]
     ];
@@ -614,6 +619,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <label for="challenges_three">EAPM - Challenges three</label><br>
         <input type="text" id="challenges_three" name="challenges_three">
+
+        <label for="challenges_four">EAPM - Challenges four</label><br>
+        <input type="text" id="challenges_four" name="challenges_four">
         </div>
 
         <button type="submit">Submit</button>
