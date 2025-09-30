@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dependents = $_POST['dependents'];
     $challenges_one = $_POST['challenges_one'];
     $challenges_two = $_POST['challenges_two'];
-
+    $challenges_three = $_POST['challenges_three'];
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
