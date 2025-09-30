@@ -10,7 +10,6 @@ $url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
@@ -26,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ADA_Telephone_Number = $_POST['ADA_Telephone_Number'];
     $quarterly_totals = $_POST['quarterly_totals'];
     $activities01 = $_POST['activities01'];
-
 
     $data = [
         "dataSet" => "i0kCTg3AIlJ",
@@ -121,58 +119,266 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORM-ANNUAL WORK PLAN FORMAT</title>
-
     <style>
-        form{
-            display:flex;
-            flex-direction:column;
-            max-width: 400px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: white;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #000;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            color: #000;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .card-header {
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .card-header h2 {
+            color: #333;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h2 i {
+            color: #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 100;
+            color: #444;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5ee;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            background: black;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 100;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 8px;
+            transition: all 0.3s ease
+        }
+
+        .message {
+            grid-column: 1 / -1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 100;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .required::after {
+            content: " *";
+            color: #e74c3c;
         }
     </style>
 </head>
 <body>
-  <form method="POST">
-    <label for="value">ADA-Name of the Institution</label>
-    <input type="text" name="value" id="value" />
+    <div class="container">
+        <div class="header">
+            <h1>FORM-ANNUAL WORK PLAN FORMAT</h1>
+            <p>Please fill out all the required fields below</p>
+        </div>
 
-    <label for="parent_ministry">Parent Ministry</label>
-    <input type="text" name="parent_ministry" id="parent_ministry" />
+        <?php if ($success_message): ?>
+            <div class="message success"><?php echo $success_message; ?></div>
+        <?php endif; ?>
 
-    <label for="staff_institution">Number of staff in the Institution</label>
-    <input type="text" name="staff_institution" id="staff_institution" />
+        <?php if ($error_message): ?>
+            <div class="message error"><?php echo $error_message; ?></div>
+        <?php endif; ?>
 
-    <label for="where_applicable">Number of students in the institution (where applicable)</label>
-    <input type="text" name="where_applicable" id="where_applicable" />
+        <form method="POST">
+            <div class="form-grid">
+                <!-- Card 1: Institution Details -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📊 Institution Information</h2>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="value" class="required">ADA-Name of the Institution</label>
+                        <input type="text" name="value" id="value" required />
+                    </div>
 
-    <label for="contact_person">Contact Person</label>
-    <input type="tel" name="contact_person" id="contact_person" />
+                    <div class="form-group">
+                        <label for="parent_ministry" class="required">Parent Ministry</label>
+                        <input type="text" name="parent_ministry" id="parent_ministry" required />
+                    </div>
 
-    <label for="email_address02">Email Address</label>
-    <input type="email" name="email_address02" id="email_address02" />
+                    <div class="form-group">
+                        <label for="staff_institution" class="required">Number of staff in the Institution</label>
+                        <input type="number" name="staff_institution" id="staff_institution" required />
+                    </div>
 
-    <label for="ada_q1">ADA-Q1</label>
-    <input type="number" name="ada_q1" id="ada_q1" />
+                    <div class="form-group">
+                        <label for="where_applicable">Number of students in the institution (where applicable)</label>
+                        <input type="number" name="where_applicable" id="where_applicable" />
+                    </div>
 
-    <label for="ada_q2">ADA-Q2</label>
-    <input type="number" name="ada_q2" id="ada_q2" />
+                    <div class="form-group">
+                        <label for="activities01" class="required">Activities</label>
+                        <input type="text" name="activities01" id="activities01" required />
+                    </div>
+                </div>
 
-    <label for="ada_q3">ADA-Q3</label>
-    <input type="number" name="ada_q3" id="ada_q3" />
+                <!-- Card 2: Contact & Quarterly Details -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>👥 Contact & Quarterly Data</h2>
+                    </div>
 
-    <label for="ada_q4">ADA-Q4</label>
-    <input type="number" name="ada_q4" id="ada_q4" />
+                    <div class="form-group">
+                        <label for="contact_person" class="required">Contact Person</label>
+                        <input type="tel" name="contact_person" id="contact_person" required />
+                    </div>
 
-    <label for="ADA_Telephone_Number">Telephone Number</label>
-    <input type="tel" name="ADA_Telephone_Number" id="ADA_Telephone_Number" />
+                    <div class="form-group">
+                        <label for="email_address02" class="required">Email Address</label>
+                        <input type="email" name="email_address02" id="email_address02" required />
+                    </div>
 
-    <label for="quarterly_totals">Quarterly totals</label>
-    <input type="number" name="quarterly_totals" id="quarterly_totals" />
+                    <div class="form-group">
+                        <label for="ADA_Telephone_Number" class="required">Telephone Number</label>
+                        <input type="tel" name="ADA_Telephone_Number" id="ADA_Telephone_Number" required />
+                    </div>
 
-    <label for="activities01">Activities</label>
-    <input type="text" name="activities01" id="activities01" />
+                    <div class="form-group">
+                        <label for="ada_q1" class="required">ADA-Q1</label>
+                        <input type="number" name="ada_q1" id="ada_q1" required />
+                    </div>
 
+                    <div class="form-group">
+                        <label for="ada_q2" class="required">ADA-Q2</label>
+                        <input type="number" name="ada_q2" id="ada_q2" required />
+                    </div>
 
-    <button type="submit">Submit</button
-  </form>  
+                    <div class="form-group">
+                        <label for="ada_q3" class="required">ADA-Q3</label>
+                        <input type="number" name="ada_q3" id="ada_q3" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ada_q4" class="required">ADA-Q4</label>
+                        <input type="number" name="ada_q4" id="ada_q4" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="quarterly_totals" class="required">Quarterly totals</label>
+                        <input type="number" name="quarterly_totals" id="quarterly_totals" required />
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-btn">
+                <button type="submit">Submit Form</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

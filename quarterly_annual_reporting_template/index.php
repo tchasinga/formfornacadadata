@@ -49,7 +49,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prq_date = $_POST['prq_date'];
    
 
-
     // Use user-provided period if present, otherwise default to current quarter
     $userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
     $currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
@@ -216,90 +215,299 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUARTERLY/ANNUAL REPORTING TEMPLATE</title>
     <style>
-        form{
-            display:flex;
-            flex-direction:column;
-            max-width: 400px;
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #2980b9;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+            --light-gray: #f5f7fa;
+            --border-color: #ddd;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .message { padding: 10px; margin: 10px 0; border-radius: 4px; }
-        .success { background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
-        .error { background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .card-header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 100;
+            color: #444;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="file"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        
+        .btn-submit {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: 100;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .btn-submit:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .message {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+            font-weight: 100;
+        }
+        
+        .success {
+            background-color: rgba(39, 174, 96, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+        
+        .error {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--error-color);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        
+        .period-info {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: var(--light-gray);
+            border-radius: 4px;
+            font-weight: 100;
+        }
+        
+        .certification-section {
+            background-color: rgba(52, 152, 219, 0.05);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .certification-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-weight: 100;
+        }
     </style>
 </head>
 <body>
-    <h1>QUARTERLY/ANNUAL REPORTING TEMPLATE</h1>
-    
-    <?php if (!empty($success_message)): ?>
-        <div class="message success"><?php echo htmlspecialchars($success_message); ?></div>
-    <?php endif; ?>
-    
-    <?php if (!empty($error_message)): ?>
-        <div class="message error"><?php echo htmlspecialchars($error_message); ?></div>
-    <?php endif; ?>
-    
-    <form method="POST" enctype="multipart/form-data">
-        <label for="period">Reporting Period (e.g., 2025Q2)</label>
-        <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
-       
-        <label for="value">ADA-Name of the Institution</label>
-        <input type="text" name="value" id="value" required />
-
-        <label for="prevention_activities">Annual ADA Prevention activities</label>
-        <input type="text" name="prevention_activities" id="prevention_activities" required />
-
-        <label for="reporting_period">Progress during the quarter/reporting period</label>
-        <input type="text" name="reporting_period" id="reporting_period" required />
-
-        <label for="quarter_achievement">Indicator(s) of quarter achievement</label>
-        <input type="text" name="quarter_achievement" id="quarter_achievement" required />
-
-        <label for="quarter_in">Performance for the quarter in (%)</label>
-        <input type="text" name="quarter_in" id="quarter_in" required />
-
-        <label for="for_the_quarter">Target for the quarter (%)</label>
-        <input type="text" name="for_the_quarter" id="for_the_quarter" required />
-
-        <label for="variance_for_the_quarter">Variance for the quarter (%)</label>
-        <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter" required />
-
-        <label for="achievement_to_date">Cumulative achievement to date</label>
-        <input type="date" name="achievement_to_date" id="achievement_to_date" required />
-
-        <label for="annual_activity_target">Annual activity target in (%)</label>
-        <input type="text" name="annual_activity_target" id="annual_activity_target" required />
-
-        <label for="from_annual_target">Variance from annual target (%)</label>
-        <input type="text" name="from_annual_target" id="from_annual_target" required />
-
-        <label for="challenges_or_learnings">Comments on any variance, challenges or learnings</label>
-        <input type="text" name="challenges_or_learnings" id="challenges_or_learnings" required />
-
-        <label for="quarterly_totals">Quarterly totals</label>
-        <input type="text" name="quarterly_totals" id="quarterly_totals" required />
-
-        <label for="document">Document</label>
-        <input type="file" name="document" id="document" accept="*/*" />
-
-        <h1>I certify that this report submitted to NACADA is accurate</h1>
-
-        <label for="name_of_reporter">Name of reporter </label>
-        <input type="text" name="name_of_reporter" id="name_of_reporter" required />
-
-        <label for="designation">designation </label>
-        <input type="text" name="designation" id="designation" required />
-
-        <label for="Tel_No">Tel No. </label>
-        <input type="text" name="Tel_No" id="Tel_No" required />
-
-        <label for="prqt_email">Email address</label>
-        <input type="email" name="prqt_email" id="prqt_email" required />
-
-        <label for="prq_date">Date</label>
-        <input type="date" name="prq_date" id="prq_date" required />
-
-        <button type="submit">Submit</button>
-    </form>
-    
-    <p><strong>Current Reporting Period:</strong> <?php echo getCurrentQuarter(); ?></p>
+    <div class="container">
+        <header>
+            <h1>QUARTERLY/ANNUAL REPORTING TEMPLATE</h1>
+            <p class="subtitle">Complete all sections accurately and submit your report</p>
+        </header>
+        
+        <?php if (!empty($success_message)): ?>
+            <div class="message success"><?php echo htmlspecialchars($success_message); ?></div>
+        <?php endif; ?>
+        
+        <?php if (!empty($error_message)): ?>
+            <div class="message error"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
+        
+        <form method="POST" enctype="multipart/form-data">
+            <div class="form-grid">
+                <div class="card">
+                    <h2 class="card-header">Activity Details</h2>
+                    
+                    <div class="form-group">
+                        <label for="period">Reporting Period (e.g., 2025Q2)</label>
+                        <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="value">ADA-Name of the Institution</label>
+                        <input type="text" name="value" id="value" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="prevention_activities">Annual ADA Prevention activities</label>
+                        <input type="text" name="prevention_activities" id="prevention_activities" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reporting_period">Progress during the quarter/reporting period</label>
+                        <input type="text" name="reporting_period" id="reporting_period" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quarter_achievement">Indicator(s) of quarter achievement</label>
+                        <input type="text" name="quarter_achievement" id="quarter_achievement" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quarter_in">Performance for the quarter in (%)</label>
+                        <input type="text" name="quarter_in" id="quarter_in" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="for_the_quarter">Target for the quarter (%)</label>
+                        <input type="text" name="for_the_quarter" id="for_the_quarter" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="variance_for_the_quarter">Variance for the quarter (%)</label>
+                        <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="achievement_to_date">Cumulative achievement to date</label>
+                        <input type="date" name="achievement_to_date" id="achievement_to_date" required />
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2 class="card-header">Additional Information</h2>
+                    
+                    <div class="form-group">
+                        <label for="annual_activity_target">Annual activity target in (%)</label>
+                        <input type="text" name="annual_activity_target" id="annual_activity_target" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="from_annual_target">Variance from annual target (%)</label>
+                        <input type="text" name="from_annual_target" id="from_annual_target" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="challenges_or_learnings">Comments on any variance, challenges or learnings</label>
+                        <input type="text" name="challenges_or_learnings" id="challenges_or_learnings" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="quarterly_totals">Quarterly totals</label>
+                        <input type="text" name="quarterly_totals" id="quarterly_totals" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="document">Document</label>
+                        <input type="file" name="document" id="document" accept="*/*" />
+                    </div>
+                    
+                    <div class="certification-section">
+                        <h3 class="certification-title">I certify that this report submitted to NACADA is accurate</h3>
+                        
+                        <div class="form-group">
+                            <label for="name_of_reporter">Name of reporter</label>
+                            <input type="text" name="name_of_reporter" id="name_of_reporter" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="designation">Designation</label>
+                            <input type="text" name="designation" id="designation" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="Tel_No">Tel No.</label>
+                            <input type="text" name="Tel_No" id="Tel_No" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prqt_email">Email address</label>
+                            <input type="email" name="prqt_email" id="prqt_email" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="prq_date">Date</label>
+                            <input type="date" name="prq_date" id="prq_date" required />
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">Submit Report</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
