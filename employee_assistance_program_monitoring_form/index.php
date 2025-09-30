@@ -86,6 +86,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $personal_challenges_difficulties = isset($_POST['personal_challenges_difficulties']) ? "true" : "false";
     $financial_or_legal = isset($_POST['financial_or_legal']) ? "true" : "false";
     $health_problems = isset($_POST['health_problems']) ? "true" : "false";
+    $gender_females = isset($_POST['gender_females']) ? "true" : "false";
+    $gender_males = isset($_POST['gender_males']) ? "true" : "false";
+
+
 
 
     // Server-side validation/defaulting for employees reached
@@ -252,6 +256,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "WJQJDBUb8aU",
                 "value" => $specify_more
+            ],
+            [
+                "dataElement" => "PDihlFkzhUY",
+                "value" => $gender_females
+            ],
+            [
+                "dataElement" => "AZxOGNS5C0C",
+                "value" => $gender_males
             ],
         ]
     ];
@@ -480,6 +492,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="specify_more" name="specify_more">
         <label for="specify_more">EAPM - Other (specify more)</label><br>
 
+        </div>
+
+        <div>
+        <input type="checkbox" id="gender_females" name="gender_females" value="gender_females">
+        <label for="gender_females">Gender females</label><br>
+
+        <input type="checkbox" id="gender_males" name="gender_males" value="gender_males">
+        <label for="gender_males">Gender males</label><br>
         </div>
 
         <button type="submit">Submit</button>
