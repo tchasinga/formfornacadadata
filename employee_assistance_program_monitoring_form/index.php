@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $work_related_stress = isset($_POST['work_related_stress']) ? "true" : "false";
     $mental_health_issues = isset($_POST['mental_health_issues']) ? "true" : "false";
     $family_issues = isset($_POST['family_issues']) ? "true" : "false";
-
+    $personal_challenges_difficulties = isset($_POST['personal_challenges_difficulties']) ? "true" : "false";
 
 
 
@@ -233,6 +233,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "M44nTuWGcts",
                 "value" => $family_issues
+            ],
+            [
+                "dataElement" => "MafafyOewXi",
+                "value" => $personal_challenges_difficulties
             ],
         ]
     ];
@@ -448,6 +452,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <input type="checkbox" id="family_issues" name="family_issues" value="family_issues">
         <label for="family_issues">Family issues</label><br>
+
+        <input type="checkbox" id="personal_challenges_difficulties" name="personal_challenges_difficulties" value="personal_challenges_difficulties">
+        <label for="personal_challenges_difficulties">Personal challenges/difficulties</label><br>
         </div>
 
         <button type="submit">Submit</button>
