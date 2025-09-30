@@ -500,8 +500,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .checkbox-group {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            justiy-content: center;
-            align-item: center;
+            align-items: center;
             gap: 12px;
             margin-top: 10px;
         }
@@ -509,7 +508,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .checkbox-item {
             display: flex;
             align-items: center;
-            justiy-content: center;
         }
         
         .checkbox-item input {
@@ -519,6 +517,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .form-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            align-items: center;
             gap: 20px;
         }
         
