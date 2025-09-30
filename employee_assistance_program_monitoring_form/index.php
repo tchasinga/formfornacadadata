@@ -100,9 +100,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $ages_from_19_25 = isset($_POST['ages_from_19_25']) ? "true" : "false";
     $ages_from_26_35 = isset($_POST['ages_from_26_35']) ? "true" : "false";
     $ages_from_36_45 = isset($_POST['ages_from_36_45']) ? "true" : "false";
-    
-
-
 
     // Server-side validation/defaulting for employees reached
     // If sensitization is "yes", value must be a non-negative integer; otherwise default to 0
