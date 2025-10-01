@@ -77,7 +77,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level data entry form</title>
     <style>
-        
+        form{
+            display: flex;
+            flex-direction: column;
+            max-width: 1000px;
+        }
     </style>
 </head>
 <body>
@@ -93,12 +97,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         
         <form method="POST">
-            <div class="form-group">
+            
                 <label for="value">Name of the school <span class="required">*</span></label>
                 <input type="text" name="value" id="value" required>
-            </div>
+           
             
-            <div class="form-group">
+            
                 <label for="county">County <span class="required">*</span></label>
                 <select name="county" id="county" required>
                     <option value="">Select a county</option>
@@ -108,7 +112,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </option>
                     <?php endforeach; ?>
                 </select>
-            </div>
+           
 
             <button type="submit">Submit Data</button>
         </form>
