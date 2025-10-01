@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <form method="POST">
         <label for="value">Value</label>
         <input type="text" name="value" id="value">
-        <button type="submit">Submit</button>
+        <button type="submit">Submit...</button>
     </form>
 </body>
 </html>
