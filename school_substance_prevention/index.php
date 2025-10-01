@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_provision_of_storage_for_prescription_medicines = $_POST['rfp_provision_of_storage_for_prescription_medicines'];
     $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events = $_POST['rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events'];
     $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'];
+    $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized'];
    
 
     $data = [
@@ -104,6 +105,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "ickQjHDF2WB",
                 "value" => $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence
+            ],
+            [
+                "dataElement" => "wGOdYLiT3YL",
+                "value" => $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized
             ],
         ]
     ];
@@ -218,6 +223,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence">RFP-No. of persons identified using within or reporting to school under the influence</label>
                 <textarea name="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" id="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" required></textarea>
+
+                <h1>Preventive education</h1>
+
+                <label for="rfp_conduct_sensitization_of_teachers_and_other_staff">RFP-2.1 Conduct sensitization of teachers and other staff</label>
+                <textarea name="rfp_conduct_sensitization_of_teachers_and_other_staff" id="rfp_conduct_sensitization_of_teachers_and_other_staff" required></textarea>
+
+                <label for="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized">RFP-No. of sensitizations & No. of teachers and staff sensitized</label>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" id="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" required></textarea>
+
+
 
             <button type="submit">Submit Data</button>
         </form>
