@@ -10,7 +10,6 @@ $url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
-
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
@@ -38,13 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $badp_international_NGO = $_POST['badp_international_NGO'];
     $your_work = $_POST['your_work'];
     $other_commentsbadp = $_POST['other_commentsbadp'];
-
-
-
-
-
-
-    
 
     $data = [
         "dataSet" => "SQAjVomXv0s",
@@ -218,124 +210,226 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submit Data to DHIS2</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <style>
-        form{
-            display:flex;
-            flex-direction:column;
-            max-width: 400px;
+        body {
+            background: linear-gradient(135deg, #e9ecef 0%, #f8fafc 100%);
+            min-height: 100vh;
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            background: #ffffff;
+            max-width: 600px;
+            margin: 40px auto 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 6px 32px 0 rgba(53,96,146,0.13), 0 1.5px 5px 0 rgba(0,0,0,0.04);
+            padding: 40px 35px 32px 35px;
+        }
+        h2 {
+            text-align: center;
+            color: #394867;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        label {
+            font-size: 1.03rem;
+            color: #394867;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            font-size: 1rem;
+            padding: 11px 13px;
+            border: 1px solid #bfc7d1;
+            border-radius: 7px;
+            background: #f4f6fa;
+            transition: border-color 0.2s;
+            margin-bottom: 2px;
+            outline: none;
+        }
+        input[type="text"]:focus,
+        input[type="tel"]:focus,
+        input[type="email"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #4f8cff;
+            background: #f0f7ff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 50px;
+            max-height: 150px;
+        }
+        button[type="submit"] {
+            margin-top: 16px;
+            padding: 13px 0;
+            font-size: 1.12rem;
+            color: #fff;
+            background: linear-gradient(90deg, #4f8cff 0%, #394867 100%);
+            border: none;
+            border-radius: 7px;
+            font-weight: 600;
+            letter-spacing: 1.1px;
+            box-shadow: 0 2px 8px rgba(79,140,255,0.09);
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.15s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #394867 0%, #4f8cff 100%);
+            box-shadow: 0 4px 16px rgba(79,140,255,0.15);
+        }
+        .status-message {
+            text-align: center;
+            margin: 0 0 18px 0;
+            padding: 13px 17px;
+            border-radius: 7px;
+            font-size: 1.08rem;
+            font-weight: 500;
+        }
+        .status-message.success {
+            background: #e6fff2;
+            color: #227a4d;
+            border: 1px solid #81e6b6;
+        }
+        .status-message.error {
+            background: #fff3f2;
+            color: #c62828;
+            border: 1px solid #f5bcbc;
+        }
+        @media (max-width: 700px) {
+            .container {
+                max-width: 97vw;
+                padding: 22px 7vw;
+            }
+            h2 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h2>Submit Data Value</h2>
-    <?php if ($success_message): ?>
-        <p style="color: green;"><?php echo $success_message; ?></p>
-    <?php endif; ?>
-    <?php if ($error_message): ?>
-        <p style="color: red;"><?php echo $error_message; ?></p>
-    <?php endif; ?>
+    <div class="container">
+        <h2>Submit Data Value</h2>
+        <?php if ($success_message): ?>
+            <div class="status-message success"><?php echo $success_message; ?></div>
+        <?php endif; ?>
+        <?php if ($error_message): ?>
+            <div class="status-message error"><?php echo $error_message; ?></div>
+        <?php endif; ?>
 
-    <form method="POST">
-        <br><br>
+        <form method="POST" autocomplete="off">
+            <label for="value">Designation</label>
+            <input type="text" name="value" id="value" required>
 
-        <label for="value">Designation</label>
-        <input type="text" name="value" id="value" required>
+            <label for="full_nameoforganization">Full name of organization/WorkGroup</label>
+            <input type="text" name="full_nameoforganization" id="full_nameoforganization" required>
 
-        <label for="full_nameoforganization">Full name of organization/WorkGroup</label>
-        <input type="text" name="full_nameoforganization" id="full_nameoforganization" required>
+            <label for="telephone_number">Telephone number(s)</label>
+            <input type="tel" name="telephone_number" id="telephone_number" required>
 
-        <label for="telephone_number">Telephone number(s)</label>
-        <input type="tel" name="telephone_number" id="telephone_number" required>
+            <label for="contact_person">Contact person</label>
+            <input type="tel" name="contact_person" id="contact_person" required>
 
-        <label for="contact_person">Contact person</label>
-        <input type="tel" name="contact_person" id="contact_person" required>
+            <label for="physical_location">Physical location</label>
+            <input type="text" name="physical_location" id="physical_location" required>
 
-        <label for="physical_location">Physical location</label>
-        <input type="text" name="physical_location" id="physical_location" required>
+            <label for="email_address">Email address</label>
+            <input type="email" name="email_address" id="email_address" required>
 
-        <label for="email_address">Email address</label>
-        <input type="email" name="email_address" id="email_address" required>
+            <label for="type_of_registration">Type of registration</label>
+            <select name="type_of_registration" id="type_of_registration">
+                <option value="Government Ministry or Agency">Government Ministry or Agency</option>
+                <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
+                <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
+                <option value="Faith Based Organization">Faith Based Organization</option>
+                <option value="Community Based Organisations">Community Based Organisations</option>
+                <option value="County Community Workgroup">County Community Workgroup</option>
+                <option value="Women's Organizations">Women's Organizations</option>
+                <option value="Youth Organizations">Youth Organizations</option>
+                <option value="Children's Organizations">Children's Organizations</option>
+                <option value="Charitable Trust">Charitable Trust</option>
+            </select>
 
-        <label for="type_of_registration">Type of registration</label>
-        <select name="type_of_registration" id="type_of_registration">
-            <option value="Government Ministry or Agency">Government Ministry or Agency</option>
-            <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
-            <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
-            <option value="Faith Based Organization">Faith Based Organization</option>
-            <option value="Community Based Organisations">Community Based Organisations</option>
-            <option value="County Community Workgroup">County Community Workgroup</option>
-            <option value="Women's Organizations">Women's Organizations</option>
-            <option value="Youth Organizations">Youth Organizations</option>
-            <option value="Children's Organizations">Children's Organizations</option>
-            <option value="Charitable Trust">Charitable Trust</option>
-        </select>
+            <label for="source_of_funding">Source of funding</label>
+            <select name="source_of_funding" id="source_of_funding">
+                <option value="Income generating activities">Income generating activities</option>
+                <option value="Private">Private</option>
+                <option value="Donations and contributions">Donations and contributions</option>
+            </select>
 
-        <label for="source_of_funding">Source of funding</label>
-        <select name="source_of_funding" id="source_of_funding">
-            <option value="Income generating activities">Income generating activities</option>
-            <option value="Private">Private</option>
-            <option value="Donations and contributions">Donations and contributions</option>
-        </select>
+            <label for="badp_government">Government (specify)</label>
+            <input type="text" name="badp_government" id="badp_government" required>
 
-        <label for="badp_government"> Government (specify)</label>
-        <input type="text" name="badp_government" id="badp_government" required>
+            <label for="donor_funding">Donor funding (specify)</label>
+            <input type="text" name="donor_funding" id="donor_funding" required>
 
-        <label for="donor_funding">Donor funding (specify)</label>
-        <input type="text" name="donor_funding" id="donor_funding" required>
+            <label for="networks">Networks, coalitions & alliances: (Please mention networks that you are a member of.)</label>
+            <textarea rows="4" name="networks" id="networks"></textarea>
 
-        <label for="networks">Networks, coalitions & alliances: (Please mention networks that you are a member of.)</label>
-        <textarea rows="4" cols="50"type="text" name="networks" id="networks"></textarea>
+            <label for="counties_of_operation">County/counties of operation</label>
+            <textarea rows="4" name="counties_of_operation" id="counties_of_operation"></textarea>
 
-        <label for="counties_of_operation">County/counties of operation</label>
-        <textarea rows="4" cols="50" type="text" name="counties_of_operation" id="counties_of_operation"></textarea>
+            <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
+            <textarea rows="4" name="drug_abuse" id="drug_abuse"></textarea>
+            
+            <label for="intervention_activity">Specify Intervention Activity | 01</label>
+            <input type="text" name="intervention_activity" id="intervention_activity" required>
+            <label for="intervention_activity">Specify Intervention Activity | 02</label>
+            <input type="text" name="intervention_activity" id="intervention_activity" required>
 
-        <label for="drug_abuse">Organizational goals related to alcohol and drug abuse</label>
-        <textarea rows="4" cols="50" type="text" name="drug_abuse" id="drug_abuse"></textarea>
-        
-        <label for="intervention_activity">Specify Intervention Activity | 01</label>
-        <input type="text" name="intervention_activity" id="intervention_activity" required>
-        <label for="intervention_activity">Specify Intervention Activity | 02</label>
-        <input type="text" name="intervention_activity" id="intervention_activity" required>
+            <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 01</label>
+            <input type="text" name="setting" id="setting" required>
+            <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 02</label>
+            <input type="text" name="setting" id="setting" required>
 
-        <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 01</label>
-        <input type="text" name="setting" id="setting" required>
-        <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 02</label>
-        <input type="text" name="setting" id="setting" required>
+            <label for="target_group">Target group | 01</label>
+            <input type="text" name="target_group" id="target_group" required>
+            <label for="target_group">Target group | 02</label>
+            <input type="text" name="target_group" id="target_group" required>
 
-        <label for="target_group">Target group | 01</label>
-        <input type="text" name="target_group" id="target_group" required>
-        <label for="target_group">Target group | 02</label>
-        <input type="text" name="target_group" id="target_group" required>
+            <label for="no_of_people_reached">No. of people reached | 01</label>
+            <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+            <label for="no_of_people_reached">No. of people reached | 02</label>
+            <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
 
+            <label for="other_csos">Other CSOs (specify)</label>
+            <input type="text" name="other_csos" id="other_csos" required>
 
-        <label for="no_of_people_reached">No. of people reached | 01</label>
-        <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
-        <label for="no_of_people_reached">No. of people reached | 02</label>
-        <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+            <label for="badpgovernment">Government</label>
+            <input type="text" name="badpgovernment" id="badpgovernment" required>
 
-        <label for="other_csos"> Other CSOs (specify)</label>
-        <input type="text" name="other_csos" id="other_csos" required>
+            <label for="badp_learninginstitution">Learning institution</label>
+            <input type="text" name="badp_learninginstitution" id="badp_learninginstitution" required>
 
-        <label for="badpgovernment">Government</label>
-        <input type="text" name="badpgovernment" id="badpgovernment" required>
+            <label for="badp_other_specify">Other (Specify)</label>
+            <input type="text" name="badp_other_specify" id="badp_other_specify" required>
 
-        <label for="badp_learninginstitution">Learning institution</label>
-        <input type="text" name="badp_learninginstitution" id="badp_learninginstitution" required>
+            <label for="badp_international_NGO">International NGO</label>
+            <input type="text" name="badp_international_NGO" id="badp_international_NGO" required>
 
-        <label for="badp_other_specify">Other (Specify)</label>
-        <input type="text" name="badp_other_specify" id="badp_other_specify" required>
+            <label for="your_work">Challenges faced in your work</label>
+            <textarea rows="4" name="your_work" id="your_work"></textarea>
 
-        <label for="badp_international_NGO">International NGO</label>
-        <input type="text" name="badp_international_NGO" id="badp_international_NGO" required>
+            <label for="other_commentsbadp">Other comments</label>
+            <textarea rows="4" name="other_commentsbadp" id="other_commentsbadp"></textarea>
 
-        <label for="your_work">Challenges faced in your work</label>
-        <textarea rows="4" cols="50" type="text" name="your_work" id="your_work"></textarea>
-
-        <label for="other_commentsbadp">Other comments</label>
-        <textarea rows="4" cols="50" type="text" name="other_commentsbadp" id="other_commentsbadp"></textarea>
-
-        
-        <button type="submit">Submit</button>
-    </form>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
