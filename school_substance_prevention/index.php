@@ -289,8 +289,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="rfp_no_of_incidents_related_to_alcohol_and_substance_use">RFP-No. of incidents related to alcohol and substance use</label>
                 <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" id="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
 
-                <label for="rfp_no_of_incidents_related_to_alcohol_and_substance_use">RFP-Types and quantities of substances confiscated</label>
-                <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" id="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
+                <label for="substances_confiscated">RFP-Types and quantities of substances confiscated</label>
+                <textarea name="substances_confiscated" id="substances_confiscated" required></textarea>
 
 
             <button type="submit">Submit Data</button>
