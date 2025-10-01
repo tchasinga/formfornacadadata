@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = [
         "dataSet" => "uQFmtDzKIYZ",
         "completeDate" => date("Y-m-d"),
-        "period" => "2025S1",
+        "period" => "2024",
         "orgUnit" => "ORwhnDymBpM",
         "dataValues" => [
             [
