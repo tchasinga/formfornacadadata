@@ -39,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'];
     $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized'];
     $rfp_facilitate_sensitization_of_parents = $_POST['rfp_facilitate_sensitization_of_parents'];
+    $rfp_no_of_sensitizations_and_no_of_parents_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_parents_sensitized'];
    
 
     $data = [
@@ -114,6 +115,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "BnBTLDouHLV",
                 "value" => $rfp_facilitate_sensitization_of_parents
+            ],
+            [
+                "dataElement" => "fd5PuY1ad59",
+                "value" => $rfp_no_of_sensitizations_and_no_of_parents_sensitized
             ],
         ]
     ];
