@@ -12,7 +12,6 @@ $password = "Jocsoft@2027!!";
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
     $value = $_POST['value'];
    
 
