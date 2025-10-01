@@ -240,6 +240,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="rfp_facilitate_sensitization_of_parents">RFP-2.2 Facilitate sensitization of parents</label>
                 <textarea name="rfp_facilitate_sensitization_of_parents" id="rfp_facilitate_sensitization_of_parents" required></textarea>
 
+                <label for="rfp_no_of_sensitizations_and_no_of_parents_sensitized">RFP-No. of sensitizations & No. of parents sensitized</label>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_parents_sensitized" id="rfp_no_of_sensitizations_and_no_of_parents_sensitized" required></textarea>
+
 
 
             <button type="submit">Submit Data</button>
