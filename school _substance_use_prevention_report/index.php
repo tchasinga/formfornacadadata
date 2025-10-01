@@ -17,13 +17,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
 
     $data = [
-        "dataSet" => "SQAjVomXv0s",
+        "dataSet" => "uQFmtDzKIYZ",
         "completeDate" => date("Y-m-d"),
         "period" => "2025S1",
         "orgUnit" => "ORwhnDymBpM",
         "dataValues" => [
             [
-                "dataElement" => "ZRudxIpxI2L",
+                "dataElement" => "udyCSmJ3aYy",
                 "value" => $value
             ],
             
