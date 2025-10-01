@@ -38,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events = $_POST['rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events'];
     $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'];
     $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized'];
+    $rfp_facilitate_sensitization_of_parents = $_POST['rfp_facilitate_sensitization_of_parents'];
    
 
     $data = [
@@ -109,6 +110,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "wGOdYLiT3YL",
                 "value" => $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized
+            ],
+            [
+                "dataElement" => "BnBTLDouHLV",
+                "value" => $rfp_facilitate_sensitization_of_parents
             ],
         ]
     ];
@@ -231,6 +236,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized">RFP-No. of sensitizations & No. of teachers and staff sensitized</label>
                 <textarea name="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" id="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" required></textarea>
+
+                <label for="rfp_facilitate_sensitization_of_parents">RFP-2.2 Facilitate sensitization of parents</label>
+                <textarea name="rfp_facilitate_sensitization_of_parents" id="rfp_facilitate_sensitization_of_parents" required></textarea>
 
 
 
