@@ -27,6 +27,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sub_county = $_POST['sub_county'];
     $termyear = $_POST['termyear'];
     $student_population = $_POST['student_population'];
+    $rfp_carry_out_inspections_and_impromptu_searches = $_POST['rfp_carry_out_inspections_and_impromptu_searches'];
+    $rfp_no_of_inspections_and_impromptu_searches = $_POST['rfp_no_of_inspections_and_impromptu_searches'];
+    $rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school = $_POST['rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school'];
+    $rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers = $_POST['rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers'];
+    $rfp_ban_vending_of_food_and_other_items_during_school_events = $_POST['rfp_ban_vending_of_food_and_other_items_during_school_events'];
+    $rfp_no_of_events_held_with_no_outside_vendors = $_POST['rfp_no_of_events_held_with_no_outside_vendors'];
+    $rfp_regulate_storage_of_prescription_drugs = $_POST['rfp_regulate_storage_of_prescription_drugs'];
+    $rfp_provision_of_storage_for_prescription_medicines = $_POST['rfp_provision_of_storage_for_prescription_medicines'];
+    $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events = $_POST['rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events'];
+    $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'];
    
 
     $data = [
@@ -54,6 +64,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "lJJiz8nMdvI",
                 "value" => $student_population
+            ],
+            [
+                "dataElement" => "aI77SZSnA3X",
+                "value" => $rfp_carry_out_inspections_and_impromptu_searches
+            ],
+            [
+                "dataElement" => "HRlnYNjEWMe",
+                "value" => $rfp_no_of_inspections_and_impromptu_searches
+            ],
+            [
+                "dataElement" => "Tb6K8z8yJL6",
+                "value" => $rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school
+            ],
+            [
+                "dataElement" => "fnSxJYhGvtM",
+                "value" => $rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers
+            ],
+            [
+                "dataElement" => "emeLAYVevFv",
+                "value" => $rfp_ban_vending_of_food_and_other_items_during_school_events
+            ],
+            [
+                "dataElement" => "ZhvNwXvpsBL",
+                "value" => $rfp_no_of_events_held_with_no_outside_vendors
+            ],
+            [
+                "dataElement" => "tiG1ZL0WRex",
+                "value" => $rfp_regulate_storage_of_prescription_drugs
+            ],
+            [
+                "dataElement" => "qDaCBq6HHCJ",
+                "value" => $rfp_provision_of_storage_for_prescription_medicines
+            ],
+            [
+                "dataElement" => "bNSrLNxA1rA",
+                "value" => $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events
+            ],
+            [
+                "dataElement" => "ickQjHDF2WB",
+                "value" => $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence
             ],
         ]
     ];
@@ -136,6 +186,38 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="student_population">Student population</label>
                 <input type="text" name="student_population" id="student_population" required>
+
+                <h1>Supply reduction</h1>
+
+                <label for="rfp_carry_out_inspections_and_impromptu_searches">RFP-Carry out inspections and impromptu searches</label>
+                <textarea name="rfp_carry_out_inspections_and_impromptu_searches" id="rfp_carry_out_inspections_and_impromptu_searches"></textarea>
+
+                <label for="rfp_no_of_inspections_and_impromptu_searches">RFP-No of inspections and impromptu searches</label>
+                <textarea name="rfp_no_of_inspections_and_impromptu_searches" id="rfp_no_of_inspections_and_impromptu_searches" required></textarea>
+
+                <label for="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school">RFP-Report suspicion or sale of alcohol, tobacco and other drugs in or near the school</label>
+                <textarea name="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school" id="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school" required></textarea>
+
+                <label for="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers">RFP-No. of cases reported (kiosks, shops, alcohol selling outlets, peddlers)</label>
+                <textarea name="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers" id="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers" required></textarea>
+
+                <label for="rfp_ban_vending_of_food_and_other_items_during_school_events">RFP-1.3 Ban vending of food and other items during school events</label>
+                <textarea name="rfp_ban_vending_of_food_and_other_items_during_school_events" id="rfp_ban_vending_of_food_and_other_items_during_school_events" required></textarea>
+
+                <label for="rfp_no_of_events_held_with_no_outside_vendors">RFP-No. of events held with no outside vendors</label>
+                <textarea name="rfp_no_of_events_held_with_no_outside_vendors" id="rfp_no_of_events_held_with_no_outside_vendors" required></textarea>
+
+                <label for="rfp_regulate_storage_of_prescription_drugs">RFP-1.4 Regulate storage of prescription drugs</label>
+                <textarea name="rfp_regulate_storage_of_prescription_drugs" id="rfp_regulate_storage_of_prescription_drugs" required></textarea>
+
+                <label for="rfp_provision_of_storage_for_prescription_medicines">RFP-Provision of storage for prescription medicines</label>
+                <textarea name="rfp_provision_of_storage_for_prescription_medicines" id="rfp_provision_of_storage_for_prescription_medicines" required></textarea>
+
+                <label for="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events">RFP-1.5 Ensure no alcohol and substance use within school premises and during school events</label>
+                <textarea name="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events" id="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events" required></textarea>
+
+                <label for="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence">RFP-No. of persons identified using within or reporting to school under the influence</label>
+                <textarea name="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" id="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" required></textarea>
 
             <button type="submit">Submit Data</button>
         </form>
