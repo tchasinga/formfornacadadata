@@ -10,9 +10,20 @@ $url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
+// Kenya counties array
+$kenya_counties = [
+    "Mombasa", "Kwale", "Kilifi", "Tana River", "Lamu", "Taita-Taveta", "Garissa", "Wajir", "Mandera", 
+    "Marsabit", "Isiolo", "Meru", "Tharaka-Nithi", "Embu", "Kitui", "Machakos", "Makueni", "Nyandarua", 
+    "Nyeri", "Kirinyaga", "Murang'a", "Kiambu", "Turkana", "West Pokot", "Samburu", "Trans Nzoia", 
+    "Uasin Gishu", "Elgeyo-Marakwet", "Nandi", "Baringo", "Laikipia", "Nakuru", "Narok", "Kajiado", 
+    "Kericho", "Bomet", "Kakamega", "Vihiga", "Bungoma", "Busia", "Siaya", "Kisumu", "Homa Bay", 
+    "Migori", "Kisii", "Nyamira", "Nairobi"
+];
+
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
+    $county = $_POST['county'];
    
 
     $data = [
@@ -25,7 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "udyCSmJ3aYy",
                 "value" => $value
             ],
-            
+            [
+                "dataElement" => "j20aB9Z7oAo",
+                "value" => $county
+            ],
         ]
     ];
 
@@ -63,17 +77,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level data entry form</title>
     <style>
-        form{
-            display: flex;
-            flex-direction: column;
-        }
+        
     </style>
 </head>
 <body>
-    <form method="POST">
-        <label for="value">Name of the school</label>
-        <input type="text" name="value" id="value">
-        <button type="submit">Submit...</button>
-    </form>
+    <div class="container">
+        <h1>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level</h1>
+        
+        <?php if ($success_message): ?>
+            <div class="message success"><?php echo htmlspecialchars($success_message); ?></div>
+        <?php endif; ?>
+        
+        <?php if ($error_message): ?>
+            <div class="message error"><?php echo htmlspecialchars($error_message); ?></div>
+        <?php endif; ?>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="value">Name of the school <span class="required">*</span></label>
+                <input type="text" name="value" id="value" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="county">County <span class="required">*</span></label>
+                <select name="county" id="county" required>
+                    <option value="">Select a county</option>
+                    <?php foreach ($kenya_counties as $county): ?>
+                        <option value="<?php echo htmlspecialchars($county); ?>">
+                            <?php echo htmlspecialchars($county); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
+            <button type="submit">Submit Data</button>
+        </form>
+    </div>
 </body>
 </html>
