@@ -41,6 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_facilitate_sensitization_of_parents = $_POST['rfp_facilitate_sensitization_of_parents'];
     $rfp_no_of_sensitizations_and_no_of_parents_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_parents_sensitized'];
     $rfp_conduct_sensitization_for_learners = $_POST['rfp_conduct_sensitization_for_learners'];
+    $rfp_no_of_sensitizations_and_no_of_learners_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_learners_sensitized'];
    
 
     $data = [
@@ -124,6 +125,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "nA2LrUy58Za",
                 "value" => $rfp_conduct_sensitization_for_learners
+            ],
+            [
+                "dataElement" => "HwxRSaphMEW",
+                "value" => $rfp_no_of_sensitizations_and_no_of_learners_sensitized
             ],
         ]
     ];
@@ -255,6 +260,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="rfp_conduct_sensitization_for_learners">RFP-2.3 Conduct sensitization for learners</label>
                 <textarea name="rfp_conduct_sensitization_for_learners" id="rfp_conduct_sensitization_for_learners" required></textarea>
+
+                <label for="rfp_no_of_sensitizations_and_no_of_learners_sensitized">RFP-No. of sensitizations  & No. of learners sensitized</label>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_learners_sensitized" id="rfp_no_of_sensitizations_and_no_of_learners_sensitized" required></textarea>
 
             <button type="submit">Submit Data</button>
         </form>
