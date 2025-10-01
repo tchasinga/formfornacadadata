@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $county = $_POST['county'];
     $sub_county = $_POST['sub_county'];
     $termyear = $_POST['termyear'];
+    $student_population = $_POST['student_population'];
    
 
     $data = [
@@ -49,6 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "wDCFEMUS5ix",
                 "value" => $termyear
+            ],
+            [
+                "dataElement" => "lJJiz8nMdvI",
+                "value" => $student_population
             ],
         ]
     ];
@@ -128,6 +133,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="termyear">Term/Year</label>
                 <input type="date" name="termyear" id="termyear" required>
+
+                <label for="student_population">Student population</label>
+                <input type="text" name="student_population" id="student_population" required>
 
             <button type="submit">Submit Data</button>
         </form>
