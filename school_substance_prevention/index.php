@@ -42,6 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_no_of_sensitizations_and_no_of_parents_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_parents_sensitized'];
     $rfp_conduct_sensitization_for_learners = $_POST['rfp_conduct_sensitization_for_learners'];
     $rfp_no_of_sensitizations_and_no_of_learners_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_learners_sensitized'];
+    $rfp_manage_incidents_as_per_guidelines = $_POST['rfp_manage_incidents_as_per_guidelines'];
+    $rfp_no_of_incidents_related_to_alcohol_and_substance_use = $_POST['rfp_no_of_incidents_related_to_alcohol_and_substance_use'];
+    $substances_confiscated = $_POST['substances_confiscated'];
+
    
 
     $data = [
@@ -130,6 +134,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "HwxRSaphMEW",
                 "value" => $rfp_no_of_sensitizations_and_no_of_learners_sensitized
             ],
+            [
+                "dataElement" => "dOar6OS2WbG",
+                "value" => $rfp_manage_incidents_as_per_guidelines
+            ],
+            [
+                "dataElement" => "ezYC9rr0Re0",
+                "value" => $rfp_no_of_incidents_related_to_alcohol_and_substance_use
+            ],
+            [
+                "dataElement" => "S1KkK6plTg9",
+                "value" => $substances_confiscated
+            ],
+
         ]
     ];
 
@@ -268,6 +285,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <label for="rfp_manage_incidents_as_per_guidelines">RFP-Manage incidents as per guidelines</label>
                 <textarea name="rfp_manage_incidents_as_per_guidelines" id="rfp_manage_incidents_as_per_guidelines" required></textarea>
+
+                <label for="rfp_no_of_incidents_related_to_alcohol_and_substance_use">RFP-No. of incidents related to alcohol and substance use</label>
+                <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" id="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
+
+                <label for="rfp_no_of_incidents_related_to_alcohol_and_substance_use">RFP-Types and quantities of substances confiscated</label>
+                <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" id="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
+
 
             <button type="submit">Submit Data</button>
         </form>
