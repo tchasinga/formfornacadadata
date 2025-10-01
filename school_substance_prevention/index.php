@@ -62,10 +62,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level data entry form</title>
+    <style>
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
     <form method="POST">
-        <label for="value">Value</label>
+        <label for="value">Name of the school</label>
         <input type="text" name="value" id="value">
         <button type="submit">Submit...</button>
     </form>
