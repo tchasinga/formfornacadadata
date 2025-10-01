@@ -24,6 +24,8 @@ $kenya_counties = [
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
     $county = $_POST['county'];
+    $sub_county = $_POST['sub_county'];
+    $termyear = $_POST['termyear'];
    
 
     $data = [
@@ -39,6 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "j20aB9Z7oAo",
                 "value" => $county
+            ],
+            [
+                "dataElement" => "bvBzFODs2Ya",
+                "value" => $sub_county
+            ],
+            [
+                "dataElement" => "wDCFEMUS5ix",
+                "value" => $termyear
             ],
         ]
     ];
@@ -113,6 +123,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php endforeach; ?>
                 </select>
            
+                <label for="sub_county">Sub county <span class="required">*</span></label>
+                <input type="text" name="sub_county" id="sub_county" required>
+
+                <label for="termyear">Term/Year</label>
+                <input type="date" name="termyear" id="termyear" required>
 
             <button type="submit">Submit Data</button>
         </form>
