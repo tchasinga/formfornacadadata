@@ -264,6 +264,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="rfp_no_of_sensitizations_and_no_of_learners_sensitized">RFP-No. of sensitizations  & No. of learners sensitized</label>
                 <textarea name="rfp_no_of_sensitizations_and_no_of_learners_sensitized" id="rfp_no_of_sensitizations_and_no_of_learners_sensitized" required></textarea>
 
+                <h1>Incident management</h1>
+
+                <label for="rfp_manage_incidents_as_per_guidelines">RFP-Manage incidents as per guidelines</label>
+                <textarea name="rfp_manage_incidents_as_per_guidelines" id="rfp_manage_incidents_as_per_guidelines" required></textarea>
+
             <button type="submit">Submit Data</button>
         </form>
     </div>
