@@ -279,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .header h1 {
             font-size: 1.8rem;
             margin-bottom: 10px;
-            font-weight: 600;
+            font-weight: 100;
         }
         
         .header p {
@@ -311,6 +311,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .personalinformation{
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
         
         .form-section h3::before {
@@ -330,7 +331,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 600;
+            font-weight: 100;
             color: var(--dark);
             font-size: 1rem;
         }
