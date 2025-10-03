@@ -184,10 +184,87 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level data entry form</title>
     <style>
-        form{
-            display: flex;
-            flex-direction: column;
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f4f6f9;
+        }
+        .container {
             max-width: 1000px;
+            margin: auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        form {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            color: #34495e;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        button {
+            grid-column: 1 / -1; /* make button span full width */
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background: #3498db;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        .message {
+            grid-column: 1 / -1;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .success {
+            background: #2ecc71;
+            color: white;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+        }
+        h1.section {
+            grid-column: 1 / -1;
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+            color: #16a085;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 5px;
+        }
+        .required {
+            color: red;
         }
     </style>
 </head>
@@ -205,11 +282,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <form method="POST">
             
+            <div>
                 <label for="value">Name of the school <span class="required">*</span></label>
                 <input type="text" name="value" id="value" required>
-           
-            
-            
+            </div>
+
+            <div>
                 <label for="county">County <span class="required">*</span></label>
                 <select name="county" id="county" required>
                     <option value="">Select a county</option>
@@ -219,79 +297,98 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </option>
                     <?php endforeach; ?>
                 </select>
-           
+            </div>
+
+            <div>
                 <label for="sub_county">Sub county <span class="required">*</span></label>
                 <input type="text" name="sub_county" id="sub_county" required>
+            </div>
 
+            <div>
                 <label for="termyear">Term/Year</label>
                 <input type="date" name="termyear" id="termyear" required>
+            </div>
 
+            <div>
                 <label for="student_population">Student population</label>
                 <input type="text" name="student_population" id="student_population" required>
+            </div>
 
-                <h1>Supply reduction</h1>
+            <h1 class="section">Supply reduction</h1>
 
+            <div>
                 <label for="rfp_carry_out_inspections_and_impromptu_searches">RFP-Carry out inspections and impromptu searches</label>
-                <textarea name="rfp_carry_out_inspections_and_impromptu_searches" id="rfp_carry_out_inspections_and_impromptu_searches"></textarea>
+                <textarea name="rfp_carry_out_inspections_and_impromptu_searches"></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_no_of_inspections_and_impromptu_searches">RFP-No of inspections and impromptu searches</label>
-                <textarea name="rfp_no_of_inspections_and_impromptu_searches" id="rfp_no_of_inspections_and_impromptu_searches" required></textarea>
+                <textarea name="rfp_no_of_inspections_and_impromptu_searches" required></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school">RFP-Report suspicion or sale of alcohol, tobacco and other drugs in or near the school</label>
-                <textarea name="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school" id="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school" required></textarea>
+                <textarea name="rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school" required></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers">RFP-No. of cases reported (kiosks, shops, alcohol selling outlets, peddlers)</label>
-                <textarea name="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers" id="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers" required></textarea>
+                <textarea name="rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers" required></textarea>
+            </div>
 
-                <label for="rfp_ban_vending_of_food_and_other_items_during_school_events">RFP-1.3 Ban vending of food and other items during school events</label>
-                <textarea name="rfp_ban_vending_of_food_and_other_items_during_school_events" id="rfp_ban_vending_of_food_and_other_items_during_school_events" required></textarea>
+            <div>
+                <label for="rfp_ban_vending_of_food_and_other_items_during_school_events">RFP-Ban vending of food and other items during school events</label>
+                <textarea name="rfp_ban_vending_of_food_and_other_items_during_school_events" required></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_no_of_events_held_with_no_outside_vendors">RFP-No. of events held with no outside vendors</label>
-                <textarea name="rfp_no_of_events_held_with_no_outside_vendors" id="rfp_no_of_events_held_with_no_outside_vendors" required></textarea>
+                <textarea name="rfp_no_of_events_held_with_no_outside_vendors" required></textarea>
+            </div>
 
-                <label for="rfp_regulate_storage_of_prescription_drugs">RFP-1.4 Regulate storage of prescription drugs</label>
-                <textarea name="rfp_regulate_storage_of_prescription_drugs" id="rfp_regulate_storage_of_prescription_drugs" required></textarea>
+            <h1 class="section">Preventive education</h1>
 
-                <label for="rfp_provision_of_storage_for_prescription_medicines">RFP-Provision of storage for prescription medicines</label>
-                <textarea name="rfp_provision_of_storage_for_prescription_medicines" id="rfp_provision_of_storage_for_prescription_medicines" required></textarea>
-
-                <label for="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events">RFP-1.5 Ensure no alcohol and substance use within school premises and during school events</label>
-                <textarea name="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events" id="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events" required></textarea>
-
-                <label for="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence">RFP-No. of persons identified using within or reporting to school under the influence</label>
-                <textarea name="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" id="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" required></textarea>
-
-                <h1>Preventive education</h1>
-
-                <label for="rfp_conduct_sensitization_of_teachers_and_other_staff">RFP-2.1 Conduct sensitization of teachers and other staff</label>
-                <textarea name="rfp_conduct_sensitization_of_teachers_and_other_staff" id="rfp_conduct_sensitization_of_teachers_and_other_staff" required></textarea>
-
+            <div>
                 <label for="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized">RFP-No. of sensitizations & No. of teachers and staff sensitized</label>
-                <textarea name="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" id="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" required></textarea>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized" required></textarea>
+            </div>
 
-                <label for="rfp_facilitate_sensitization_of_parents">RFP-2.2 Facilitate sensitization of parents</label>
-                <textarea name="rfp_facilitate_sensitization_of_parents" id="rfp_facilitate_sensitization_of_parents" required></textarea>
+            <div>
+                <label for="rfp_facilitate_sensitization_of_parents">RFP-Facilitate sensitization of parents</label>
+                <textarea name="rfp_facilitate_sensitization_of_parents" required></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_no_of_sensitizations_and_no_of_parents_sensitized">RFP-No. of sensitizations & No. of parents sensitized</label>
-                <textarea name="rfp_no_of_sensitizations_and_no_of_parents_sensitized" id="rfp_no_of_sensitizations_and_no_of_parents_sensitized" required></textarea>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_parents_sensitized" required></textarea>
+            </div>
 
-                <label for="rfp_conduct_sensitization_for_learners">RFP-2.3 Conduct sensitization for learners</label>
-                <textarea name="rfp_conduct_sensitization_for_learners" id="rfp_conduct_sensitization_for_learners" required></textarea>
+            <div>
+                <label for="rfp_conduct_sensitization_for_learners">RFP-Conduct sensitization for learners</label>
+                <textarea name="rfp_conduct_sensitization_for_learners" required></textarea>
+            </div>
 
-                <label for="rfp_no_of_sensitizations_and_no_of_learners_sensitized">RFP-No. of sensitizations  & No. of learners sensitized</label>
-                <textarea name="rfp_no_of_sensitizations_and_no_of_learners_sensitized" id="rfp_no_of_sensitizations_and_no_of_learners_sensitized" required></textarea>
+            <div>
+                <label for="rfp_no_of_sensitizations_and_no_of_learners_sensitized">RFP-No. of sensitizations & No. of learners sensitized</label>
+                <textarea name="rfp_no_of_sensitizations_and_no_of_learners_sensitized" required></textarea>
+            </div>
 
-                <h1>Incident management</h1>
+            <h1 class="section">Incident management</h1>
 
+            <div>
                 <label for="rfp_manage_incidents_as_per_guidelines">RFP-Manage incidents as per guidelines</label>
-                <textarea name="rfp_manage_incidents_as_per_guidelines" id="rfp_manage_incidents_as_per_guidelines" required></textarea>
+                <textarea name="rfp_manage_incidents_as_per_guidelines" required></textarea>
+            </div>
 
+            <div>
                 <label for="rfp_no_of_incidents_related_to_alcohol_and_substance_use">RFP-No. of incidents related to alcohol and substance use</label>
-                <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" id="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
+                <textarea name="rfp_no_of_incidents_related_to_alcohol_and_substance_use" required></textarea>
+            </div>
 
+            <div>
                 <label for="substances_confiscated">RFP-Types and quantities of substances confiscated</label>
-                <textarea name="substances_confiscated" id="substances_confiscated" required></textarea>
-
+                <textarea name="substances_confiscated" required></textarea>
+            </div>
 
             <button type="submit">Submit Data</button>
         </form>

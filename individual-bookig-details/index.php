@@ -158,6 +158,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
     body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 20px; background: linear-gradient(135deg, #f5f9fc 0%, #e8f4fc 100%); color: var(--text); }
     .container { max-width: 960px; margin: 0 auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     h1 { color: var(--primary); text-align: center; margin-bottom: 24px; font-weight: 600; }
+    .form-container { 
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 10px;
+    }
     .form-group { margin-bottom: 20px; display:flex; flex-direction: column; gap: 10px; width: 100%; }
     label { font-weight: 500; color: var(--primary); }
     input, select { padding: 12px; border: 1px solid var(--border); border-radius: 6px; font-size: 16px; background: #fff; transition: border-color .2s, box-shadow .2s; }
@@ -182,38 +187,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
     <?php endif; ?>
 
     <form method="POST" action="" enctype="multipart/form-data" id="bookingForm">
-      <div class="form-group">
-        <label>Participant Name</label>
-        <input type="text" name="participant_name" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['participant_name'] ?? ''); ?>">
+      <div class="form-container">
+        <div class="form-group">
+          <label>Participant Name</label>
+          <input type="text" name="participant_name" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['participant_name'] ?? ''); ?>">
+        </div>
 
-        <label>Employee Name</label>
-        <input type="text" name="tbf_employee" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_employee'] ?? ''); ?>">
+        <div class="form-group">
+          <label>Employee Name</label>
+          <input type="text" name="tbf_employee" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_employee'] ?? ''); ?>">
+        </div>
 
-        <label>Mobile number</label>
-        <input type="tel" name="tbf_mobile_number" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_mobile_number'] ?? ''); ?>">
+        <div class="form-group">
+          <label>Mobile number</label>
+          <input type="tel" name="tbf_mobile_number" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_mobile_number'] ?? ''); ?>">
+        </div>
 
-        <label>Email address</label>
-        <input type="email" name="tbf_adress_email" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_adress_email'] ?? ''); ?>">
+        <div class="form-group">
+          <label>Email address</label>
+          <input type="email" name="tbf_adress_email" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_adress_email'] ?? ''); ?>">
+        </div>
 
-        <label>County</label>
-        <input type="text" name="tbf_county" value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_county'] ?? ''); ?>">
+        <div class="form-group">
+          <label>County</label>
+          <input type="text" name="tbf_county" value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_county'] ?? ''); ?>">
+        </div>
 
-        <label>Type of training</label>
-        <input type="text" name="tbf_type_of_training" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_type_of_training'] ?? ''); ?>">
+        <div class="form-group">
+          <label>Type of training</label>
+          <input type="text" name="tbf_type_of_training" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_type_of_training'] ?? ''); ?>">
+        </div>
 
-        <label>Training date booked</label>
-        <input type="date" name="tbf_booked_date" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_booked_date'] ?? ''); ?>">
+        <div class="form-group">
+          <label>Training date booked</label>
+          <input type="date" name="tbf_booked_date" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_booked_date'] ?? ''); ?>">
+        </div>
 
-        <label>KRA Pin Number</label>
-        <input type="text" name="tbf_pin_number_institution" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_pin_number_institution'] ?? ''); ?>">
+        <div class="form-group">
+          <label>KRA Pin Number</label>
+          <input type="text" name="tbf_pin_number_institution" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_pin_number_institution'] ?? ''); ?>">
+        </div>
 
-        <label>Payment Status</label>
-        <select name="tbf_payment_status" id="tbf_payment_status" onchange="toggleInvoiceInput()">
-          <option value="No" <?php if(((isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_payment_status'] ?? ''))==='No') echo 'selected'; ?>>No</option>
-          <option value="Yes" <?php if(((isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_payment_status'] ?? ''))==='Yes') echo 'selected'; ?>>Yes</option>
-        </select>
+        <div class="form-group">
+          <label>Payment Status</label>
+          <select name="tbf_payment_status" id="tbf_payment_status" onchange="toggleInvoiceInput()">
+            <option value="No" <?php if(((isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_payment_status'] ?? ''))==='No') echo 'selected'; ?>>No</option>
+            <option value="Yes" <?php if(((isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_payment_status'] ?? ''))==='Yes') echo 'selected'; ?>>Yes</option>
+          </select>
+        </div>
 
-        <div id="invoiceField" style="display:none;">
+        <div class="form-group" id="invoiceField" style="display:none;">
           <label>Upload Participant details list (Name, telephone, and email)</label>
           <input type="file" name="tbf_payment_invoice" accept=".pdf,.jpg,.png,.jpeg,.xlsx,.xls,.xlsm,.xlsb,.xltx /*" />
         </div>

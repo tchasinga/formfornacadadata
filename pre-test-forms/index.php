@@ -545,7 +545,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="submit-container">
-                    <button type="submit">Submit Pre-Test</button>
+                    <button type="submit">Submit now</button>
                 </div>
             </form>
         </div>
