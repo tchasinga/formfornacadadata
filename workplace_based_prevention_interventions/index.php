@@ -490,7 +490,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             .form-section h3 {
                 font-size: 1.1rem;
             }
-
             .personalinformation{
             display: grid;
             grid-template-columns:(1fr, 1fr);
