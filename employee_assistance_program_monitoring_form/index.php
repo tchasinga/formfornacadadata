@@ -63,6 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $challenges_three = $_POST['challenges_three'];
     $challenges_four = $_POST['challenges_four'];
     $challenges_five = $_POST['challenges_five'];
+    $eapm_remarks = $_POST['eapm_remarks'];
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
@@ -333,6 +334,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "TEuZ9PaZm8r",
                 "value" => $challenges_five
             ],
+            [
+                "dataElement" => "Lw4smnkXFrq",
+                "value" => $eapm_remarks
+            ],
         ]
     ];
 
@@ -480,21 +485,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         input[type="text"],
         input[type="number"],
-        select {
+        select,
+        textarea {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 1rem;
             transition: all 0.3s;
+            font-family: inherit;
         }
         
         input[type="text"]:focus,
         input[type="number"]:focus,
-        select:focus {
+        select:focus,
+        textarea:focus {
             outline: none;
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
         }
         
         .checkbox-group {
@@ -578,6 +592,58 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 0.9rem;
             color: #666;
             margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .remarks-section {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.1);
+        }
+        
+        .remarks-section::before {
+            content: "📝";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .remarks-section label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .remarks-section textarea {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 1rem;
+            line-height: 1.6;
+            min-height: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .remarks-section textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+            background: #fafbff;
+        }
+        
+        .remarks-section textarea::placeholder {
+            color: #999;
             font-style: italic;
         }
     </style>
@@ -970,6 +1036,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="challenges_five">EAPM - Challenges five</label>
                     <input type="text" id="challenges_five" name="challenges_five">
+                </div>
+
+                <div class="remarks-section">
+                    <label for="eapm_remarks">EMPLOYEE ASSISTANCE PROGRAM MONITORING FORM REMARKs</label>
+                    <textarea rows="10" name="eapm_remarks" id="eapm_remarks" placeholder="Please provide any additional remarks, observations, or comments about the Employee Assistance Program monitoring activities..."></textarea>
                 </div>
             </div>
             
