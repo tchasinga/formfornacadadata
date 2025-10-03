@@ -311,7 +311,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         .personalinformation{
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 10px;
         }
         
         .form-section h3::before {
@@ -438,7 +438,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             background: white;
             padding: 15px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            /* margin-bottom: 15px; */
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
@@ -490,6 +490,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             .form-section h3 {
                 font-size: 1.1rem;
             }
+
+            .personalinformation{
+            display: grid;
+            grid-template-columns:(1fr, 1fr);
+            gap: 10px;
+            width: 100%;
+        }
             
             input[type="email"], 
             input[type="text"], 
@@ -538,7 +545,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h3>Understanding of Training Modules</h3>
                     <p class="form-hint">Kindly rate your understanding of the modules learned by checking the relevant space</p>
                     
-                    <div class="rating-item">
+                   <div class="personalinformation">
+                   <div class="rating-item">
                         <p>Facts about Drugs</p>
                         <select name="result_of" required>
                             <option value="Low">Low</option>
@@ -557,7 +565,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="Excellent">Excellent</option>
                         </select>
                     </div>
-                    
+
                     <div class="rating-item">
                         <p>Key components of substance use prevention programmes and policies</p>
                         <select name="programmes_and_policies" required>
@@ -577,12 +585,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="Excellent">Excellent</option>
                         </select>
                     </div>
+                   </div>
                 </div>
                 
                 <div class="form-section">
                     <h3>Training Components Evaluation</h3>
                     <p class="form-hint">Kindly rate the following training components by checking the relevant option</p>
                     
+                    <div class="personalinformation">
+
                     <div class="rating-item">
                         <p>Achievement of training objectives</p>
                         <select name="relevant_option" required>
@@ -632,11 +643,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="Excellent">Excellent</option>
                         </select>
                     </div>
+
+                    </div>
                 </div>
                 
                 <div class="form-section">
                     <h3>Trainer 1: Dr. Elizabeth Njani</h3>
                     
+                    <div class="personalinformation">
+
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
                         <select name="trainer_was_well_prepared" required>
@@ -686,11 +701,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="Strongly disagree">Strongly disagree</option>
                         </select>
                     </div>
+
+                    </div>
                 </div>
                 
                 <div class="form-section">
                     <h3>Trainer 2: Diana Ouma</h3>
                     
+                    <div class="personalinformation">
+
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
                         <select name="wb_trainer_was_well_prepares" required>
@@ -739,6 +758,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <option value="Disagree">Disagree</option>
                             <option value="Strongly disagree">Strongly disagree</option>
                         </select>
+                    </div>
+
                     </div>
                 </div>
                 

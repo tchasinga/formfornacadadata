@@ -244,8 +244,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         .form-section {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
+            max-width: 100%;
+            margin: 0 auto;
             border-bottom: 1px solid #eee;
         }
         
