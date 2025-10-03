@@ -307,6 +307,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             align-items: center;
             gap: 10px;
         }
+
+        .personalinformation{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
         
         .form-section h3::before {
             content: "•";
@@ -507,7 +512,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-section">
                     <h3>Personal Information</h3>
                     
-                    <div class="form-group">
+                   <div class="personalinformation">
+                   <div class="form-group">
                         <label for="email">Email Address</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email address" required 
                                value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>">
@@ -518,6 +524,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" id="wbpitm_name" name="wbpitm_name" required 
                                value="<?php echo isset($_POST['wbpitm_name']) ? htmlspecialchars($_POST['wbpitm_name']) : ''; ?>">
                     </div>
+                   </div>
                     
                     <div class="form-group">
                         <label for="wbptime_name_of_your_institution">Name of Your Institution</label>
