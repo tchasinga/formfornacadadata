@@ -22,29 +22,29 @@ $kenya_counties = [
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $value = $_POST['value'];
-    $county = $_POST['county'];
-    $sub_county = $_POST['sub_county'];
-    $termyear = $_POST['termyear'];
-    $student_population = $_POST['student_population'];
-    $rfp_carry_out_inspections_and_impromptu_searches = $_POST['rfp_carry_out_inspections_and_impromptu_searches'];
-    $rfp_no_of_inspections_and_impromptu_searches = $_POST['rfp_no_of_inspections_and_impromptu_searches'];
-    $rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school = $_POST['rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school'];
-    $rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers = $_POST['rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers'];
-    $rfp_ban_vending_of_food_and_other_items_during_school_events = $_POST['rfp_ban_vending_of_food_and_other_items_during_school_events'];
-    $rfp_no_of_events_held_with_no_outside_vendors = $_POST['rfp_no_of_events_held_with_no_outside_vendors'];
-    $rfp_regulate_storage_of_prescription_drugs = $_POST['rfp_regulate_storage_of_prescription_drugs'];
-    $rfp_provision_of_storage_for_prescription_medicines = $_POST['rfp_provision_of_storage_for_prescription_medicines'];
-    $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events = $_POST['rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events'];
-    $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'];
-    $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized'];
-    $rfp_facilitate_sensitization_of_parents = $_POST['rfp_facilitate_sensitization_of_parents'];
-    $rfp_no_of_sensitizations_and_no_of_parents_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_parents_sensitized'];
-    $rfp_conduct_sensitization_for_learners = $_POST['rfp_conduct_sensitization_for_learners'];
-    $rfp_no_of_sensitizations_and_no_of_learners_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_learners_sensitized'];
-    $rfp_manage_incidents_as_per_guidelines = $_POST['rfp_manage_incidents_as_per_guidelines'];
-    $rfp_no_of_incidents_related_to_alcohol_and_substance_use = $_POST['rfp_no_of_incidents_related_to_alcohol_and_substance_use'];
-    $substances_confiscated = $_POST['substances_confiscated'];
+    $value = $_POST['value'] ?? '';
+    $county = $_POST['county'] ?? '';
+    $sub_county = $_POST['sub_county'] ?? '';
+    $termyear = $_POST['termyear'] ?? '';
+    $student_population = $_POST['student_population'] ?? '';
+    $rfp_carry_out_inspections_and_impromptu_searches = $_POST['rfp_carry_out_inspections_and_impromptu_searches'] ?? '';
+    $rfp_no_of_inspections_and_impromptu_searches = $_POST['rfp_no_of_inspections_and_impromptu_searches'] ?? '';
+    $rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school = $_POST['rfp_report_suspicion_or_sale_of_alcohol_tobacco_and_other_drugs_in_or_near_the_school'] ?? '';
+    $rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers = $_POST['rfp_no_of_cases_reported_kiosks_shops_alcohol_selling_outlets_peddlers'] ?? '';
+    $rfp_ban_vending_of_food_and_other_items_during_school_events = $_POST['rfp_ban_vending_of_food_and_other_items_during_school_events'] ?? '';
+    $rfp_no_of_events_held_with_no_outside_vendors = $_POST['rfp_no_of_events_held_with_no_outside_vendors'] ?? '';
+    $rfp_regulate_storage_of_prescription_drugs = $_POST['rfp_regulate_storage_of_prescription_drugs'] ?? '';
+    $rfp_provision_of_storage_for_prescription_medicines = $_POST['rfp_provision_of_storage_for_prescription_medicines'] ?? '';
+    $rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events = $_POST['rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events'] ?? '';
+    $rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence = $_POST['rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence'] ?? '';
+    $rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_teachers_and_staff_sensitized'] ?? '';
+    $rfp_facilitate_sensitization_of_parents = $_POST['rfp_facilitate_sensitization_of_parents'] ?? '';
+    $rfp_no_of_sensitizations_and_no_of_parents_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_parents_sensitized'] ?? '';
+    $rfp_conduct_sensitization_for_learners = $_POST['rfp_conduct_sensitization_for_learners'] ?? '';
+    $rfp_no_of_sensitizations_and_no_of_learners_sensitized = $_POST['rfp_no_of_sensitizations_and_no_of_learners_sensitized'] ?? '';
+    $rfp_manage_incidents_as_per_guidelines = $_POST['rfp_manage_incidents_as_per_guidelines'] ?? '';
+    $rfp_no_of_incidents_related_to_alcohol_and_substance_use = $_POST['rfp_no_of_incidents_related_to_alcohol_and_substance_use'] ?? '';
+    $substances_confiscated = $_POST['substances_confiscated'] ?? '';
 
    
 
@@ -393,6 +393,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="rfp_regulate_storage_of_prescription_drugs">regulate storage of prescription drugs</label>
                 <textarea name="rfp_regulate_storage_of_prescription_drugs" required></textarea>
+            </div>
+
+            <div>
+                <label for="rfp_provision_of_storage_for_prescription_medicines">Provision of storage for prescription medicines</label>
+                <textarea name="rfp_provision_of_storage_for_prescription_medicines" required></textarea>
+            </div>
+
+            <div>
+                <label for="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events">Ensure no alcohol and substance use within school premises and during school events</label>
+                <textarea name="rfp_ensure_no_alcohol_and_substance_use_within_school_premises_and_during_school_events" required></textarea>
+            </div>
+
+            <div>
+                <label for="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence">No. of persons identified using within or reporting to school under the influence</label>
+                <textarea name="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" required></textarea>
             </div>
 
             <button type="submit">Submit Data</button>

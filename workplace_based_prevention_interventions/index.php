@@ -26,6 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $meaningful_way = $_POST['meaningful_way'];
         $participant_questions = $_POST['participant_questions'];
         $engagement_and_participation = $_POST['engagement_and_participation'];
+        $name_of_the_trainer = $_POST['name_of_the_trainer'];
 
         $wb_trainer_was_well_prepares = $_POST['wb_trainer_was_well_prepares'];
         $wb_Trainer_was_knowledgeable_about_the_subject_matters = $_POST['wb_Trainer_was_knowledgeable_about_the_subject_matters'];
@@ -164,7 +165,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "uyFieWMpzpd",
 												"value" => $kindly_share_any_other_comments_or_suggestions_you_may_have_with_regard_to_workplace_training
-                                            ]
+                                            ],
+
+                                            [
+                                                "dataElement" => "hiLRiWPC4u9",
+												"value" => $name_of_the_trainer
+                                            ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
                                         "notes" => [
@@ -656,9 +662,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="form-section">
-                    <h3>Trainer 1: Dr. Elizabeth Njani</h3>
+                    <h3>Reviewing trainer 1</h3>
                     
                     <div class="personalinformation">
+
+                    <div class="">
+                        <input placeholder="Type the name of the trainer" type="text" id="name_of_the_trainer" name="name_of_the_trainer" required>
+                    </div>
 
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
