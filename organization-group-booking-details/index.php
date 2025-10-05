@@ -556,10 +556,10 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     
                     <div id="invoice_field" class="payment-section" style="display:none;">
                         <div class="form-group">
-                            <label for="payment_invoice">Upload Payment Invoice</label>
+                            <label for="payment_invoice">Upload Payment evidence</label>
                             <div class="file-upload" onclick="document.getElementById('payment_invoice').click()">
                                 <i class="fas fa-file-invoice-dollar" style="font-size: 40px; color: var(--primary); margin-bottom: 10px;"></i>
-                                <p>Click to upload payment invoice (PDF or Image)</p>
+                                <p>Click to upload payment evidence (PDF or Image)</p>
                                 <p class="file-info">Accepted formats: .pdf, .jpg, .png, .jpeg</p>
                                 <input type="file" id="payment_invoice" name="payment_invoice" accept=".pdf,.jpg,.png,.jpeg">
                             </div>

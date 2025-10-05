@@ -555,14 +555,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="submit-container">
-                    <button type="submit">Submit now</button>
+                    <button type="submit">Submit</button>
                 </div>
             </form>
         </div>
-        
-        <footer>
-            <p>Workplace Prevention Interventions Pre-Test &copy; <?php echo date('Y'); ?></p>
-        </footer>
     </div>
 </body>
 </html>
