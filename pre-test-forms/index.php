@@ -446,6 +446,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="result_of">PRT - The most widely used illicit substance in the world is:</label>
                         <select name="result_of" id="result_of">
+                            <option value="">Select one</option>
                             <option value="Cannabis">Cannabis</option>
                             <option value="Tobacco">Tobacco</option>
                             <option value="Opioids">Opioids</option>
@@ -456,6 +457,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="prevention_policy">What is a Substance Use Prevention Policy?</label>
                         <select name="prevention_policy" id="prevention_policy">
+                            <option value="">Select one</option>
                             <option value="A written document which specifies the need for substance prevention at work places">A written document which specifies the need for substance prevention at work places</option>
                             <option value="A written policy on how substance use violations should be dealt with at workplaces.">A written policy on how substance use violations should be dealt with at workplaces.</option>
                             <option value="A written description of the workplace's position on the use of alcohol, illicit drugs and prescription drugs">A written description of the workplace's position on the use of alcohol, illicit drugs and prescription drugs</option>
@@ -466,6 +468,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="get_result_of">Alcohol or drug use is the result of:</label>
                         <select name="get_result_of" id="get_result_of">
+                            <option value="">Select one</option>
                             <option value="Personality flaws.">Personality flaws.</option>
                             <option value="Inheritance">Inheritance</option>
                             <option value="Mental problems">Mental problems</option>
@@ -476,6 +479,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="policy_should">The strategies for workplace alcohol and drug use prevention and management policy should:</label>
                         <select name="policy_should" id="policy_should">
+                            <option value="">Select one</option>
                             <option value="Address employees only in groups of their various degrees of substance use">Address employees only in groups of their various degrees of substance use</option>
                             <option value="Intervention is basically for the users only.">Intervention is basically for the users only.</option>
                             <option value="Be inclusive and address the entire prevention continuum.">Be inclusive and address the entire prevention continuum.</option>
@@ -486,6 +490,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="explain_to_the_workforce">When disseminating the policy of a workplace, what component of the policy is important to explain to the workforce?</label>
                         <select name="explain_to_the_workforce" id="explain_to_the_workforce">
+                            <option value="">Select one</option>
                             <option value="The general health and safety of all workers as well as the different components of the policy including the consequences for violating the policy.">The general health and safety of all workers as well as the different components of the policy including the consequences for violating the policy.</option>
                             <option value="How the company will benefit from the non-use of drugs and substances">How the company will benefit from the non-use of drugs and substances</option>
                             <option value="The importance of using EAP services">The importance of using EAP services</option>
@@ -496,6 +501,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="important_in">The working population spends a significant amount of their time in their workplaces. So the workplace-based prevention interventions is important in:</label>
                         <select name="important_in" id="important_in">
+                            <option value="">Select one</option>
                             <option value="Providing evidence for a positive return-on-investment.">Providing evidence for a positive return-on-investment.</option>
                             <option value="Providing training and education to the workers.">Providing training and education to the workers.</option>
                             <option value="Providing social status, subsistence, and stability to the workers.">Providing social status, subsistence, and stability to the workers.</option>
@@ -506,6 +512,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="the_kenya_is">The most commonly used licit substance in Kenya is:</label>
                         <select name="the_kenya_is" id="the_kenya_is">
+                            <option value="">Select one</option>
                             <option value="Alcohol">Alcohol</option>
                             <option value="Tobacco">Tobacco</option>
                             <option value="Miraa">Miraa</option>
@@ -516,6 +523,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="assistance_program">What is Employee Assistance Program?</label>
                         <select name="assistance_program" id="assistance_program">
+                            <option value="">Select one</option>
                             <option value="A program for identifying people with substance use problems">A program for identifying people with substance use problems</option>
                             <option value="A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems">A workplace program that offers cofidential asessments, counseling, referral and follow up services for employees experiencing work related problems</option>
                             <option value="A program that demonstrates employer support for employees health and safety especially in addiction related issues">A program that demonstrates employer support for employees health and safety especially in addiction related issues</option>
@@ -526,6 +534,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="underutilized_by_employees">Why is Employee Assistance Program often underutilized by employees?</label>
                         <select name="underutilized_by_employees" id="underutilized_by_employees">
+                            <option value="">Select one</option>
                             <option value="The services are not easy to access">The services are not easy to access</option>
                             <option value="It is costly">It is costly</option>
                             <option value="Employees often do not know it exists">Employees often do not know it exists</option>
@@ -536,6 +545,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="form-group">
                         <label for="safety_issue_because">It is important to address substance use as a health and safety issue because:</label>
                         <select name="safety_issue_because" id="safety_issue_because">
+                            <option value="">Select one</option>
                             <option value="Many substances are illegal and there could be legal issues related to use">Many substances are illegal and there could be legal issues related to use</option>
                             <option value="The organizations have social responsibility and duty to care for all its employees/workers">The organizations have social responsibility and duty to care for all its employees/workers</option>
                             <option value="Substance use prevention is for all staff">Substance use prevention is for all staff</option>

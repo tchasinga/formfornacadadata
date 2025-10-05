@@ -378,7 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="type_of_registration">Type of registration</label>
                     <select name="type_of_registration" id="type_of_registration">
-                        <option value="">Select One</option>
+                        <option value="">Select one</option>
                         <option value="Government Ministry or Agency">Government Ministry or Agency</option>
                         <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
                         <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
@@ -395,7 +395,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="source_of_funding">Source of funding</label>
                     <select name="source_of_funding" id="source_of_funding">
-                        <option value="">Select One</option>
+                        <option value="">Select one</option>
                         <option value="Income generating activities">Income generating activities</option>
                         <option value="Private">Private</option>
                         <option value="Donations and contributions">Donations and contributions</option>

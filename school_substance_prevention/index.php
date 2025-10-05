@@ -290,7 +290,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="county">County <span class="required">*</span></label>
                 <select name="county" id="county" required>
-                    <option value="">Select a county</option>
+                    <option value="">Select one</option>
                     <?php foreach ($kenya_counties as $county): ?>
                         <option value="<?php echo htmlspecialchars($county); ?>">
                             <?php echo htmlspecialchars($county); ?>

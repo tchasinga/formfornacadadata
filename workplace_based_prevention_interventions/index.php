@@ -548,6 +548,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                    <div class="rating-item">
                         <p>Facts about Drugs</p>
                         <select name="result_of" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -558,6 +559,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Supervisor Training</p>
                         <select name="result_of_training" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -568,6 +570,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Key components of substance use prevention programmes and policies</p>
                         <select name="programmes_and_policies" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -578,6 +581,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Employee Education</p>
                         <select name="employee_education" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -596,6 +600,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Achievement of training objectives</p>
                         <select name="relevant_option" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -606,6 +611,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Knowledge and skills gained are relevant to your work</p>
                         <select name="relevant_to_your_work" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -616,6 +622,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Training schedule and duration</p>
                         <select name="schedule_and_duration" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -626,6 +633,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Training methodologies used</p>
                         <select name="training_methodologies_used" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -636,6 +644,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Training materials and handouts received</p>
                         <select name="handouts_received" required>
+                            <option value="">Select one</option>
                             <option value="Low">Low</option>
                             <option value="Fair">Fair</option>
                             <option value="Good">Good</option>
@@ -654,6 +663,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
                         <select name="trainer_was_well_prepared" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -664,6 +674,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer was knowledgeable about the subject matter</p>
                         <select name="about_the_subject_matter" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -674,6 +685,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer communicated the material in a meaningful way</p>
                         <select name="meaningful_way" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -684,6 +696,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer provided clear answers to participant questions</p>
                         <select name="participant_questions" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -694,6 +707,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer promoted engagement and participation</p>
                         <select name="engagement_and_participation" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -712,6 +726,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
                         <select name="wb_trainer_was_well_prepares" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -722,6 +737,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer was knowledgeable about the subject matter</p>
                         <select name="wb_Trainer_was_knowledgeable_about_the_subject_matters" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -732,6 +748,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer communicated the material in a meaningful way</p>
                         <select name="trainer_communicated_the_material_in_a_meaningful_ways" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -742,6 +759,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer provided clear answers to participant questions</p>
                         <select name="trainer_provided_clear_answers_to_participant_questions" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
@@ -752,6 +770,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="rating-item">
                         <p>Trainer promoted engagement and participation</p>
                         <select name="trainer_promoted_engagement_and_participations" required>
+                            <option value="">Select one</option>
                             <option value="Strongly agree">Strongly agree</option>
                             <option value="Agree">Agree</option>
                             <option value="Disagree">Disagree</option>
