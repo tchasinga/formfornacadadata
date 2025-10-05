@@ -242,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         </div>
       </div>
 
-      <button type="submit">Add Participant</button>
+      <button type="submit">Submit</button>
     </form>
   </div>
 
