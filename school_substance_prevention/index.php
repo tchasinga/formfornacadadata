@@ -390,6 +390,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <textarea name="substances_confiscated" required></textarea>
             </div>
 
+            <div>
+                <label for="rfp_regulate_storage_of_prescription_drugs">regulate storage of prescription drugs</label>
+                <textarea name="rfp_regulate_storage_of_prescription_drugs" required></textarea>
+            </div>
+
             <button type="submit">Submit Data</button>
         </form>
     </div>

@@ -195,7 +195,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         .container {
-            max-width: 1000px;
+            max-width: 700px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;

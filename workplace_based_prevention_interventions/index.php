@@ -785,7 +785,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
                 
-                <button type="submit" class="btn-submit">Submit Evaluation</button>
+                <button type="submit" class="btn-submit">Submit</button>
             </form>
             
             <?php if ($success_message): ?>

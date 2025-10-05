@@ -209,7 +209,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INDIVIDUAL BOOKING DETAILS</title>
+    <title>PREVENTION BI_ANNUAL REPORTING TEMPLATE</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -334,7 +334,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h2>INDIVIDUAL BOOKING DETAILS</h2>
+        <h2>PREVENTION BI_ANNUAL REPORTING TEMPLATE</h2>
         
         <form method="POST" autocomplete="off">
             <div class="form-container">
@@ -378,6 +378,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="type_of_registration">Type of registration</label>
                     <select name="type_of_registration" id="type_of_registration">
+                        <option value="">Select One</option>
                         <option value="Government Ministry or Agency">Government Ministry or Agency</option>
                         <option value="International Non-Governmental Organizations (iNGOs)">International Non-Governmental Organizations (iNGOs)</option>
                         <option value="Local Non-Governmental Organization">Local Non-Governmental Organization</option>
@@ -394,6 +395,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="form-group">
                     <label for="source_of_funding">Source of funding</label>
                     <select name="source_of_funding" id="source_of_funding">
+                        <option value="">Select One</option>
                         <option value="Income generating activities">Income generating activities</option>
                         <option value="Private">Private</option>
                         <option value="Donations and contributions">Donations and contributions</option>
