@@ -45,6 +45,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $rfp_manage_incidents_as_per_guidelines = $_POST['rfp_manage_incidents_as_per_guidelines'] ?? '';
     $rfp_no_of_incidents_related_to_alcohol_and_substance_use = $_POST['rfp_no_of_incidents_related_to_alcohol_and_substance_use'] ?? '';
     $substances_confiscated = $_POST['substances_confiscated'] ?? '';
+    $conduct_sensitization_teachers_staff = $_POST['conduct_sensitization_teachers_staff'] ?? '';
+
 
    
 
@@ -67,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $sub_county
             ],
             [
-                "dataElement" => "wDCFEMUS5ix",
+                "dataElement" => "Lbv6OjP90md",
                 "value" => $termyear
             ],
             [
@@ -146,7 +148,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "dataElement" => "S1KkK6plTg9",
                 "value" => $substances_confiscated
             ],
-
+            [
+                "dataElement" => "kEceDatSldt",
+                "value" => $conduct_sensitization_teachers_staff
+            ],
         ]
     ];
 
@@ -201,6 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             text-align: center;
             margin-bottom: 20px;
             color: #2c3e50;
+            font-weight: 100;
         }
         form {
             display: grid;
@@ -212,6 +218,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 5px;
             display: block;
             color: #34495e;
+            font-weight: 100;
         }
         input, select, textarea {
             width: 100%;
@@ -229,7 +236,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             grid-column: 1 / -1; /* make button span full width */
             padding: 15px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 100;
             background: #3498db;
             border: none;
             border-radius: 8px;
@@ -259,6 +266,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 20px;
             margin-top: 25px;
             margin-bottom: 10px;
+            font-weight: 100;
             color: #16a085;
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 5px;
@@ -408,6 +416,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
                 <label for="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence">No. of persons identified using within or reporting to school under the influence</label>
                 <textarea name="rfp_no_of_persons_identified_using_within_or_reporting_to_school_under_the_influence" required></textarea>
+            </div>
+
+            <div>
+                <label for="conduct_sensitization_teachers_staff">RFP-2.1 Conduct sensitization of teachers and other staff</label>
+                <textarea name="conduct_sensitization_teachers_staff" required></textarea>
             </div>
 
             <button type="submit">Submit Data</button>
