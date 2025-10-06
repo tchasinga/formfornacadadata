@@ -211,6 +211,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         form {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            align-items : center;
             gap: 15px;
         }
         label {

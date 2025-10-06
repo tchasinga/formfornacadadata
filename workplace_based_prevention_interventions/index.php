@@ -27,6 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $participant_questions = $_POST['participant_questions'];
         $engagement_and_participation = $_POST['engagement_and_participation'];
         $name_of_the_trainer = $_POST['name_of_the_trainer'];
+        $name_of_the_trainers = $_POST['name_of_the_trainers'];
 
         $wb_trainer_was_well_prepares = $_POST['wb_trainer_was_well_prepares'];
         $wb_Trainer_was_knowledgeable_about_the_subject_matters = $_POST['wb_Trainer_was_knowledgeable_about_the_subject_matters'];
@@ -170,6 +171,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             [
                                                 "dataElement" => "hiLRiWPC4u9",
 												"value" => $name_of_the_trainer
+                                            ],
+                                            [
+                                                "dataElement" => "nrSeeDuvXVT",
+												"value" => $name_of_the_trainers
                                             ],
                                         ],
                                         "enrollmentStatus" => "ACTIVE",
@@ -729,10 +734,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="form-section">
-                    <h3>Trainer 2: Diana Ouma</h3>
-                    
+                    <h3>Reviewing the trainer</h3>
+                    <!-- will be updated later -->
                     <div class="personalinformation">
-
+                            <div class="">
+                            <input placeholder="Type the name of the trainer" type="text" id="name_of_the_trainers" name="name_of_the_trainers" required>
+                            </div>
                     <div class="rating-item">
                         <p>Trainer was well prepared</p>
                         <select name="wb_trainer_was_well_prepares" required>
