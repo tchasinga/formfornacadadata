@@ -313,8 +313,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <div>
-                <label for="termyear">Term/Year</label>
-                <input type="date" name="termyear" id="termyear" required>
+                <label for="termyear">Term/Year <span class="required">*</span></label>
+                <select name="termyear" id="termyear" required>
+                    <option value="">Select Term/Year</option>
+                    <?php 
+                    $current_year = date('Y');
+                    $start_year = 2025; // Starting year
+                    $end_year = $current_year + 2; // Go 2 years ahead
+                    
+                    for ($year = $start_year; $year <= $end_year; $year++): 
+                        for ($term = 1; $term <= 3; $term++):
+                            $term_name = $term == 1 ? 'One' : ($term == 2 ? 'Two' : 'Three');
+                            $value = $year . ' Term ' . $term_name;
+                    ?>
+                        <option value="<?php echo htmlspecialchars($value); ?>">
+                            <?php echo htmlspecialchars($year . ' Term ' . $term_name); ?>
+                        </option>
+                    <?php 
+                        endfor;
+                    endfor; 
+                    ?>
+                </select>
             </div>
 
             <div>
@@ -423,7 +442,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <textarea name="conduct_sensitization_teachers_staff" required></textarea>
             </div>
 
-            <button type="submit">Submit Data</button>
+            <button type="submit">Submit</button>
         </form>
     </div>
 </body>
