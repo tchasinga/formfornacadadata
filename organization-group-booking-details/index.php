@@ -253,6 +253,13 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         .form-container {
             padding: 30px;
         }
+
+        .participat-list-info{
+            font-size: 10px;
+            color: var(--gray);
+            text-align: center;
+            padding: 10px;
+        }
         
         .form-section {
             margin-bottom: 30px;
@@ -531,6 +538,7 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                     
                     <div class="form-group full-width">
                         <label for="participant_details_list" class="required">Upload Participant List</label>
+                        <p class="participat-list-info">the participatant list must contain (Name, Phone Number, Email Address)</p>
                         <div class="file-upload" onclick="document.getElementById('participant_details_list').click()">
                             <i class="fas fa-cloud-upload-alt" style="font-size: 40px; color: var(--primary); margin-bottom: 10px;"></i>
                             <p>Click to upload participant list (Excel, PDF, or Image)</p>
@@ -568,7 +576,7 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 </div>
                 
                 <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Submit Application
+                    <i class="fas fa-paper-plane" style="margin-right: 10px;"></i> Submit
                 </button>
             </form>
         </div>

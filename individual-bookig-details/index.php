@@ -194,7 +194,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['participant_name'])) 
         </div>
 
         <div class="form-group">
-          <label>Employee Name</label>
+          <label>Employer name</label>
           <input type="text" name="tbf_employee" required value="<?php echo (isset($clearForm) && $clearForm) ? '' : ($_POST['tbf_employee'] ?? ''); ?>">
         </div>
 

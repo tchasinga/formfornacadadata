@@ -28,6 +28,26 @@ function getCurrentQuarter() {
     }
 }
 
+// Function to generate quarter options for dropdown
+function generateQuarterOptions() {
+    $currentYear = date('Y');
+    $options = [];
+    
+    // Generate quarters for current year and next 2 years
+    for ($year = $currentYear; $year <= $currentYear + 2; $year++) {
+        for ($quarter = 1; $quarter <= 4; $quarter++) {
+            $quarterValue = $year . "Q" . $quarter;
+            $quarterLabel = $year . " Q" . $quarter;
+            $options[] = [
+                'value' => $quarterValue,
+                'label' => $quarterLabel
+            ];
+        }
+    }
+    
+    return $options;
+}
+
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $value = $_POST['value'];
@@ -305,7 +325,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="text"],
         input[type="email"],
         input[type="date"],
-        input[type="file"] {
+        input[type="file"],
+        select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid var(--border-color);
@@ -314,7 +335,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             transition: border 0.3s;
         }
         
-        input:focus {
+        input:focus,
+        select:focus {
             outline: none;
             border-color: var(--secondary-color);
             box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
@@ -343,6 +365,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 20px 0;
             border-radius: 4px;
             font-weight: 100;
+        }
+
+        .document-info{
+            font-size : 10px;
+            color : #666;
+            padding: 10px;
         }
         
         .success {
@@ -402,8 +430,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2 class="card-header">Activity Details</h2>
                     
                     <div class="form-group">
-                        <label for="period">Reporting Period (e.g., 2025Q2)</label>
-                        <input type="text" name="period" id="period" value="<?php echo htmlspecialchars(getCurrentQuarter()); ?>" required />
+                        <label for="period">Reporting Period</label>
+                        <select name="period" id="period" required>
+                            <?php 
+                            $quarterOptions = generateQuarterOptions();
+                            $currentQuarter = getCurrentQuarter();
+                            foreach ($quarterOptions as $option): 
+                                $selected = ($option['value'] === $currentQuarter) ? 'selected' : '';
+                            ?>
+                                <option value="<?php echo htmlspecialchars($option['value']); ?>" <?php echo $selected; ?>>
+                                    <?php echo htmlspecialchars($option['label']); ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     
                     <div class="form-group">
@@ -471,7 +510,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <div class="form-group">
-                        <label for="document">Document</label>
+                        <label for="document">Upload a document</label>
+                        <p class="document-info">this should contain the exact same data element which is collected inside QUARTERLY/ANNUAL REPORTING TEMPLATE</p>
                         <input type="file" name="document" id="document" accept="*/*" />
                     </div>
                     
@@ -504,7 +544,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </div>
                     </div>
                     
-                    <button type="submit" class="btn-submit">Submit Report</button>
+                    <button type="submit" class="btn-submit">Submit</button>
                 </div>
             </div>
         </form>
