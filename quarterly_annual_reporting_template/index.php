@@ -50,6 +50,18 @@ function generateQuarterOptions() {
 
 // Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $activity = isset($_POST['activity']) ? (int) $_POST['activity'] : 1;
+    if ($activity < 1 || $activity > 5) { $activity = 1; }
+
+    // Map selected activity to categoryOptionCombo
+    $activityToCoc = [
+        1 => "oyPYrse9dkR",    // Activity 1 (existing default)
+        2 => "tir6ZtWOO74",
+        3 => "WN6T534QeaK",
+        4 => "HQQdVF5rm97",
+        5 => "FdMERsIppbs",
+    ];
+    $selectedCategoryOptionCombo = $activityToCoc[$activity];
     $value = $_POST['value'];
     $prevention_activities = $_POST['prevention_activities'];
     $reporting_period = $_POST['reporting_period'];
@@ -89,47 +101,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ],
             [
                 "dataElement" => "pmHQN9jfxgx",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $reporting_period
             ],
             [
                 "dataElement" => "TjgG2724voz",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $quarter_achievement
             ],
             [
                 "dataElement" => "yhLaGM4bbOl",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $quarter_in
             ],
             [
                 "dataElement" => "FVzbO1DejMs",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $for_the_quarter
             ],
             [
                 "dataElement" => "kD8FHAdwAVb",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $variance_for_the_quarter
             ],
             [
                 "dataElement" => "WknTsKDlwEr",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $achievement_to_date
             ],
             [
                 "dataElement" => "hKwO0xn5vrK",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $annual_activity_target
             ],
             [
                 "dataElement" => "wgbi2BxEXDH",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $from_annual_target
             ],
             [
                 "dataElement" => "Z4V1wbxk3MF",
-                "categoryOptionCombo" => "oyPYrse9dkR",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $challenges_or_learnings
             ],
             [
@@ -416,6 +428,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 15px;
             font-weight: 100;
         }
+
+        /* Activity accordion */
+        .activity-tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0 15px 0;
+        }
+        .activity-tab {
+            background: var(--light-gray);
+            color: var(--primary-color);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 8px 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .activity-tab.active {
+            background: var(--secondary-color);
+            color: #fff;
+            border-color: var(--secondary-color);
+        }
+        .activity-panel { display: none; }
+        .activity-panel.active { display: block; }
     </style>
 </head>
 <body>
@@ -434,6 +470,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <?php endif; ?>
         
         <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="activity" id="activity" value="1" />
             <div class="form-grid">
                 <div class="card">
                     <h2 class="card-header">Activity Details</h2>
@@ -463,55 +500,214 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="prevention_activities">Annual ADA Prevention activities</label>
                         <input type="text" name="prevention_activities" id="prevention_activities" required />
                     </div>
-                    
+
                     <div class="form-group">
-                        <label for="reporting_period">Progress during the quarter/reporting period (provide notes)</label>
-                        <input type="text" name="reporting_period" id="reporting_period" required />
+                        <label>Choose Activity</label>
+                        <div class="activity-tabs" id="activityTabs">
+                            <div class="activity-tab active" data-activity="1">Activity 1</div>
+                            <div class="activity-tab" data-activity="2">Activity 2</div>
+                            <div class="activity-tab" data-activity="3">Activity 3</div>
+                            <div class="activity-tab" data-activity="4">Activity 4</div>
+                            <div class="activity-tab" data-activity="5">Activity 5</div>
+                        </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="quarter_achievement">Indicator(s) of the quarter achievement</label>
-                        <input type="text" name="quarter_achievement" id="quarter_achievement" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="quarter_in">Performance for the quarter in (%)</label>
-                        <input type="text" name="quarter_in" id="quarter_in" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="for_the_quarter">Target for the quarter (%)</label>
-                        <input type="text" name="for_the_quarter" id="for_the_quarter" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="variance_for_the_quarter">Variance for the quarter (%)</label>
-                        <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="achievement_to_date">Cumulative achievement to date</label>
-                        <input type="text" name="achievement_to_date" id="achievement_to_date" required />
+
+                    <div id="activityPanels">
+                        <div class="activity-panel active" data-activity-panel="1">
+                            <div class="form-group">
+                                <label for="reporting_period_a1">Progress during the quarter/reporting period (provide notes)</label>
+                                <input type="text" name="reporting_period" id="reporting_period_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_achievement_a1">Indicator(s) of the quarter achievement</label>
+                                <input type="text" name="quarter_achievement" id="quarter_achievement_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_in_a1">Performance for the quarter in (%)</label>
+                                <input type="text" name="quarter_in" id="quarter_in_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="for_the_quarter_a1">Target for the quarter (%)</label>
+                                <input type="text" name="for_the_quarter" id="for_the_quarter_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="variance_for_the_quarter_a1">Variance for the quarter (%)</label>
+                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="achievement_to_date_a1">Cumulative achievement to date</label>
+                                <input type="text" name="achievement_to_date" id="achievement_to_date_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="annual_activity_target_a1">Annual activity target in (%)</label>
+                                <input type="text" name="annual_activity_target" id="annual_activity_target_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="from_annual_target_a1">Variance from annual target (%)</label>
+                                <input type="text" name="from_annual_target" id="from_annual_target_a1" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges_or_learnings_a1">Comments on any variance, challenges or learnings</label>
+                                <input type="text" name="challenges_or_learnings" id="challenges_or_learnings_a1" required />
+                            </div>
+                        </div>
+                        <div class="activity-panel" data-activity-panel="2">
+                            <div class="form-group">
+                                <label for="reporting_period_a2">Progress during the quarter/reporting period (provide notes)</label>
+                                <input type="text" name="reporting_period" id="reporting_period_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_achievement_a2">Indicator(s) of the quarter achievement</label>
+                                <input type="text" name="quarter_achievement" id="quarter_achievement_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_in_a2">Performance for the quarter in (%)</label>
+                                <input type="text" name="quarter_in" id="quarter_in_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="for_the_quarter_a2">Target for the quarter (%)</label>
+                                <input type="text" name="for_the_quarter" id="for_the_quarter_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="variance_for_the_quarter_a2">Variance for the quarter (%)</label>
+                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="achievement_to_date_a2">Cumulative achievement to date</label>
+                                <input type="text" name="achievement_to_date" id="achievement_to_date_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="annual_activity_target_a2">Annual activity target in (%)</label>
+                                <input type="text" name="annual_activity_target" id="annual_activity_target_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="from_annual_target_a2">Variance from annual target (%)</label>
+                                <input type="text" name="from_annual_target" id="from_annual_target_a2" />
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges_or_learnings_a2">Comments on any variance, challenges or learnings</label>
+                                <input type="text" name="challenges_or_learnings" id="challenges_or_learnings_a2" />
+                            </div>
+                        </div>
+                        <div class="activity-panel" data-activity-panel="3">
+                            <div class="form-group">
+                                <label for="reporting_period_a3">Progress during the quarter/reporting period (provide notes)</label>
+                                <input type="text" name="reporting_period" id="reporting_period_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_achievement_a3">Indicator(s) of the quarter achievement</label>
+                                <input type="text" name="quarter_achievement" id="quarter_achievement_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_in_a3">Performance for the quarter in (%)</label>
+                                <input type="text" name="quarter_in" id="quarter_in_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="for_the_quarter_a3">Target for the quarter (%)</label>
+                                <input type="text" name="for_the_quarter" id="for_the_quarter_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="variance_for_the_quarter_a3">Variance for the quarter (%)</label>
+                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="achievement_to_date_a3">Cumulative achievement to date</label>
+                                <input type="text" name="achievement_to_date" id="achievement_to_date_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="annual_activity_target_a3">Annual activity target in (%)</label>
+                                <input type="text" name="annual_activity_target" id="annual_activity_target_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="from_annual_target_a3">Variance from annual target (%)</label>
+                                <input type="text" name="from_annual_target" id="from_annual_target_a3" />
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges_or_learnings_a3">Comments on any variance, challenges or learnings</label>
+                                <input type="text" name="challenges_or_learnings" id="challenges_or_learnings_a3" />
+                            </div>
+                        </div>
+                        <div class="activity-panel" data-activity-panel="4">
+                            <div class="form-group">
+                                <label for="reporting_period_a4">Progress during the quarter/reporting period (provide notes)</label>
+                                <input type="text" name="reporting_period" id="reporting_period_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_achievement_a4">Indicator(s) of the quarter achievement</label>
+                                <input type="text" name="quarter_achievement" id="quarter_achievement_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_in_a4">Performance for the quarter in (%)</label>
+                                <input type="text" name="quarter_in" id="quarter_in_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="for_the_quarter_a4">Target for the quarter (%)</label>
+                                <input type="text" name="for_the_quarter" id="for_the_quarter_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="variance_for_the_quarter_a4">Variance for the quarter (%)</label>
+                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="achievement_to_date_a4">Cumulative achievement to date</label>
+                                <input type="text" name="achievement_to_date" id="achievement_to_date_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="annual_activity_target_a4">Annual activity target in (%)</label>
+                                <input type="text" name="annual_activity_target" id="annual_activity_target_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="from_annual_target_a4">Variance from annual target (%)</label>
+                                <input type="text" name="from_annual_target" id="from_annual_target_a4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges_or_learnings_a4">Comments on any variance, challenges or learnings</label>
+                                <input type="text" name="challenges_or_learnings" id="challenges_or_learnings_a4" />
+                            </div>
+                        </div>
+                        <div class="activity-panel" data-activity-panel="5">
+                            <div class="form-group">
+                                <label for="reporting_period_a5">Progress during the quarter/reporting period (provide notes)</label>
+                                <input type="text" name="reporting_period" id="reporting_period_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_achievement_a5">Indicator(s) of the quarter achievement</label>
+                                <input type="text" name="quarter_achievement" id="quarter_achievement_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="quarter_in_a5">Performance for the quarter in (%)</label>
+                                <input type="text" name="quarter_in" id="quarter_in_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="for_the_quarter_a5">Target for the quarter (%)</label>
+                                <input type="text" name="for_the_quarter" id="for_the_quarter_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="variance_for_the_quarter_a5">Variance for the quarter (%)</label>
+                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="achievement_to_date_a5">Cumulative achievement to date</label>
+                                <input type="text" name="achievement_to_date" id="achievement_to_date_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="annual_activity_target_a5">Annual activity target in (%)</label>
+                                <input type="text" name="annual_activity_target" id="annual_activity_target_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="from_annual_target_a5">Variance from annual target (%)</label>
+                                <input type="text" name="from_annual_target" id="from_annual_target_a5" />
+                            </div>
+                            <div class="form-group">
+                                <label for="challenges_or_learnings_a5">Comments on any variance, challenges or learnings</label>
+                                <input type="text" name="challenges_or_learnings" id="challenges_or_learnings_a5" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="card">
                     <h2 class="card-header">Additional Information</h2>
-                    
-                    <div class="form-group">
-                        <label for="annual_activity_target">Annual activity target in (%)</label>
-                        <input type="text" name="annual_activity_target" id="annual_activity_target" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="from_annual_target">Variance from annual target (%)</label>
-                        <input type="text" name="from_annual_target" id="from_annual_target" required />
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="challenges_or_learnings">Comments on any variance, challenges or learnings</label>
-                        <input type="text" name="challenges_or_learnings" id="challenges_or_learnings" required />
-                    </div>
                     
                     <div class="form-group">
                         <label for="quarterly_totals">Quarterly totals</label>
@@ -558,5 +754,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
+    <script>
+    (function() {
+        var tabs = document.querySelectorAll('.activity-tab');
+        var panels = document.querySelectorAll('.activity-panel');
+        var hiddenActivity = document.getElementById('activity');
+
+        function setActive(activity) {
+            tabs.forEach(function(tab) {
+                tab.classList.toggle('active', tab.getAttribute('data-activity') === String(activity));
+            });
+            panels.forEach(function(panel) {
+                var isActive = panel.getAttribute('data-activity-panel') === String(activity);
+                panel.classList.toggle('active', isActive);
+                // Enable inputs in active panel, disable others to avoid duplicate names posting
+                var inputs = panel.querySelectorAll('input, select, textarea');
+                inputs.forEach(function(inp) {
+                    if (isActive) {
+                        inp.removeAttribute('disabled');
+                        inp.required = inp.getAttribute('id') && inp.getAttribute('id').endsWith('_a' + activity) ? true : inp.required;
+                    } else {
+                        inp.setAttribute('disabled', 'disabled');
+                        // Do not require fields in inactive panels
+                        inp.required = false;
+                    }
+                });
+            });
+            hiddenActivity.value = String(activity);
+        }
+
+        tabs.forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                var activity = this.getAttribute('data-activity');
+                setActive(activity);
+            });
+        });
+
+        // Initialize: disable all inactive panel inputs
+        setActive(hiddenActivity.value || '1');
+    })();
+    </script>
 </body>
 </html>
