@@ -103,27 +103,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $quarter_in
             ],
             [
-                "dataElement" => "Jl3akdWGvKD",
+                "dataElement" => "FVzbO1DejMs",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $for_the_quarter
             ],
             [
-                "dataElement" => "Ck5dK8YBkIW",
+                "dataElement" => "kD8FHAdwAVb",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $variance_for_the_quarter
             ],
             [
-                "dataElement" => "kID9ezyALKP",
+                "dataElement" => "WknTsKDlwEr",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $achievement_to_date
             ],
             [
-                "dataElement" => "y1lhKjYuTOZ",
+                "dataElement" => "hKwO0xn5vrK",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $annual_activity_target
             ],
             [
-                "dataElement" => "kMBdGEyWR4n",
+                "dataElement" => "wgbi2BxEXDH",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $from_annual_target
             ],
             [
-                "dataElement" => "PDZrDagKlqY",
+                "dataElement" => "Z4V1wbxk3MF",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $challenges_or_learnings
             ],
             [
@@ -459,7 +465,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <div class="form-group">
-                        <label for="reporting_period">Progress during the quarter/reporting period</label>
+                        <label for="reporting_period">Progress during the quarter/reporting period (provide notes)</label>
                         <input type="text" name="reporting_period" id="reporting_period" required />
                     </div>
                     
@@ -485,7 +491,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     
                     <div class="form-group">
                         <label for="achievement_to_date">Cumulative achievement to date</label>
-                        <input type="date" name="achievement_to_date" id="achievement_to_date" required />
+                        <input type="text" name="achievement_to_date" id="achievement_to_date" required />
                     </div>
                 </div>
                 
