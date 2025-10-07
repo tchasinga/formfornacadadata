@@ -88,15 +88,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $prevention_activities
             ],
             [
-                "dataElement" => "k9JFftbp7x3",
+                "dataElement" => "pmHQN9jfxgx",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $reporting_period
             ],
             [
-                "dataElement" => "B6Erpz2KXpC",
+                "dataElement" => "TjgG2724voz",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $quarter_achievement
             ],
             [
-                "dataElement" => "tsD42vC6oDG",
+                "dataElement" => "yhLaGM4bbOl",
+                "categoryOptionCombo" => "oyPYrse9dkR",
                 "value" => $quarter_in
             ],
             [
@@ -461,7 +464,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     
                     <div class="form-group">
-                        <label for="quarter_achievement">Indicator(s) of quarter achievement</label>
+                        <label for="quarter_achievement">Indicator(s) of the quarter achievement</label>
                         <input type="text" name="quarter_achievement" id="quarter_achievement" required />
                     </div>
                     
