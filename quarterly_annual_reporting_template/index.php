@@ -80,7 +80,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prqt_email = $_POST['prqt_email'];
     $prq_date = $_POST['prq_date'];
    
-
     // Use user-provided period if present, otherwise default to current quarter
     $userPeriod = isset($_POST['period']) ? trim($_POST['period']) : '';
     $currentPeriod = $userPeriod !== '' ? $userPeriod : getCurrentQuarter();
