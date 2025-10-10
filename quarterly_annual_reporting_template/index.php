@@ -144,7 +144,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $challenges_or_learnings
             ],
             [
-                "dataElement" => "b0Nahc1BfKj",
+                "dataElement" => "l3GIGnzoA6c",
+                "categoryOptionCombo" => $selectedCategoryOptionCombo,
                 "value" => $quarterly_totals
             ],
             [
