@@ -344,6 +344,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         
         input[type="text"],
+        input[type="number"],
         input[type="email"],
         input[type="date"],
         input[type="file"],
@@ -354,6 +355,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 4px;
             font-size: 16px;
             transition: border 0.3s;
+        }
+        
+        /* input[type="number"] {
+            -moz-appearance: textfield;
+        } */
+        
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
         }
         
         input:focus,
@@ -524,27 +535,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label for="quarter_in_a1">Performance for the quarter in (%)</label>
-                                <input type="text" name="quarter_in" id="quarter_in_a1" required />
+                                <input type="number" name="quarter_in" id="quarter_in_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
                                 <label for="for_the_quarter_a1">Target for the quarter (%)</label>
-                                <input type="text" name="for_the_quarter" id="for_the_quarter_a1" required />
+                                <input type="number" name="for_the_quarter" id="for_the_quarter_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
                                 <label for="variance_for_the_quarter_a1">Variance for the quarter (%)</label>
-                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a1" required />
+                                <input type="number" name="variance_for_the_quarter" id="variance_for_the_quarter_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
-                                <label for="achievement_to_date_a1">Cumulative achievement to date</label>
-                                <input type="text" name="achievement_to_date" id="achievement_to_date_a1" required />
+                                <label for="achievement_to_date_a1">Cumulative achievement to date (%)</label>
+                                <input type="number" name="achievement_to_date" id="achievement_to_date_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
                                 <label for="annual_activity_target_a1">Annual activity target in (%)</label>
-                                <input type="text" name="annual_activity_target" id="annual_activity_target_a1" required />
+                                <input type="number" name="annual_activity_target" id="annual_activity_target_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
                                 <label for="from_annual_target_a1">Variance from annual target (%)</label>
-                                <input type="text" name="from_annual_target" id="from_annual_target_a1" required />
+                                <input type="number" name="from_annual_target" id="from_annual_target_a1" step="0.01" min="0" max="100" placeholder="Enter percentage" required />
                             </div>
                             <div class="form-group">
                                 <label for="challenges_or_learnings_a1">Comments on any variance, challenges or learnings</label>
@@ -562,27 +573,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label for="quarter_in_a2">Performance for the quarter in (%)</label>
-                                <input type="text" name="quarter_in" id="quarter_in_a2" />
+                                <input type="number" name="quarter_in" id="quarter_in_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="for_the_quarter_a2">Target for the quarter (%)</label>
-                                <input type="text" name="for_the_quarter" id="for_the_quarter_a2" />
+                                <input type="number" name="for_the_quarter" id="for_the_quarter_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="variance_for_the_quarter_a2">Variance for the quarter (%)</label>
-                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a2" />
+                                <input type="number" name="variance_for_the_quarter" id="variance_for_the_quarter_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
-                                <label for="achievement_to_date_a2">Cumulative achievement to date</label>
-                                <input type="text" name="achievement_to_date" id="achievement_to_date_a2" />
+                                <label for="achievement_to_date_a2">Cumulative achievement to date (%)</label>
+                                <input type="number" name="achievement_to_date" id="achievement_to_date_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="annual_activity_target_a2">Annual activity target in (%)</label>
-                                <input type="text" name="annual_activity_target" id="annual_activity_target_a2" />
+                                <input type="number" name="annual_activity_target" id="annual_activity_target_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="from_annual_target_a2">Variance from annual target (%)</label>
-                                <input type="text" name="from_annual_target" id="from_annual_target_a2" />
+                                <input type="number" name="from_annual_target" id="from_annual_target_a2" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="challenges_or_learnings_a2">Comments on any variance, challenges or learnings</label>
@@ -600,27 +611,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label for="quarter_in_a3">Performance for the quarter in (%)</label>
-                                <input type="text" name="quarter_in" id="quarter_in_a3" />
+                                <input type="number" name="quarter_in" id="quarter_in_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="for_the_quarter_a3">Target for the quarter (%)</label>
-                                <input type="text" name="for_the_quarter" id="for_the_quarter_a3" />
+                                <input type="number" name="for_the_quarter" id="for_the_quarter_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="variance_for_the_quarter_a3">Variance for the quarter (%)</label>
-                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a3" />
+                                <input type="number" name="variance_for_the_quarter" id="variance_for_the_quarter_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
-                                <label for="achievement_to_date_a3">Cumulative achievement to date</label>
-                                <input type="text" name="achievement_to_date" id="achievement_to_date_a3" />
+                                <label for="achievement_to_date_a3">Cumulative achievement to date (%)</label>
+                                <input type="number" name="achievement_to_date" id="achievement_to_date_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="annual_activity_target_a3">Annual activity target in (%)</label>
-                                <input type="text" name="annual_activity_target" id="annual_activity_target_a3" />
+                                <input type="number" name="annual_activity_target" id="annual_activity_target_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="from_annual_target_a3">Variance from annual target (%)</label>
-                                <input type="text" name="from_annual_target" id="from_annual_target_a3" />
+                                <input type="number" name="from_annual_target" id="from_annual_target_a3" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="challenges_or_learnings_a3">Comments on any variance, challenges or learnings</label>
@@ -638,27 +649,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label for="quarter_in_a4">Performance for the quarter in (%)</label>
-                                <input type="text" name="quarter_in" id="quarter_in_a4" />
+                                <input type="number" name="quarter_in" id="quarter_in_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="for_the_quarter_a4">Target for the quarter (%)</label>
-                                <input type="text" name="for_the_quarter" id="for_the_quarter_a4" />
+                                <input type="number" name="for_the_quarter" id="for_the_quarter_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="variance_for_the_quarter_a4">Variance for the quarter (%)</label>
-                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a4" />
+                                <input type="number" name="variance_for_the_quarter" id="variance_for_the_quarter_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
-                                <label for="achievement_to_date_a4">Cumulative achievement to date</label>
-                                <input type="text" name="achievement_to_date" id="achievement_to_date_a4" />
+                                <label for="achievement_to_date_a4">Cumulative achievement to date (%)</label>
+                                <input type="number" name="achievement_to_date" id="achievement_to_date_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="annual_activity_target_a4">Annual activity target in (%)</label>
-                                <input type="text" name="annual_activity_target" id="annual_activity_target_a4" />
+                                <input type="number" name="annual_activity_target" id="annual_activity_target_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="from_annual_target_a4">Variance from annual target (%)</label>
-                                <input type="text" name="from_annual_target" id="from_annual_target_a4" />
+                                <input type="number" name="from_annual_target" id="from_annual_target_a4" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="challenges_or_learnings_a4">Comments on any variance, challenges or learnings</label>
@@ -676,27 +687,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label for="quarter_in_a5">Performance for the quarter in (%)</label>
-                                <input type="text" name="quarter_in" id="quarter_in_a5" />
+                                <input type="number" name="quarter_in" id="quarter_in_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="for_the_quarter_a5">Target for the quarter (%)</label>
-                                <input type="text" name="for_the_quarter" id="for_the_quarter_a5" />
+                                <input type="number" name="for_the_quarter" id="for_the_quarter_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="variance_for_the_quarter_a5">Variance for the quarter (%)</label>
-                                <input type="text" name="variance_for_the_quarter" id="variance_for_the_quarter_a5" />
+                                <input type="number" name="variance_for_the_quarter" id="variance_for_the_quarter_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
-                                <label for="achievement_to_date_a5">Cumulative achievement to date</label>
-                                <input type="text" name="achievement_to_date" id="achievement_to_date_a5" />
+                                <label for="achievement_to_date_a5">Cumulative achievement to date (%)</label>
+                                <input type="number" name="achievement_to_date" id="achievement_to_date_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="annual_activity_target_a5">Annual activity target in (%)</label>
-                                <input type="text" name="annual_activity_target" id="annual_activity_target_a5" />
+                                <input type="number" name="annual_activity_target" id="annual_activity_target_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="from_annual_target_a5">Variance from annual target (%)</label>
-                                <input type="text" name="from_annual_target" id="from_annual_target_a5" />
+                                <input type="number" name="from_annual_target" id="from_annual_target_a5" step="0.01" min="0" max="100" placeholder="Enter percentage" />
                             </div>
                             <div class="form-group">
                                 <label for="challenges_or_learnings_a5">Comments on any variance, challenges or learnings</label>
@@ -710,8 +721,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h2 class="card-header">Additional Information</h2>
                     
                     <div class="form-group">
-                        <label for="quarterly_totals">Quarterly totals</label>
-                        <input type="text" name="quarterly_totals" id="quarterly_totals" required />
+                        <label for="quarterly_totals">Quarterly totals (Auto-calculated)</label>
+                        <input type="text" name="quarterly_totals" id="quarterly_totals" readonly style="background-color: #f8f9fa; color: #495057;" placeholder="Will be calculated automatically" required />
+                        <small style="color: #6c757d; font-size: 0.875rem;">This field is automatically calculated from the percentage values above</small>
                     </div>
                     
                     <div class="form-group">
@@ -759,6 +771,86 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         var tabs = document.querySelectorAll('.activity-tab');
         var panels = document.querySelectorAll('.activity-panel');
         var hiddenActivity = document.getElementById('activity');
+        var quarterlyTotalsField = document.getElementById('quarterly_totals');
+
+        // Function to calculate quarterly totals for a specific activity
+        function calculateQuarterlyTotals(activity) {
+            var percentageFields = [
+                'quarter_in_a' + activity,           // Performance for the quarter in (%)
+                'for_the_quarter_a' + activity,      // Target for the quarter (%)
+                'variance_for_the_quarter_a' + activity, // Variance for the quarter (%)
+                'achievement_to_date_a' + activity,  // Cumulative achievement to date
+                'annual_activity_target_a' + activity, // Annual activity target in (%)
+                'from_annual_target_a' + activity     // Variance from annual target (%)
+            ];
+
+            var total = 0;
+            var validInputs = 0;
+
+            percentageFields.forEach(function(fieldId) {
+                var field = document.getElementById(fieldId);
+                if (field && field.value.trim() !== '') {
+                    var value = parseFloat(field.value);
+                    if (!isNaN(value)) {
+                        total += value;
+                        validInputs++;
+                    }
+                }
+            });
+
+            // Update quarterly totals field
+            if (validInputs > 0) {
+                quarterlyTotalsField.value = total.toFixed(2);
+            } else {
+                quarterlyTotalsField.value = '';
+            }
+        }
+
+        // Function to add calculation listeners to percentage fields
+        function addCalculationListeners(activity) {
+            var percentageFields = [
+                'quarter_in_a' + activity,
+                'for_the_quarter_a' + activity,
+                'variance_for_the_quarter_a' + activity,
+                'achievement_to_date_a' + activity,
+                'annual_activity_target_a' + activity,
+                'from_annual_target_a' + activity
+            ];
+
+            percentageFields.forEach(function(fieldId) {
+                var field = document.getElementById(fieldId);
+                if (field) {
+                    // Remove existing listeners to avoid duplicates
+                    field.removeEventListener('input', calculateQuarterlyTotals);
+                    field.removeEventListener('blur', calculateQuarterlyTotals);
+                    
+                    // Add new listeners
+                    field.addEventListener('input', function() {
+                        calculateQuarterlyTotals(activity);
+                    });
+                    field.addEventListener('blur', function() {
+                        calculateQuarterlyTotals(activity);
+                    });
+                }
+            });
+        }
+
+        // Function to validate numeric input
+        function validateNumericInput(input) {
+            var value = input.value;
+            if (value !== '' && isNaN(parseFloat(value))) {
+                input.style.borderColor = '#e74c3c';
+                input.title = 'Please enter a valid number';
+            } else {
+                input.style.borderColor = '#ddd';
+                input.title = '';
+                // Trigger calculation after validation
+                var activity = input.id.match(/_a(\d+)$/);
+                if (activity) {
+                    calculateQuarterlyTotals(activity[1]);
+                }
+            }
+        }
 
         function setActive(activity) {
             tabs.forEach(function(tab) {
@@ -773,6 +865,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (isActive) {
                         inp.removeAttribute('disabled');
                         inp.required = inp.getAttribute('id') && inp.getAttribute('id').endsWith('_a' + activity) ? true : inp.required;
+                        
+                        // Add numeric validation for percentage fields only (exclude text fields like notes and comments)
+                        if ((inp.type === 'text' || inp.type === 'number') && inp.id && inp.id.match(/_a\d+$/) && 
+                            !inp.id.includes('reporting_period_') && !inp.id.includes('challenges_or_learnings_')) {
+                            inp.addEventListener('blur', function() {
+                                validateNumericInput(this);
+                            });
+                        }
                     } else {
                         inp.setAttribute('disabled', 'disabled');
                         // Do not require fields in inactive panels
@@ -781,6 +881,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 });
             });
             hiddenActivity.value = String(activity);
+            
+            // Add calculation listeners for the active activity
+            addCalculationListeners(activity);
+            
+            // Calculate totals for the newly active activity
+            calculateQuarterlyTotals(activity);
         }
 
         tabs.forEach(function(tab) {
@@ -790,7 +896,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             });
         });
 
-        // Initialize: disable all inactive panel inputs
+        // Initialize: disable all inactive panel inputs and set up calculations
         setActive(hiddenActivity.value || '1');
     })();
     </script>
