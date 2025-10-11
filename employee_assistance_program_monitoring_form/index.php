@@ -64,6 +64,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $challenges_four = $_POST['challenges_four'];
     $challenges_five = $_POST['challenges_five'];
     $eapm_remarks = $_POST['eapm_remarks'];
+    
+    // New remarks fields
+    $eap_services_remarks = $_POST['eap_services_remarks'];
+    $sensitization_remarks = $_POST['sensitization_remarks'];
+    $problems_remarks = $_POST['problems_remarks'];
+    $referral_remarks = $_POST['referral_remarks'];
+    $job_category_remarks = $_POST['job_category_remarks'];
+    $issues_remarks = $_POST['issues_remarks'];
+    $gender_remarks = $_POST['gender_remarks'];
+    $age_remarks = $_POST['age_remarks'];
+    $aftercare_remarks = $_POST['aftercare_remarks'];
 
     $health_center = isset($_POST['health_center']) ? "true" : "false";
     $services_providers = isset($_POST['services_providers']) ? "true" : "false";
@@ -115,230 +126,306 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $how_many_employees_reached = 0;
     }
 
+    // Build data values array, only including non-empty values for optional fields
+    $dataValues = [
+        [
+            "dataElement" => "CirTnd6QQTO",
+            "value" => $value
+        ],
+        [
+            "dataElement" => "N11bNXXYl8E",
+            "value" => $reporting_period
+        ],
+        [
+            "dataElement" => "q3nIhzLobBY",
+            "value" => $health_center
+        ],
+        [
+            "dataElement" => "RuHhXGH0T4E",
+            "value" => $services_providers
+        ],
+        [
+            "dataElement" => "QPWXligjV7t",
+            "value" => $in_house_and_external
+        ],
+        [
+            "dataElement" => "BUOEjGsMPQQ",
+            "value" => $sensitization_on_available
+        ],
+        [
+            "dataElement" => "toCflxtfBvP",
+            "value" => $how_many_employees_reached
+        ],
+        [
+            "dataElement" => "QIc1Oph1w9n",
+            "value" => $decreasing_work_quality
+        ],
+        [
+            "dataElement" => "S4WRkCE29Ix",
+            "value" => $lack_attention_focus
+        ],
+        [
+            "dataElement" => "NZORRYWuaWP",
+            "value" => $poor_decision_making
+        ],
+        [
+            "dataElement" => "TlatYboVO7T",
+            "value" => $poor_judgement
+        ],
+        [
+            "dataElement" => "KEs7EKi49M7",
+            "value" => $unusual_carelessness
+        ],
+        [
+            "dataElement" => "Pu6yfQjPmmq",
+            "value" => $unsteady_gait
+        ],
+        [
+            "dataElement" => "RpCwCDUHjQy",
+            "value" => $excessive_mood_swings
+        ],
+        [
+            "dataElement" => "wyvbLSxv3ro",
+            "value" => $energetic_or_sedated
+        ],
+        [
+            "dataElement" => "P3xNWTMTBJ1",
+            "value" => $Repeated_lateness
+        ],
+        [
+            "dataElement" => "UfDEWWGiAg5",
+            "value" => $including_unexplained_absences
+        ],
+        [
+            "dataElement" => "BSQr2TUD6bN",
+            "value" => $smell_alcohol_tobacco
+        ],
+        [
+            "dataElement" => "VhDte8t3OoQ",
+            "value" => $on_the_job_accident
+        ],
+        [
+            "dataElement" => "Bepzug2sU2R",
+            "value" => $self_referral
+        ],
+        [
+            "dataElement" => "W9j5fypHK6s",
+            "value" => $informal_referral
+        ],
+        [
+            "dataElement" => "qAXvRt2M4fg",
+            "value" => $formal_referral
+        ],
+        [
+            "dataElement" => "m5ToaNAzxoy",
+            "value" => $referred_for_counselling
+        ],
+        [
+            "dataElement" => "BU2cdfreNxj",
+            "value" => $treatment_and_rehabilitation
+        ],
+        [
+            "dataElement" => "Lbc6tSVjkAx",
+            "value" => $counselling_services
+        ],
+        [
+            "dataElement" => "oR2GjFKonjY",
+            "value" => $went_for_treatmentv
+        ],
+        [
+            "dataElement" => "rApZ4UUPOG3",
+            "value" => $alcohol_and_drug
+        ],
+        [
+            "dataElement" => "TsPdbPKGaJC",
+            "value" => $work_related_stress
+        ],
+        [
+            "dataElement" => "qb3HNF9uk5M",
+            "value" => $mental_health_issues
+        ],
+        [
+            "dataElement" => "M44nTuWGcts",
+            "value" => $family_issues
+        ],
+        [
+            "dataElement" => "MafafyOewXi",
+            "value" => $personal_challenges_difficulties
+        ],
+        [
+            "dataElement" => "gpGqWvOrT85",
+            "value" => $financial_or_legal
+        ],
+        [
+            "dataElement" => "bvuIsatD2dO",
+            "value" => $health_problems
+        ],
+        [
+            "dataElement" => "PDihlFkzhUY",
+            "value" => $gender_females
+        ],
+        [
+            "dataElement" => "AZxOGNS5C0C",
+            "value" => $gender_males
+        ],
+        [
+            "dataElement" => "kVNuASljKEc",
+            "value" => $top_management
+        ],
+        [
+            "dataElement" => "BHSdYbuTOYt",
+            "value" => $management_station_head
+        ],
+        [
+            "dataElement" => "YXXg3t5j2pC",
+            "value" => $technical_staff
+        ],
+        [
+            "dataElement" => "ryHsVnZU0iK",
+            "value" => $support_staff
+        ],
+        [
+            "dataElement" => "kgNIv5PXD6z",
+            "value" => $ages_from_10_18
+        ],
+        [
+            "dataElement" => "xNKVmk1ChPs",
+            "value" => $ages_from_19_25
+        ],
+        [
+            "dataElement" => "Sm32O0DJHAa",
+            "value" => $ages_from_26_35
+        ],
+        [
+            "dataElement" => "cxm10lpn3Rn",
+            "value" => $ages_from_36_45
+        ],
+        [
+            "dataElement" => "Zl0KHkoEiAh",
+            "value" => $after_care_services
+        ],
+        [
+            "dataElement" => "npfo3bB4R7x",
+            "value" => $dependents
+        ],
+        [
+            "dataElement" => "VA3Vdl97Fjr",
+            "value" => $challenges_one
+        ],
+        [
+            "dataElement" => "tKld0kKqU0I",
+            "value" => $challenges_two
+        ],
+        [
+            "dataElement" => "SQ0SMN8X01A",
+            "value" => $challenges_three
+        ],
+        [
+            "dataElement" => "oklba7MCP9S",
+            "value" => $challenges_four
+        ],
+        [
+            "dataElement" => "TEuZ9PaZm8r",
+            "value" => $challenges_five
+        ],
+        [
+            "dataElement" => "Lw4smnkXFrq",
+            "value" => $eapm_remarks
+        ],
+    ];
+
+    // Only add optional text fields if they have values
+    if (!empty(trim($other_data))) {
+        $dataValues[] = [
+            "dataElement" => "NYHVR5HsxYS",
+            "value" => $other_data
+        ];
+    }
+    
+    if (!empty(trim($other_specify))) {
+        $dataValues[] = [
+            "dataElement" => "KEv6aPzdLqP",
+            "value" => $other_specify
+        ];
+    }
+    
+    if (!empty(trim($specify_more))) {
+        $dataValues[] = [
+            "dataElement" => "WJQJDBUb8aU",
+            "value" => $specify_more
+        ];
+    }
+    
+    // Add remarks fields only if they have values
+    if (!empty(trim($eap_services_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "T7GYEnJXMlf",
+            "value" => $eap_services_remarks
+        ];
+    }
+    
+    if (!empty(trim($sensitization_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "jETfPguWl3a",
+            "value" => $sensitization_remarks
+        ];
+    }
+    
+    if (!empty(trim($problems_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "safg5rBOC3g",
+            "value" => $problems_remarks
+        ];
+    }
+    
+    if (!empty(trim($referral_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "uqJgCqvZ4lv",
+            "value" => $referral_remarks
+        ];
+    }
+    
+    if (!empty(trim($job_category_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "wqFkJnrH0pr",
+            "value" => $job_category_remarks
+        ];
+    }
+    
+    if (!empty(trim($issues_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "pjqIUbEkbQf",
+            "value" => $issues_remarks
+        ];
+    }
+    
+    if (!empty(trim($gender_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "ADRh2cOwyac",
+            "value" => $gender_remarks
+        ];
+    }
+    
+    if (!empty(trim($age_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "opl1NaSU8MC",
+            "value" => $age_remarks
+        ];
+    }
+    
+    if (!empty(trim($aftercare_remarks))) {
+        $dataValues[] = [
+            "dataElement" => "ofIVIaPOotU",
+            "value" => $aftercare_remarks
+        ];
+    }
+
     $data = [
         "dataSet" => "hb6Y59T4YEc",
         "completeDate" => date("Y-m-d"),
         "period" => $reporting_period, // Use the selected reporting period
         "orgUnit" => "ORwhnDymBpM",
-        "dataValues" => [
-            [
-                "dataElement" => "CirTnd6QQTO",
-                "value" => $value
-            ],
-            [
-                "dataElement" => "N11bNXXYl8E",
-                "value" => $reporting_period
-            ],
-            [
-                "dataElement" => "q3nIhzLobBY",
-                "value" => $health_center
-            ],
-            [
-                "dataElement" => "RuHhXGH0T4E",
-                "value" => $services_providers
-            ],
-            [
-                "dataElement" => "QPWXligjV7t",
-                "value" => $in_house_and_external
-            ],
-            [
-                "dataElement" => "NYHVR5HsxYS",
-                "value" => $other_data
-            ],
-            [
-                "dataElement" => "BUOEjGsMPQQ",
-                "value" => $sensitization_on_available
-            ],
-            [
-                "dataElement" => "toCflxtfBvP",
-                "value" => $how_many_employees_reached
-            ],
-
-            [
-                "dataElement" => "QIc1Oph1w9n",
-                "value" => $decreasing_work_quality
-            ],
-            [
-                "dataElement" => "S4WRkCE29Ix",
-                "value" => $lack_attention_focus
-            ],
-            [
-                "dataElement" => "NZORRYWuaWP",
-                "value" => $poor_decision_making
-            ],
-            [
-                "dataElement" => "TlatYboVO7T",
-                "value" => $poor_judgement
-            ],
-            [
-                "dataElement" => "KEs7EKi49M7",
-                "value" => $unusual_carelessness
-            ],
-            [
-                "dataElement" => "Pu6yfQjPmmq",
-                "value" => $unsteady_gait
-            ],
-            [
-                "dataElement" => "RpCwCDUHjQy",
-                "value" => $excessive_mood_swings
-            ],
-            [
-                "dataElement" => "wyvbLSxv3ro",
-                "value" => $energetic_or_sedated
-            ],
-            [
-                "dataElement" => "P3xNWTMTBJ1",
-                "value" => $Repeated_lateness
-            ],
-            [
-                "dataElement" => "UfDEWWGiAg5",
-                "value" => $including_unexplained_absences
-            ],
-            [
-                "dataElement" => "BSQr2TUD6bN",
-                "value" => $smell_alcohol_tobacco
-            ],
-            [
-                "dataElement" => "VhDte8t3OoQ",
-                "value" => $on_the_job_accident
-            ],
-            [
-                "dataElement" => "KEv6aPzdLqP",
-                "value" => $other_specify
-            ],
-            [
-                "dataElement" => "Bepzug2sU2R",
-                "value" => $self_referral
-            ],
-            [
-                "dataElement" => "W9j5fypHK6s",
-                "value" => $informal_referral
-            ],
-            [
-                "dataElement" => "qAXvRt2M4fg",
-                "value" => $formal_referral
-            ],
-            [
-                "dataElement" => "m5ToaNAzxoy",
-                "value" => $referred_for_counselling
-            ],
-            [
-                "dataElement" => "BU2cdfreNxj",
-                "value" => $treatment_and_rehabilitation
-            ],
-            [
-                "dataElement" => "Lbc6tSVjkAx",
-                "value" => $counselling_services
-            ],
-            [
-                "dataElement" => "oR2GjFKonjY",
-                "value" => $went_for_treatmentv
-            ],
-            [
-                "dataElement" => "rApZ4UUPOG3",
-                "value" => $alcohol_and_drug
-            ],
-            [
-                "dataElement" => "TsPdbPKGaJC",
-                "value" => $work_related_stress
-            ],
-            [
-                "dataElement" => "qb3HNF9uk5M",
-                "value" => $mental_health_issues
-            ],
-            [
-                "dataElement" => "M44nTuWGcts",
-                "value" => $family_issues
-            ],
-            [
-                "dataElement" => "MafafyOewXi",
-                "value" => $personal_challenges_difficulties
-            ],
-            [
-                "dataElement" => "gpGqWvOrT85",
-                "value" => $financial_or_legal
-            ],
-            [
-                "dataElement" => "bvuIsatD2dO",
-                "value" => $health_problems
-            ],
-            [
-                "dataElement" => "WJQJDBUb8aU",
-                "value" => $specify_more
-            ],
-            [
-                "dataElement" => "PDihlFkzhUY",
-                "value" => $gender_females
-            ],
-            [
-                "dataElement" => "AZxOGNS5C0C",
-                "value" => $gender_males
-            ],
-            [
-                "dataElement" => "kVNuASljKEc",
-                "value" => $top_management
-            ],
-            [
-                "dataElement" => "BHSdYbuTOYt",
-                "value" => $management_station_head
-            ],
-            [
-                "dataElement" => "YXXg3t5j2pC",
-                "value" => $technical_staff
-            ],
-            [
-                "dataElement" => "ryHsVnZU0iK",
-                "value" => $support_staff
-            ],
-            [
-                "dataElement" => "kgNIv5PXD6z",
-                "value" => $ages_from_10_18
-            ],
-            [
-                "dataElement" => "xNKVmk1ChPs",
-                "value" => $ages_from_19_25
-            ],
-            [
-                "dataElement" => "Sm32O0DJHAa",
-                "value" => $ages_from_26_35
-            ],
-            [
-                "dataElement" => "cxm10lpn3Rn",
-                "value" => $ages_from_36_45
-            ],
-            [
-                "dataElement" => "Zl0KHkoEiAh",
-                "value" => $after_care_services
-            ],
-            [
-                "dataElement" => "npfo3bB4R7x",
-                "value" => $dependents
-            ],
-            [
-                "dataElement" => "VA3Vdl97Fjr",
-                "value" => $challenges_one
-            ],
-            [
-                "dataElement" => "tKld0kKqU0I",
-                "value" => $challenges_two
-            ],
-            [
-                "dataElement" => "SQ0SMN8X01A",
-                "value" => $challenges_three
-            ],
-            [
-                "dataElement" => "oklba7MCP9S",
-                "value" => $challenges_four
-            ],
-            [
-                "dataElement" => "TEuZ9PaZm8r",
-                "value" => $challenges_five
-            ],
-            [
-                "dataElement" => "Lw4smnkXFrq",
-                "value" => $eapm_remarks
-            ],
-        ]
+        "dataValues" => $dataValues
     ];
 
     if ($shouldSubmit) {
@@ -739,6 +826,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="other_data">Other (specify)</label>
                     <input type="text" id="other_data" name="other_data">
                 </div>
+                
+                <div class="form-group">
+                    <label for="eap_services_remarks">Remarks for EAP Services Available</label>
+                    <textarea id="eap_services_remarks" name="eap_services_remarks" rows="3" placeholder="Please provide any additional remarks about the EAP services available..."></textarea>
+                </div>
             </div>
             
             <div class="form-section">
@@ -761,6 +853,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <div class="form-note">Enter a non-negative whole number</div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sensitization_remarks">Remarks for Sensitization Information</label>
+                    <textarea id="sensitization_remarks" name="sensitization_remarks" rows="3" placeholder="Please provide any additional remarks about sensitization activities..."></textarea>
                 </div>
             </div>
             
@@ -833,6 +930,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="other_specify">Other (specify)</label>
                     <input type="text" id="other_specify" name="other_specify">
                 </div>
+                
+                <div class="form-group">
+                    <label for="problems_remarks">Remarks for Types of Problems Manifested/Identified</label>
+                    <textarea id="problems_remarks" name="problems_remarks" rows="3" placeholder="Please provide any additional remarks about the types of problems identified..."></textarea>
+                </div>
             </div>
             
             <div class="form-section">
@@ -878,6 +980,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="number" id="went_for_treatmentv" name="went_for_treatmentv">
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="referral_remarks">Remarks for Referral Information</label>
+                    <textarea id="referral_remarks" name="referral_remarks" rows="3" placeholder="Please provide any additional remarks about referral activities..."></textarea>
+                </div>
             </div>
             
             <div class="form-section">
@@ -903,6 +1010,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="checkbox" id="support_staff" name="support_staff" value="support_staff">
                         <label for="support_staff">Support Staff</label>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="job_category_remarks">Remarks for Job Category of Staff</label>
+                    <textarea id="job_category_remarks" name="job_category_remarks" rows="3" placeholder="Please provide any additional remarks about staff job categories..."></textarea>
                 </div>
             </div>
             
@@ -950,6 +1062,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="specify_more">EAPM - Other (specify more)</label>
                     <input type="text" id="specify_more" name="specify_more">
                 </div>
+                
+                <div class="form-group">
+                    <label for="issues_remarks">Remarks for Issues Addressed in EAP</label>
+                    <textarea id="issues_remarks" name="issues_remarks" rows="3" placeholder="Please provide any additional remarks about the issues addressed in EAP..."></textarea>
+                </div>
             </div>
             
             <div class="form-section">
@@ -965,6 +1082,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="checkbox" id="gender_males" name="gender_males" value="gender_males">
                         <label for="gender_males">Gender males</label>
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gender_remarks">Remarks for Gender Distribution</label>
+                    <textarea id="gender_remarks" name="gender_remarks" rows="3" placeholder="Please provide any additional remarks about gender distribution..."></textarea>
                 </div>
             </div>
             
@@ -992,6 +1114,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="ages_from_36_45">Ages from 36 to 45 years</label>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                    <label for="age_remarks">Remarks for Age Distribution</label>
+                    <textarea id="age_remarks" name="age_remarks" rows="3" placeholder="Please provide any additional remarks about age distribution..."></textarea>
+                </div>
             </div>
             
             <div class="form-section">
@@ -1007,6 +1134,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <label for="dependents">Staff vs. dependents</label>
                         <input type="text" id="dependents" name="dependents">
                     </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="aftercare_remarks">Remarks for After-Care Services</label>
+                    <textarea id="aftercare_remarks" name="aftercare_remarks" rows="3" placeholder="Please provide any additional remarks about after-care services..."></textarea>
                 </div>
             </div>
             
