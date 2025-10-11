@@ -26,10 +26,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $networks = $_POST['networks'];
     $counties_of_operation = $_POST['counties_of_operation'];
     $drug_abuse = $_POST['drug_abuse'];
-    $intervention_activity = $_POST['intervention_activity'];
-    $setting = $_POST['setting'];
-    $target_group = $_POST['target_group'];
-    $no_of_people_reached = $_POST['no_of_people_reached'];
+    $intervention_activity_01 = $_POST['intervention_activity_01'];
+    $intervention_activity_02 = $_POST['intervention_activity_02'];
+    $setting_01 = $_POST['setting_01'];
+    $setting_02 = $_POST['setting_02'];
+    $target_group_01 = $_POST['target_group_01'];
+    $target_group_02 = $_POST['target_group_02'];
+    $no_of_people_reached_01 = $_POST['no_of_people_reached_01'];
+    $no_of_people_reached_02 = $_POST['no_of_people_reached_02'];
     $other_csos = $_POST['other_csos'];
     $badpgovernment = $_POST['badpgovernment'];
     $badp_learninginstitution = $_POST['badp_learninginstitution'];
@@ -99,46 +103,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             [
                 "dataElement" => "aoDLyMgu5qk",
                 "categoryOptionCombo" => "h61nf5pMlL2",
-                "value" => $intervention_activity
+                "value" => $intervention_activity_01
             ],
             [
                 "dataElement" => "aoDLyMgu5qk",
                 "categoryOptionCombo" => "jdbdfXwgbQ5",
-                "value" => $intervention_activity
+                "value" => $intervention_activity_02
             ],
 
             [
                 "dataElement" => "UC83uH0BzlF",
-                "categoryOptionCombo" => "jdbdfXwgbQ5",
-                "value" => $setting
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $setting_01
             ],
             [
                 "dataElement" => "UC83uH0BzlF",
-                "categoryOptionCombo" => "h61nf5pMlL2",
-                "value" => $setting
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $setting_02
             ],
 
-
+            [
+                "dataElement" => "bneey8XnDZN",
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $target_group_01
+            ],
             [
                 "dataElement" => "bneey8XnDZN",
                 "categoryOptionCombo" => "jdbdfXwgbQ5",
-                "value" => $target_group
-            ],
-            [
-                "dataElement" => "bneey8XnDZN",
-                "categoryOptionCombo" => "h61nf5pMlL2",
-                "value" => $target_group
+                "value" => $target_group_02
             ],
 
             [
                 "dataElement" => "qnwKlYFwO2b",
-                "categoryOptionCombo" => "jdbdfXwgbQ5",
-                "value" => $no_of_people_reached
+                "categoryOptionCombo" => "h61nf5pMlL2",
+                "value" => $no_of_people_reached_01
             ],
             [
                 "dataElement" => "qnwKlYFwO2b",
-                "categoryOptionCombo" => "h61nf5pMlL2",
-                "value" => $no_of_people_reached
+                "categoryOptionCombo" => "jdbdfXwgbQ5",
+                "value" => $no_of_people_reached_02
             ],
 
             [
@@ -428,43 +431,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 
                 <div class="form-group">
-                    <label for="intervention_activity">Specify Intervention Activity | 01</label>
-                    <input type="text" name="intervention_activity" id="intervention_activity" required>
+                    <label for="intervention_activity_01">Specify Intervention Activity | 01</label>
+                    <input type="text" name="intervention_activity_01" id="intervention_activity_01" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="intervention_activity">Specify Intervention Activity | 02</label>
-                    <input type="text" name="intervention_activity" id="intervention_activity" required>
+                    <label for="intervention_activity_02">Specify Intervention Activity | 02</label>
+                    <input type="text" name="intervention_activity_02" id="intervention_activity_02" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 01</label>
-                    <input type="text" name="setting" id="setting" required>
+                    <label for="setting_01">Setting (School, Community, Family, Workplace, etc.) | 01</label>
+                    <input type="text" name="setting_01" id="setting_01" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="setting">Setting (School, Community, Family, Workplace, etc.) | 02</label>
-                    <input type="text" name="setting" id="setting" required>
+                    <label for="setting_02">Setting (School, Community, Family, Workplace, etc.) | 02</label>
+                    <input type="text" name="setting_02" id="setting_02" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="target_group">Target group | 01</label>
-                    <input type="text" name="target_group" id="target_group" required>
+                    <label for="target_group_01">Target group | 01</label>
+                    <input type="text" name="target_group_01" id="target_group_01" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="target_group">Target group | 02</label>
-                    <input type="text" name="target_group" id="target_group" required>
+                    <label for="target_group_02">Target group | 02</label>
+                    <input type="text" name="target_group_02" id="target_group_02" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="no_of_people_reached">No. of people reached | 01</label>
-                    <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+                    <label for="no_of_people_reached_01">No. of people reached | 01</label>
+                    <input type="number" name="no_of_people_reached_01" id="no_of_people_reached_01" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="no_of_people_reached">No. of people reached | 02</label>
-                    <input type="number" name="no_of_people_reached" id="no_of_people_reached" required>
+                    <label for="no_of_people_reached_02">No. of people reached | 02</label>
+                    <input type="number" name="no_of_people_reached_02" id="no_of_people_reached_02" required>
                 </div>
 
                 <div class="form-group">
