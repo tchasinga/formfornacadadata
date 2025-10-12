@@ -18,10 +18,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $where_applicable = $_POST['where_applicable'];
     $contact_person = $_POST['contact_person'];
     $email_address02 = $_POST['email_address02'];
-    $ada_q1 = $_POST['ada_q1'];
-    $ada_q2 = $_POST['ada_q2'];
-    $ada_q3 = $_POST['ada_q3'];
-    $ada_q4 = $_POST['ada_q4'];
+    $selected_quarter = $_POST['selected_quarter'];
+    $quarter_value = $_POST[$selected_quarter] ?? 0;
+    
+    // Initialize all quarters to 0
+    $ada_q1 = 0;
+    $ada_q2 = 0;
+    $ada_q3 = 0;
+    $ada_q4 = 0;
+    
+    // Set the selected quarter value
+    switch($selected_quarter) {
+        case 'ada_q1':
+            $ada_q1 = $quarter_value;
+            break;
+        case 'ada_q2':
+            $ada_q2 = $quarter_value;
+            break;
+        case 'ada_q3':
+            $ada_q3 = $quarter_value;
+            break;
+        case 'ada_q4':
+            $ada_q4 = $quarter_value;
+            break;
+    }
     $ADA_Telephone_Number = $_POST['ADA_Telephone_Number'];
     $quarterly_totals = $_POST['quarterly_totals'];
     $activities01 = $_POST['activities01'];
@@ -81,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 "value" => $quarterly_totals
             ],
             [
-                "dataElement" => "zkUrFzbH3Vm",
+                "dataElement" => "lmOU0RK4aYg",
                 "value" => $activities01
             ],
         ]
@@ -212,7 +232,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="text"],
         input[type="email"],
         input[type="tel"],
-        input[type="number"] {
+        input[type="number"],
+        select {
             width: 100%;
             padding: 12px 15px;
             border: 2px solid #e1e5ee;
@@ -225,11 +246,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="tel"]:focus,
-        input[type="number"]:focus {
+        input[type="number"]:focus,
+        select:focus {
             outline: none;
             border-color: #667eea;
             background-color: white;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[readonly] {
+            background-color: #e9ecef;
+            cursor: not-allowed;
         }
 
         .submit-btn {
@@ -334,8 +361,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="form-group">
-                        <label for="contact_person" class="required">Contact Person</label>
-                        <input type="tel" name="contact_person" id="contact_person" required />
+                        <label for="contact_person" class="required">Contact Person Phone Number</label>
+                        <input type="tel" name="contact_person" id="contact_person" required placeholder="e.g +254700000000" pattern="[+]?[0-9\s\-\(\)]{10,}" title="Please enter a valid phone number" />
                     </div>
 
                     <div class="form-group">
@@ -349,28 +376,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="form-group">
-                        <label for="ada_q1" class="required">ADA-Q1</label>
-                        <input type="number" name="ada_q1" id="ada_q1" required />
+                        <label for="selected_quarter" class="required">Select Quarter</label>
+                        <select name="selected_quarter" id="selected_quarter" required onchange="toggleQuarterField()">
+                            <option value="">Select a quarter...</option>
+                            <option value="ada_q1">ADA-Q1</option>
+                            <option value="ada_q2">ADA-Q2</option>
+                            <option value="ada_q3">ADA-Q3</option>
+                            <option value="ada_q4">ADA-Q4</option>
+                        </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="ada_q2" class="required">ADA-Q2</label>
-                        <input type="number" name="ada_q2" id="ada_q2" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ada_q3" class="required">ADA-Q3</label>
-                        <input type="number" name="ada_q3" id="ada_q3" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ada_q4" class="required">ADA-Q4</label>
-                        <input type="number" name="ada_q4" id="ada_q4" required />
+                    <div class="form-group" id="quarter_field_container" style="display: none;">
+                        <label id="quarter_label" class="required"></label>
+                        <input type="number" id="quarter_value" name="" required oninput="calculateTotal()" />
                     </div>
 
                     <div class="form-group">
                         <label for="quarterly_totals" class="required">Quarterly totals</label>
-                        <input type="number" name="quarterly_totals" id="quarterly_totals" required />
+                        <input type="number" name="quarterly_totals" id="quarterly_totals" readonly />
                     </div>
                 </div>
             </div>
@@ -380,5 +403,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </form>
     </div>
+
+    <script>
+        function toggleQuarterField() {
+            const selectedQuarter = document.getElementById('selected_quarter').value;
+            const container = document.getElementById('quarter_field_container');
+            const label = document.getElementById('quarter_label');
+            const input = document.getElementById('quarter_value');
+            
+            if (selectedQuarter) {
+                // Show the container
+                container.style.display = 'block';
+                
+                // Set the label text
+                const quarterNames = {
+                    'ada_q1': 'ADA-Q1',
+                    'ada_q2': 'ADA-Q2',
+                    'ada_q3': 'ADA-Q3',
+                    'ada_q4': 'ADA-Q4'
+                };
+                label.textContent = quarterNames[selectedQuarter];
+                
+                // Set the input name attribute
+                input.name = selectedQuarter;
+                
+                // Clear the value and total
+                input.value = '';
+                document.getElementById('quarterly_totals').value = '';
+            } else {
+                // Hide the container
+                container.style.display = 'none';
+                input.name = '';
+            }
+        }
+        
+        function calculateTotal() {
+            const quarterValue = document.getElementById('quarter_value').value;
+            const totalField = document.getElementById('quarterly_totals');
+            
+            if (quarterValue && !isNaN(quarterValue)) {
+                // For now, the quarterly total is just the same as the quarter value
+                // You can modify this logic if you need different calculations
+                totalField.value = quarterValue;
+            } else {
+                totalField.value = '';
+            }
+        }
+    </script>
 </body>
 </html>
