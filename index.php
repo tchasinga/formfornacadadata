@@ -192,6 +192,21 @@
                 </div>
             </div>
 
+            <!-- Family Therapy Feedback Form -->
+            <div class="service-card bg-white rounded-xl shadow-lg p-6 border border-gray-100" onclick="navigateToService('family_therapy_feedback_form')">
+                <div class="text-center">
+                    <div class="card-icon text-4xl text-amber-600 mb-4">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Family Therapy Feedback Form</h3>
+                    <p class="text-gray-600 text-sm mb-4">Submit family therapy feedback data for monitoring and reporting to the DHIS2 platform.</p>
+                    <div class="inline-flex items-center text-amber-600 font-medium">
+                        <span class="mr-2">View Form</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
