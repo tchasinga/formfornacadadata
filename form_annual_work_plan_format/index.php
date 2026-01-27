@@ -6,7 +6,7 @@ $success_message = "";
 $error_message = "";
 
 // API credentials
-$url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
+$url = "https://monitoring.nacada.go.ke/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
@@ -308,7 +308,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <div class="header">
-            <h1>FORM-ANNUAL WORK PLAN FORMAT</h1>
+            <h3 style="color:#000">FORM-ANNUAL WORK PLAN FORMAT</h3>
             <p>Please fill out all the required fields below</p>
         </div>
 

@@ -5,8 +5,39 @@ ini_set('display_errors', 1);
 $success_message = "";
 $error_message = "";
 
+
+$startYear = 2022;          // first year to show (change if needed)
+$currentYear = date('Y');
+$currentMonth = date('n');  // 1-12
+
+$periods = [];
+
+// Determine current semester
+$currentSemester = ($currentMonth <= 6) ? 'S1' : 'S2';
+
+// Loop through years
+for ($year = $startYear; $year <= $currentYear; $year++) {
+    // S1 always exists
+    $periods[] = [
+        'value' => $year . 'S1',
+        'label' => $year . ' Jan – Jun (S1)'
+    ];
+
+    // S2 only if we are past June of this year
+    if ($year < $currentYear || $currentSemester === 'S2') {
+        $periods[] = [
+            'value' => $year . 'S2',
+            'label' => $year . ' Jul – Dec (S2)'
+        ];
+    }
+}
+
+// auto-select current period
+$currentPeriod = $currentYear . $currentSemester;
+
+
 // API credentials
-$url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
+$url = "https://monitoring.nacada.go.ke/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
@@ -14,6 +45,7 @@ $password = "Jocsoft@2027!!";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     $value = $_POST['value'];
+	$period = $_POST['period'] ?? $currentPeriod;
     $full_nameoforganization = $_POST['full_nameoforganization'];
     $telephone_number = $_POST['telephone_number'];
     $contact_person = $_POST['contact_person'];
@@ -45,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $data = [
         "dataSet" => "SQAjVomXv0s",
         "completeDate" => date("Y-m-d"),
-        "period" => "2025S1",
+        "period" => $period,
         "orgUnit" => "ORwhnDymBpM",
         "dataValues" => [
             [
@@ -212,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PREVENTION BI_ANNUAL REPORTING TEMPLATE</title>
+    <title>PREVENTION BI ANNUAL REPORTING TO NACADA HQ</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -337,7 +369,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h2>PREVENTION BI_ANNUAL REPORTING TEMPLATE</h2>
+        <h3 style="text-align:center">PREVENTION BI ANNUAL REPORTING TO NACADA HQ</h3>
         
         <form method="POST" autocomplete="off">
             <div class="form-container">
@@ -347,11 +379,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if ($error_message): ?>
                     <div class="status-message error"><?php echo $error_message; ?></div>
                 <?php endif; ?>
-
+                 <div class="form-group">
+					<label for="period">Bi Annual Reporting Period</label>
+					<select name="period" id="period" required>
+						<option value="">Select reporting period</option>
+						<?php foreach ($periods as $p): ?>
+							<option value="<?= $p['value']; ?>"
+								<?= ($p['value'] === ($period ?? $currentPeriod)) ? 'selected' : ''; ?>>
+								<?= $p['label']; ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
                 <div class="form-group">
                     <label for="value">Designation</label>
                     <input type="text" name="value" id="value" required>
                 </div>
+				
 
                 <div class="form-group">
                     <label for="full_nameoforganization">Full name of organization/WorkGroup</label>
@@ -365,7 +409,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="form-group">
                     <label for="contact_person">Contact person</label>
-                    <input type="tel" name="contact_person" id="contact_person" required>
+                    <input type="tel" name="contact_person" id="contact_person" placeholder="Enter Phone Number "required>
                 </div>
 
                 <div class="form-group">

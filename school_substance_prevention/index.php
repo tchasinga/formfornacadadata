@@ -6,7 +6,7 @@ $success_message = "";
 $error_message = "";
 
 // API credentials
-$url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
+$url = "https://monitoring.nacada.go.ke/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
@@ -279,7 +279,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <div class="container">
-        <h1>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level</h1>
+        <h3>Reporting Format on Prevention, Control and Management of Alcohol and Substance Use at School Level</h3>
         
         <?php if ($success_message): ?>
             <div class="message success"><?php echo htmlspecialchars($success_message); ?></div>
@@ -320,7 +320,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <?php 
                     $current_year = date('Y');
                     $start_year = 2025; // Starting year
-                    $end_year = $current_year + 2; // Go 2 years ahead
+                    $end_year = $current_year + 0; // Go 2 years ahead
                     
                     for ($year = $start_year; $year <= $end_year; $year++): 
                         for ($term = 1; $term <= 3; $term++):

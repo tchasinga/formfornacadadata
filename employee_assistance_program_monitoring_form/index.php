@@ -6,7 +6,7 @@ $success_message = "";
 $error_message = "";
 
 // API credentials
-$url = "https://monitoring.jocsoft.net/dhis/api/dataValueSets";
+$url = "https://monitoring.nacada.go.ke/api/dataValueSets";
 $username = "jack";
 $password = "Jocsoft@2027!!";
 
@@ -760,8 +760,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <div class="header">
-            <h1>EMPLOYEE ASSISTANCE PROGRAM MONITORING FORM</h1>
-            <p>Complete all sections below to submit your EAP monitoring data</p>
+            <h3>EMPLOYEE ASSISTANCE PROGRAM MONITORING FORM</h3>
+            <p>Complete all sections below to submit EAP monitoring data</p>
         </div>
         
         <?php if ($success_message): ?>

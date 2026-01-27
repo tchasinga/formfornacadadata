@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error_message = "Invalid email format";
         } else {
-            $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
+            $url = "https://monitoring.nacada.go.ke/api/tracker";
             $username = "jack";
             $password = "Jocsoft@2027!!";
 
@@ -521,7 +521,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="container">
         <div class="header">
-            <h1>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING</h1>
+            <h3>WORKPLACE BASED PREVENTION INTERVENTIONS TRAINING</h3>
             <p>For Managers and Supervisors Evaluation</p>
         </div>
         

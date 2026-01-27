@@ -43,8 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $kra_pin_number = $_POST['kra_pin_number'];
 
 
-    $url = "https://monitoring.jocsoft.net/dhis/api/tracker";
-    $fileUrl = "https://monitoring.jocsoft.net/dhis/api/fileResources";
+    $url = "https://monitoring.nacada.go.ke/api/tracker";
+    $fileUrl = "https://monitoring.nacada.go.ke/api/fileResources";
     $username = "admin";
     $password = "Jocsoft@2025!";
     $currentDate = date('Y-m-d');
@@ -444,7 +444,7 @@ $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 <body>
     <div class="container">
         <div class="header">
-            <h1>ORGANIZATION/GROUP BOOKING DETAILS</h1>
+            <h3>ORGANIZATION/GROUP BOOKING DETAILS</h3>
             <p>Please fill in all the required information to book your training session</p>
         </div>
         
