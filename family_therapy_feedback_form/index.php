@@ -11,8 +11,26 @@ $username = "jack";
 $password = "Jocsoft@2027!!";
 
 // Handle form submission
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $client_name = $_POST['client_name'];
+}
+$payload = [
+    "events" => [[
+        "program" => 'MhqA6j3Iumo',
+        // "programStage" => 'bDQGpT6AYTc',
+        "orgUnit" => 'ORwhnDymBpM',
+        "occurredAt" => date("c"),
+        "dataValues" => [
+            [
+                "dataElement" => "QElcG47fh8W",
+                "value" => "client_name"
+            ]
+        ]
+    ]]
+];
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
