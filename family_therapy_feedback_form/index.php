@@ -31,6 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $exit_planning = isset($_POST['exit_planning']) ? 'Yes' : 'No';
         $relapse_prevention = isset($_POST['relapse_prevention']) ? 'Yes' : 'No';
 
+        $issues_of_concern_raised_by_the_family_guardian = trim($_POST['issues_of_concern_raised_by_the_family_guardian'] ?? '');
+        $recommendations_suggestions_made_by_the_counsellor = trim($_POST['recommendations_suggestions_made_by_the_counsellor'] ?? '');
+        $recommendations_suggestions_made_by_the_family_guardian = trim($_POST['recommendations_suggestions_made_by_the_family_guardian'] ?? '');
+        $recommendations_and_areas_to_improve_in_treatment = trim($_POST['recommendations_and_areas_to_improve_in_treatment'] ?? '');
+        $primary_counsellor_sign = trim($_POST['primary_counsellor_sign'] ?? '');
+
         $dataValues = [
             ["dataElement" => "QElcG47fh8W", "value" => $client_name],
             ["dataElement" => "xlnWeFVVOiw", "value" => $primary_counsellor],
@@ -46,6 +52,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             ["dataElement" => "xU5yqOol19I", "value" => $outstanding_fees],
             ["dataElement" => "dVZarDYVsZm", "value" => $exit_planning],
             ["dataElement" => "P14QMpHcMVz", "value" => $relapse_prevention],
+            ["dataElement" => "IYNJPSsdhxr", "value" => $issues_of_concern_raised_by_the_family_guardian],
+            ["dataElement" => "KHlNZ9TqZBx", "value" => $recommendations_suggestions_made_by_the_counsellor],
+            ["dataElement" => "BL86IaqmAFW", "value" => $recommendations_suggestions_made_by_the_family_guardian],
+            ["dataElement" => "bzTtgWs7FEA", "value" => $recommendations_and_areas_to_improve_in_treatment],
+            ["dataElement" => "JOPLQGytiTd", "value" => $primary_counsellor_sign],
         ];
 
         // Filter out empty text values so we don't send empty strings for optional fields
@@ -204,6 +215,40 @@ $post = $_POST ?? [];
                             class="rounded border-gray-300 text-teal-600 focus:ring-teal-500">
                         <span class="text-gray-700">Relapse prevention</span>
                     </label>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-200 pt-6 space-y-4">
+                <h2 class="text-lg font-medium text-gray-800 mb-3">Issues and recommendations</h2>
+
+                <div>
+                    <label for="issues_of_concern_raised_by_the_family_guardian" class="block text-sm font-medium text-gray-700 mb-1">Issues of concern raised by the family / guardian</label>
+                    <textarea name="issues_of_concern_raised_by_the_family_guardian" id="issues_of_concern_raised_by_the_family_guardian" rows="4"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"><?= htmlspecialchars($post['issues_of_concern_raised_by_the_family_guardian'] ?? '') ?></textarea>
+                </div>
+
+                <div>
+                    <label for="recommendations_suggestions_made_by_the_counsellor" class="block text-sm font-medium text-gray-700 mb-1">Recommendations / suggestions made by the counsellor</label>
+                    <textarea name="recommendations_suggestions_made_by_the_counsellor" id="recommendations_suggestions_made_by_the_counsellor" rows="4"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"><?= htmlspecialchars($post['recommendations_suggestions_made_by_the_counsellor'] ?? '') ?></textarea>
+                </div>
+
+                <div>
+                    <label for="recommendations_suggestions_made_by_the_family_guardian" class="block text-sm font-medium text-gray-700 mb-1">Recommendations / suggestions made by the family / guardian</label>
+                    <textarea name="recommendations_suggestions_made_by_the_family_guardian" id="recommendations_suggestions_made_by_the_family_guardian" rows="4"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"><?= htmlspecialchars($post['recommendations_suggestions_made_by_the_family_guardian'] ?? '') ?></textarea>
+                </div>
+
+                <div>
+                    <label for="recommendations_and_areas_to_improve_in_treatment" class="block text-sm font-medium text-gray-700 mb-1">Recommendations and areas to improve in treatment</label>
+                    <textarea name="recommendations_and_areas_to_improve_in_treatment" id="recommendations_and_areas_to_improve_in_treatment" rows="4"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"><?= htmlspecialchars($post['recommendations_and_areas_to_improve_in_treatment'] ?? '') ?></textarea>
+                </div>
+
+                <div>
+                    <label for="primary_counsellor_sign" class="block text-sm font-medium text-gray-700 mb-1">Primary counsellor signature</label>
+                    <textarea name="primary_counsellor_sign" id="primary_counsellor_sign" rows="2"
+                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-teal-500 focus:border-teal-500"><?= htmlspecialchars($post['primary_counsellor_sign'] ?? '') ?></textarea>
                 </div>
             </div>
 
